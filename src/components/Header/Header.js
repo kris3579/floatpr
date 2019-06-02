@@ -7,7 +7,7 @@ export default class Header extends React.Component {
 
     return (
       <header>
-        <h1>Header</h1>
+        <h1>FloatPR</h1>
         <Nav/>
       </header>
     );

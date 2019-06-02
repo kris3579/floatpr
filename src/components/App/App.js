@@ -16,6 +16,43 @@ export default class App extends React.Component {
 
     this.state = {};
     this.state.tournament = '';
+    this.state.activePlayers = [
+      {
+        score: 9999,
+        tag: 'Digital',
+        winRate: '99%',
+        mains: 'Peach, Fox',
+        rank: 1
+      },
+      {
+        score: 0,
+        tag: 'Popa Squat',
+        winRate: '0%',
+        mains: 'Captain Falcon',
+        rank: 2
+      },
+      {
+        score: 1234,
+        tag: 'wild flower',
+        winRate: '40%',
+        mains: 'Fox, Sheik',
+        rank: 3
+      },
+      {
+        score: 4000,
+        tag: 'Greenman',
+        winRate: '77%',
+        mains: 'Fox',
+        rank: 4
+      },
+      {
+        score: 3030,
+        tag: 'Honey',
+        winRate: '10%',
+        mains: 'Falco, Peach',
+        rank: 5
+      }
+    ]
   };
 
   getChallongeTournament = () => {
@@ -55,7 +92,9 @@ export default class App extends React.Component {
           /> */}
           <button type='submit'>Submit</button>
         </form>
-        <MainRanking/>
+        <MainRanking
+          activePlayers={this.state.activePlayers}
+        />
         <Footer/>
       </div>
     );

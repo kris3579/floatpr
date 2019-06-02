@@ -1,5 +1,7 @@
 import React from 'react';
-// import PlayerRow from '../PlayerRow/PlayerRow';
+import PlayerRanking from '../PlayerRanking/PlayerRanking';
+
+import './MainRanking.scss';
 
 export default class MainRanking extends React.Component {
   render() {
@@ -8,15 +10,18 @@ export default class MainRanking extends React.Component {
       <div>
         <p>Main Ranking</p>
         <table>
-          {/* {
-            this.props.activePlayers.map((player) => {
-              return (
-                <PlayerRow
+          <tbody>
+            {
+              this.props.activePlayers.map((player, i) => {
+                return (
+                  <PlayerRanking
                   player={player}
-                />
-              )
-            })
-          } */}
+                  key={i}
+                  />
+                )
+              })
+            }
+          </tbody>
         </table>
       </div>
     );
