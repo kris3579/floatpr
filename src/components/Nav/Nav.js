@@ -5,7 +5,11 @@ export default class Nav extends React.Component {
 
     return (
       <nav>
-        <p>Nav</p>
+        <ul>
+          <li>WA Ranking</li>
+          <li>Event Rankings</li>
+          <li>About</li>
+        </ul>
       </nav>
     );
   };

@@ -1,4 +1,5 @@
 import React from 'react';
+// import PlayerRow from '../PlayerRow/PlayerRow';
 
 export default class MainRanking extends React.Component {
   render() {
@@ -6,6 +7,17 @@ export default class MainRanking extends React.Component {
     return (
       <div>
         <p>Main Ranking</p>
+        <table>
+          {/* {
+            this.props.activePlayers.map((player) => {
+              return (
+                <PlayerRow
+                  player={player}
+                />
+              )
+            })
+          } */}
+        </table>
       </div>
     );
   };

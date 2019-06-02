@@ -1,5 +1,6 @@
 import React from 'react';
-import challonge from 'challonge';
+import superagent from 'superagent';
+// import cors from 'cors';
 
 import Header from '../Header/Header';
 import MainRanking from '../MainRanking/MainRanking';
@@ -8,11 +9,6 @@ import Footer from '../Footer/Footer';
 import './App.css';
 
 console.log(process.env.REACT_APP_CHALLONGE_API_KEY);
-
-const client = challonge.createClient({
-  apiKey: process.env.REACT_APP_CHALLONGE_API_KEY,
-  
-});
 
 export default class App extends React.Component {
   constructor(props) {
@@ -23,12 +19,10 @@ export default class App extends React.Component {
   };
 
   getChallongeTournament = () => {
-  // getChallongeTournament = (tournament) => {
-    
-    client.tournaments.index({
-      callback: (err, data) => {
-        console.log(err, data);
-      },
+    superagent.get('http://localhost:3579/hitChallonge')
+    .withCredentials()
+    .then((response) => {
+      console.log(response);
     });
   };
 
@@ -42,7 +36,6 @@ export default class App extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.getChallongeTournament();
-    // this.getChallongeTournament(this.state.tournament);
     this.setState({
       tournament: '',
     });
