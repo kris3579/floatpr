@@ -1,24 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './PlayerRanking.scss';
+import './PlayerRow.scss';
 
-export default class PlayerRanking extends React.Component {
+export default class PlayerRow extends React.Component {
   render() {
-    console.log(this.props.player);
-
     return (
       <tr>
         <td className='rankColumn'>{this.props.player.rank}</td>
         <td className='nameColumn'>{this.props.player.tag}</td>
         <td className='mainsColumn'>{this.props.player.mains}</td>
         <td className='scoreColumn'>{this.props.player.score}</td>
-        <td className='winRateColumn'>{this.props.player.winRate}</td>
+        <td className='winRateColumn'>{this.props.player.setWinRate}</td>
+        <td className='winRateColumn'>{this.props.player.gameWinRate}</td>
       </tr>
     );
   };
 };
 
-PlayerRanking.propTypes = {
+PlayerRow.propTypes = {
   player: PropTypes.object
 };
