@@ -23,7 +23,7 @@ export default class MainRanking extends React.Component {
     
     return (
       <div>
-        <p>Main Ranking</p>
+        <h3>Washington State Ranking</h3>
         <table>
           <tbody>
             <tr className='headerRow'>

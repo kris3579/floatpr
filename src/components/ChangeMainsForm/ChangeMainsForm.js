@@ -8,10 +8,27 @@ export default class ChangeMainsForm extends React.Component {
     super(props);
 
     this.state = {
+      user: '',
       main: '',
       color: '',
       doWeDelete: '',
+      inputText: ''
     };
+  };
+
+  handleUserTagChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      inputText: event.target.value,
+    });
+  };
+
+  handleUserTagSubmit = (event) => {
+    event.preventDefault();
+    console.log(event.currentTarget.children[0].value);
+    this.setState({
+      user: event.currentTarget.children[0].value,
+    });
   };
 
   handleChooseDoWeDelete = (event) => {
@@ -50,15 +67,24 @@ export default class ChangeMainsForm extends React.Component {
   
   handleSubmitRequest = (event) => {
     event.preventDefault();
-    this.props.handleChangeMains(this.state.color, this.state.main, this.state.doWeDelete);
+    console.log(this.state.user, this.state.color, this.state.main, this.state.doWeDelete)
+    this.props.handleChangeMains(this.state.user, this.state.color, this.state.main, this.state.doWeDelete);
     this.setState({
+      user: '',
       main: '',
       color: '',
       doWeDelete: '',
+      inputText: '',
     });
   };
 
   render() {
+    const doWeDeleteForm = this.state.user === '' ? <div/> :
+      <form>
+        <button type='radio' value='add to' onClick={this.handleChooseDoWeDelete}>Add To Mains</button>
+        <button type='radio' value='replace' onClick={this.handleChooseDoWeDelete}>Replace Mains</button>
+      </form>;
+
     const mainsForm = this.state.doWeDelete === '' ? <div/> : 
       <form>
         <select value={this.state.main} onChange={this.handleChooseMain}>
@@ -93,7 +119,7 @@ export default class ChangeMainsForm extends React.Component {
       </form>;
 
     const colorForm = this.state.main === '' ? <div/> : this.createColorForm(this.state.main);
-    const submitButton = this.state.color === ''? <div/> :
+    const submitButton = this.state.color === '' ? <div/> :
       <form onSubmit={this.handleSubmitRequest}>
         <button type='submit'>Submit Request</button>
       </form>;
@@ -101,10 +127,12 @@ export default class ChangeMainsForm extends React.Component {
 
     return (
       <div>
-        <form>
-          <button type='radio' value='add to' onClick={this.handleChooseDoWeDelete}>Add To Mains</button>
-          <button type='radio' value='replace' onClick={this.handleChooseDoWeDelete}>Replace Mains</button>
+        <form onSubmit={this.handleUserTagSubmit}>
+          <input type='text' placeholder='Your Tag' onChange={this.handleUserTagChange}/>
+          <button type='submit'>Submit</button>
         </form>
+
+        {doWeDeleteForm}
 
         {mainsForm}
 

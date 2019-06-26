@@ -63,7 +63,7 @@ const characterColors = {
     'Red',
     'Blue',
     'Green',
-    'Yellow'
+    'Crown'
   ],
   kirby: [
     'Neutral',

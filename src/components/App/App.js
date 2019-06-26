@@ -19,7 +19,7 @@ export default class App extends React.Component {
           <Route exact path={'/tournaments'} component={TournamentList}/>
           <Route exact path={'/requests'} component={RequestPage}/>
           <Route exact path={'/about'} component={About}/>
-          <Route exact path={'/player/:id'} component={PlayerProfile}/>
+          <Route exact path={'/player/:playerName'} component={PlayerProfile}/>
           <Footer/>
         </BrowserRouter>
       </div>

@@ -16,7 +16,7 @@ export default class Main extends React.Component {
         tag: 'Digital',
         setWinRate: '99%',
         gameWinRate: '99%',
-        mains: 'Peach, Fox',
+        mains: ['GreenPeach', 'BlackCaptainFalcon', 'GreenFox', 'GreenPikachu'],
         rank: 1
       },
       {
@@ -24,7 +24,7 @@ export default class Main extends React.Component {
         tag: 'Popa Squat',
         setWinRate: '0%',
         gameWinRate: '99%',
-        mains: 'Captain Falcon',
+        mains: ['BlackCaptainFalcon'],
         rank: 2
       },
       {
@@ -32,7 +32,7 @@ export default class Main extends React.Component {
         tag: 'wild flower',
         setWinRate: '40%',
         gameWinRate: '99%',
-        mains: 'Fox, Sheik',
+        mains: ['NeutralFox', 'NeutralSheik'],
         rank: 3
       },
       {
@@ -40,7 +40,7 @@ export default class Main extends React.Component {
         tag: 'Greenman',
         setWinRate: '77%',
         gameWinRate: '99%',
-        mains: 'Fox',
+        mains: ['GreenFox', 'GreenGameAndWatch'],
         rank: 4
       },
       {
@@ -48,7 +48,7 @@ export default class Main extends React.Component {
         tag: 'Honey',
         setWinRate: '10%',
         gameWinRate: '99%',
-        mains: 'Falco, Peach',
+        mains: ['GreenFalco', 'WhitePeach'],
         rank: 5
       }
     ]
