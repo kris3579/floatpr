@@ -3,6 +3,9 @@ import superagent from 'superagent';
 
 import ChangeMainsForm from '../ChangeMainsForm/ChangeMainsForm';
 import CombineResultsForm from '../CombineResultsForm/CombineResultsForm';
+import ChangeStateForm from '../ChangeStateForm/ChangeStateForm';
+
+import './RequestPage.scss';
 
 export default class RequestPage extends React.Component {
   constructor(props) {
@@ -57,14 +60,14 @@ export default class RequestPage extends React.Component {
       });
   };
 
-  handleCombineResults = (user, firstTag, secondTag) => {
+  handleCombineResults = (userTag, secondTag) => {
     this.setState({
-      request: `Your request to combine the results of ${firstTag} and ${secondTag} has been submitted.`,
+      request: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
     });
 
     superagent.post('http://localhost:3579/userRequest')
       .set('Content-Type', 'application/json')
-      .send(`{"requestType":"combineResults","user":"${user}","firstTag":"${firstTag}","secondTag":"${secondTag}"}`)
+      .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
       .then((response) => {
         console.log(response);
       })
@@ -73,22 +76,45 @@ export default class RequestPage extends React.Component {
       });
   };
 
+  handleChangeState = (user, state) => {
+    this.setState({
+      request: `Your request to change the home state/region of ${user} to ${state} has been submitted.`
+    });
+
+    superagent.post('http://localhost:3579/userRequest')
+      .set('Content-Type', 'application/json')
+      .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        throw error;
+      })
+  };
+
   render() {
     const changeMainsForm = <ChangeMainsForm handleChangeMains={this.handleChangeMains}/>;
     const combineResultsForm = <CombineResultsForm handleCombineResults={this.handleCombineResults}/>;
-    const displayedForm = this.state.request === 'changeMains' ? changeMainsForm : this.state.request === 'combineResults' ? combineResultsForm : <div>{this.state.request}</div>;
+    const changeStateForm = <ChangeStateForm handleChangeState={this.handleChangeState}/>;
+
+    const displayedForm = this.state.request === 'changeMains' ? changeMainsForm : this.state.request === 'combineResults' ? combineResultsForm : this.state.request === 'changeState' ? changeStateForm : <div>{this.state.request}</div>;
 
     return (
       <div>
         <p>User Request Form</p>
 
-        <form>
-          <label>Add/Change Mains</label>
-          <input type='radio' name='requestOptions' value='changeMains' onChange={this.handleRequest}></input>
+        <div className='chooseRequest'>
+          <form>
+            <label>Add/Change Mains</label>
+            <input type='radio' name='requestOptions' value='changeMains' onChange={this.handleRequest}/>
+            
+            <label>Combine Results of Two Tags</label>
+            <input type='radio' name='requestOptions' value='combineResults' onChange={this.handleRequest}/>
           
-          <label>Combine Results of Two Tags</label>
-          <input type='radio' name='requestOptions' value='combineResults' onChange={this.handleRequest}></input>
-        </form>
+            <label>Change A Player's Home State/Region</label>
+            <input type='radio' name='requestOptions' value='changeState' onChange={this.handleRequest}/>
+          </form>
+        </div>
 
         {displayedForm}
       </div>

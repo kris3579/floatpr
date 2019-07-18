@@ -1,38 +1,26 @@
 import React from 'react';
-// import superagent from 'superagent';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import TournamentRow from '../TournamentRow/TournamentRow';
 
 import './TournamentList.scss';
 
 export default class TournamentList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-    this.state.tournaments = [];
-  }
-
   render() {
-    // superagent.get('http:/localhost:3579/displayTournaments')
-    //   .then((response) => {
-    //     this.setState({
-    //       tournaments: response.body.tournaments,
-    //     });
-    //   });
-
     return (
       <div>
-        <p>Tournament List</p>
+        <h2>Tournament List</h2>
         <table>
           <tbody>
             <tr className='headerRow'>
-              <th className='nameColumn'>Name</th>
+              <th className='tournamentNameColumn'>Name</th>
               <th className='winnerColumn'>Winner</th>
               <th className='dateColumn'>Date</th>
+              <th className='urlColumn'>Bracket URL</th>
             </tr>
             {
-              this.state.tournaments.map((tournament, i) => {
+              this.props.tournaments.map((tournament, i) => {
                 return (
                   <TournamentRow
                     tournament={tournament}
@@ -47,3 +35,15 @@ export default class TournamentList extends React.Component {
     );
   };
 };
+
+const mapStateToProps = (state) => {
+  return {
+    tournaments: state.tournaments,
+  };
+};
+
+TournamentList.propTypes = {
+  tournaments: PropTypes.array,
+};
+
+connect(mapStateToProps, null);

@@ -8,11 +8,11 @@ export default class Nav extends React.Component {
 
     return (
       <nav>
-        <ul>
-          <li><Link to='/'>WA Ranking</Link></li>
-          <li><Link to='/tournaments'>Tournaments</Link></li>
-          <li><Link to='/requests'>Requests</Link></li>
-          <li><Link to='/about'>About</Link></li>
+        <ul className='navUl'>
+          <li className='navLi'><Link to='/' className='navLink'>WA Ranking</Link></li>
+          <li className='navLi'><Link to='/tournaments' className='navLink'>Tournaments</Link></li>
+          <li className='navLi'><Link to='/requests' className='navLink'>Requests</Link></li>
+          <li className='navLi'><Link to='/about' className='navLink'>About</Link></li>
         </ul>
       </nav>
     );
