@@ -1,10 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import superagent from 'superagent';
-
-import storeData from '../../actions/dataActions';
 
 import Header from '../Header/Header';
 import Rankings from '../Rankings/Rankings';
@@ -16,18 +11,7 @@ import TournamentProfile from '../TournamentProfile/TournamentProfile';
 
 import './App.scss';
 
-class App extends React.Component {
-  componentDidMount() {
-    superagent.get('http://localhost:3579/getPlayers')
-      .then((response) => {
-        console.log(response.body);
-        this.props.storeData(response.body, 'players');
-      })
-      .catch((error) => {
-        throw error;
-      });
-  };
-
+export default class App extends React.Component {
   render() {    
     return (
       <div className='App'>
@@ -44,17 +28,3 @@ class App extends React.Component {
     );
   };
 };
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    storeData: (dataObject, dataSet) => {
-      dispatch(storeData(dataObject, dataSet));
-    },
-  };
-};
-
-Rankings.propTypes = {
-  storeData: PropTypes.func,
-};
-
-export default connect(null, mapDispatchToProps)(App);
