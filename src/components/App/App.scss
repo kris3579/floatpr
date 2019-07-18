@@ -1,0 +1,36 @@
+body {
+  margin: 0 auto;
+  text-align: center;
+  width: 90vw;
+}
+
+span {
+  font-weight: bold;
+}
+
+form {
+  margin: 5px 0px;
+}
+
+table {
+  width: 100%;
+  border-spacing: 0px;
+  font-weight: bold;
+  text-align: center;
+}
+
+th {
+  padding: 10px;
+}
+
+td {
+  padding: 5px 0px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+tr:nth-child(odd) {
+  background-color: #aaaaaa;
+}

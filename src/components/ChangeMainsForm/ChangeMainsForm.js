@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import characterColors from '../../assets/characterColors';
 
+import './ChangeMainsForm.scss';
+
 export default class ChangeMainsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -12,57 +14,15 @@ export default class ChangeMainsForm extends React.Component {
       main: '',
       color: '',
       doWeDelete: '',
-      inputText: ''
     };
   };
 
-  handleUserTagChange = (event) => {
+  handleChange = (event) => {
     event.preventDefault();
+    const { name, value } = event.target;
     this.setState({
-      inputText: event.target.value,
+      [name]: value,
     });
-  };
-
-  handleUserTagSubmit = (event) => {
-    event.preventDefault();
-    console.log(event.currentTarget.children[0].value);
-    this.setState({
-      user: event.currentTarget.children[0].value,
-    });
-  };
-
-  handleChooseDoWeDelete = (event) => {
-    event.preventDefault();
-    this.setState({
-      doWeDelete: event.target.value,
-    });
-  };
-
-  handleChooseMain = (event) => {
-    this.setState({
-      main: event.target.value,
-    });
-  };
-
-  handleChooseColor = (event) => {
-    this.setState({
-      color: event.target.value,
-    });
-  };
-  
-  createColorForm = (main) => {
-    return <form>
-      <select value={this.state.color} onChange={this.handleChooseColor}>
-        <option value='' disabled>Choose Color</option>
-        {
-          characterColors[main].map((color, i) => {
-            return (
-              <option key={i}>{color}</option>
-              )
-            })
-          }
-      </select>
-    </form>;
   };
   
   handleSubmitRequest = (event) => {
@@ -74,71 +34,71 @@ export default class ChangeMainsForm extends React.Component {
       main: '',
       color: '',
       doWeDelete: '',
-      inputText: '',
     });
+  };
+  
+  createColorForm = (main) => {
+    return <select name='color' value={this.state.color} onChange={this.handleChange} required>
+        <option value='' disabled>Choose Color</option>
+        {
+          characterColors[main].map((color, i) => {
+            return (
+              <option key={i}>{color}</option>
+              )
+            })
+          }
+      </select>;
   };
 
   render() {
-    const doWeDeleteForm = this.state.user === '' ? <div/> :
-      <form>
-        <button type='radio' value='add to' onClick={this.handleChooseDoWeDelete}>Add To Mains</button>
-        <button type='radio' value='replace' onClick={this.handleChooseDoWeDelete}>Replace Mains</button>
-      </form>;
-
-    const mainsForm = this.state.doWeDelete === '' ? <div/> : 
-      <form>
-        <select value={this.state.main} onChange={this.handleChooseMain}>
-          <option value='' disabled>Choose Main</option>
-          <option value='bowser'>Bowser</option>
-          <option value='captainFalcon'>Captain Falcon</option>
-          <option value='docterMario'>Docter Mario</option>
-          <option value='donkeyKong'>Donkey Kong</option>
-          <option value='falco'>Falco</option>
-          <option value='fox'>Fox</option>
-          <option value='gameAndWatch'>Game & Watch</option>
-          <option value='ganondorf'>Ganondorf</option>
-          <option value='iceClimbers'>Ice Climbers</option>
-          <option value='jigglypuff'>Jigglypuff</option>
-          <option value='kirby'>Kirby</option>
-          <option value='link'>Link</option>
-          <option value='luigi'>Luigi</option>
-          <option value='mario'>Mario</option>
-          <option value='marth'>Marth</option>
-          <option value='mewtwo'>Mewtwo</option>
-          <option value='ness'>Ness</option>
-          <option value='peach'>Peach</option>
-          <option value='pichu'>Pichu</option>
-          <option value='pikachu'>Pikachu</option>
-          <option value='roy'>Roy</option>
-          <option value='samus'>Samus</option>
-          <option value='sheik'>Sheik</option>
-          <option value='yoshi'>Yoshi</option>
-          <option value='youngLink'>Young Link</option>
-          <option value='zelda'>Zelda</option>
-        </select>
-      </form>;
-
     const colorForm = this.state.main === '' ? <div/> : this.createColorForm(this.state.main);
-    const submitButton = this.state.color === '' ? <div/> :
-      <form onSubmit={this.handleSubmitRequest}>
-        <button type='submit'>Submit Request</button>
-      </form>;
-
 
     return (
       <div>
-        <form onSubmit={this.handleUserTagSubmit}>
-          <input type='text' placeholder='Your Tag' onChange={this.handleUserTagChange}/>
+        <form onSubmit={this.handleSubmitRequest}>
+          <input type='text' placeholder='Your Tag' name='user' onChange={this.handleChange} required/>
+          
+          <select name='doWeDelete' value={this.state.doWeDelete} onChange={this.handleChange} required>
+            <option value='' disabled>Add or Replace</option>
+            <option value='add to'>Add To Mains</option>
+            <option value='replace'>Replace Mains</option>
+          </select>
+
+          <select name='main' value={this.state.main} onChange={this.handleChange} required>
+            <option value='' disabled>Choose Main</option>
+            <option value='bowser'>Bowser</option>
+            <option value='captainFalcon'>Captain Falcon</option>
+            <option value='docterMario'>Docter Mario</option>
+            <option value='donkeyKong'>Donkey Kong</option>
+            <option value='falco'>Falco</option>
+            <option value='fox'>Fox</option>
+            <option value='gameAndWatch'>Game & Watch</option>
+            <option value='ganondorf'>Ganondorf</option>
+            <option value='iceClimbers'>Ice Climbers</option>
+            <option value='jigglypuff'>Jigglypuff</option>
+            <option value='kirby'>Kirby</option>
+            <option value='link'>Link</option>
+            <option value='luigi'>Luigi</option>
+            <option value='mario'>Mario</option>
+            <option value='marth'>Marth</option>
+            <option value='mewtwo'>Mewtwo</option>
+            <option value='ness'>Ness</option>
+            <option value='peach'>Peach</option>
+            <option value='pichu'>Pichu</option>
+            <option value='pikachu'>Pikachu</option>
+            <option value='roy'>Roy</option>
+            <option value='samus'>Samus</option>
+            <option value='sheik'>Sheik</option>
+            <option value='yoshi'>Yoshi</option>
+            <option value='youngLink'>Young Link</option>
+            <option value='zelda'>Zelda</option>
+          </select>
+
+          {colorForm}
+
           <button type='submit'>Submit</button>
         </form>
 
-        {doWeDeleteForm}
-
-        {mainsForm}
-
-        {colorForm}
-
-        {submitButton}
       </div>
     );
   };

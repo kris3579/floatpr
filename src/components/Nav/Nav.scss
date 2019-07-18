@@ -1,18 +1,24 @@
-ul {
-  list-style: none;
-  width: 100vw;
-  height: 5vh;
+.navUl {
   background-color: #333333;
+  height: 5vh;
+  list-style: none;
+  padding-left: 7.5px;
 }
 
-li {
+.navLi:last-child > a {
+  border-right: none;
+}
+
+.navLi {
+  float: left;
   height: 5vh;
   line-height: 5vh;
-  padding: 0px 7.5px;
-  float: left;
 }
 
-a {
-  text-align: center;
+.navLink {
+  border-right: 1px solid white; 
   color: white;
+  padding: 0px 10px;
+  text-align: center;
+  text-decoration: none;
 }
