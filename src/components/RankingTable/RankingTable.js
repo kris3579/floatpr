@@ -10,23 +10,22 @@ class RankingTable extends React.Component {
   render() {
     let rankingArray;
     let tableHeader;
-    let playersObject = this.props.playersObject || {};
 
     switch (this.props.rankingFilter) {
       case 'activeWashingtonPlayers':
-        rankingArray = playersObject.activeWashingtonPlayers;
+        rankingArray = this.props.playersObject.activeWashingtonPlayers;
         tableHeader = 'Active Washington Players';
         break;
       case 'allActivePlayers':
-        rankingArray = playersObject.allActivePlayers;
+        rankingArray = this.props.playersObject.allActivePlayers;
         tableHeader = 'All Active Players';
         break;
       case 'allPlayers':
-        rankingArray = playersObject.allPlayers;
+        rankingArray = this.props.playersObject.allPlayers;
         tableHeader = 'All Players';
         break;
       case 'outOfStatePlayers':
-        rankingArray = playersObject.outOfStatePlayers;
+        rankingArray = this.props.playersObject.outOfStatePlayers;
         tableHeader = 'Out-of-State Players';
         break;
       default:
