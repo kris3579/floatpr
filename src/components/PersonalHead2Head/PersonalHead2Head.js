@@ -1,12 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import MatchupList from '../MatchupList/MatchupList';
 import Head2HeadTable from '../Head2HeadTable/Head2HeadTable';
 
-class PersonalHead2Head extends React.Component {
+export default class PersonalHead2Head extends React.Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +19,6 @@ class PersonalHead2Head extends React.Component {
     const allMatchups = {};
 
     if (this.props.sets) {
-      console.log('here');
       this.props.sets.forEach((set) => {
         if (set.winner_name === this.props.player.name) {
           const matchupName = `${this.props.player.name} vs ${set.loser_name}`;
@@ -73,7 +71,7 @@ class PersonalHead2Head extends React.Component {
         }
       });
     }
-    console.log(allMatchups);
+    
     const sortBySetsPlayed = this.sortBySetsPlayed(allMatchups);
 
     const deselectedMatchups = [];
@@ -153,15 +151,7 @@ class PersonalHead2Head extends React.Component {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    sets: state.sets,
-  };
-};
-
 PersonalHead2Head.propTypes = {
   player: PropTypes.object,
   sets: PropTypes.array,
 };
-
-export default connect(mapStateToProps, null)(PersonalHead2Head);

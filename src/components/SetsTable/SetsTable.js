@@ -1,25 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import superagent from 'superagent';
 
-import storeData from '../../actions/dataActions';
 import SetsRow from '../SetsRow/SetsRow';
 
-class SetsTable extends React.Component {
-  componentDidMount() {
-    if (!this.props.sets) {
-      superagent.get('http://localhost:3579/getSets')
-        .then((response) => {
-          console.log(response.body);
-          this.props.storeData(response.body, 'sets');
-        })
-        .catch((error) => {
-          throw error;
-        });
-    }
-  };
-
+export default class SetsTable extends React.Component {
   render() {
     let sets;
 
@@ -45,19 +29,6 @@ class SetsTable extends React.Component {
       };
     }
 
-    const loadingOrNot = this.props.sets ? <>
-      {
-        sets.map((set, i) => {
-          return (
-            <SetsRow
-              set={set}
-              key={i}
-            />
-          )
-        })
-      }
-    </> : <tr><td className='loadingColumn'>Loading...</td></tr>;
-
     return (
       <div>
         <table>
@@ -69,25 +40,20 @@ class SetsTable extends React.Component {
               <th className='scoreColumn'>Score</th>
               <th className='tournamentColumn'>tournament</th>
             </tr>
-            {loadingOrNot}
+            {
+              sets.map((set, i) => {
+                return (
+                  <SetsRow
+                    set={set}
+                    key={i}
+                  />
+                )
+              })
+            }
           </tbody>
         </table>
       </div>
     );
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    sets: state.sets,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    storeData: (data, dateSet) => {
-      dispatch(storeData(data, dateSet));
-    },
   };
 };
 
@@ -96,8 +62,5 @@ SetsTable.propTypes = {
   playerB: PropTypes.string,
   sets: PropTypes.array,
   setsType: PropTypes.string,
-  storeData: PropTypes.func,
   tournament: PropTypes.string,
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(SetsTable);

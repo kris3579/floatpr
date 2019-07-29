@@ -10,8 +10,9 @@ import PlayerRow from '../PlayerRow/PlayerRow';
 import './RankingTable.scss';
 
 class RankingTable extends React.Component {
-  playerData = () => {
+  playersData = () => {
     if (!this.props.playersObject) {
+      console.log('here1');
       return superagent.get('http://localhost:3579/getPlayers')
         .then((response) => {
           this.props.storeData(response.body, 'players');
@@ -21,7 +22,9 @@ class RankingTable extends React.Component {
           throw error;
         });
     }
+
     if (this.props.playersObject) {
+      console.log('here2');
       return this.props.playersObject;
     }
     throw Error('Something went wrong');
@@ -53,7 +56,7 @@ class RankingTable extends React.Component {
     };
 
     return (
-      <Async promiseFn={this.playerData}>
+      <Async promiseFn={this.playersData}>
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
           {data => (
