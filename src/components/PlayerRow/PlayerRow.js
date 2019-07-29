@@ -8,7 +8,7 @@ export default class PlayerRow extends React.Component {
   render() {
     return (
       <tr>
-        <td className='rankColumn'>{this.props.player.rank}</td>
+        <td className='rankColumn'>{this.props.rank}</td>
       
         <td className='nameColumn'>
           <Link className='playerLink' to={{pathname: `/player/${this.props.player.name}`}}>
@@ -33,5 +33,6 @@ export default class PlayerRow extends React.Component {
 };
 
 PlayerRow.propTypes = {
-  player: PropTypes.object
+  player: PropTypes.object,
+  rank: PropTypes.number,
 };

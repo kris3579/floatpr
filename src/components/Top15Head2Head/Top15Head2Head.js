@@ -50,7 +50,7 @@ class Top15Head2Head extends React.Component {
                         this.props.playersObject.activeWashingtonPlayers.map((player2, i) => {
                           if (i < 14) {
                             return (
-                              <td><strong>{this.getHead2Head(player1, player2)}</strong></td>
+                              <td><strong>{this.getHead2Head(player1, player2)}</strong><br/>Calculated percetages</td>
                             )
                           }
                           return null;

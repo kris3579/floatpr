@@ -1,16 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import superagent from 'superagent';
 
+import storeData from '../../actions/dataActions';
 import TournamentRow from '../TournamentRow/TournamentRow';
 
 import './TournamentList.scss';
 
-export default class TournamentList extends React.Component {
+class TournamentList extends React.Component {
+  componentDidMount() {
+    if (!this.props.tournaments) {
+      superagent.get('http://localhost:3579/getTournaments')
+        .then((response) => {
+          console.log(response.body);
+          this.props.storeData(response.body, 'tournaments');
+        })
+        .catch((error) => {
+          throw error;
+        });
+    }
+  };
+
   render() {
+    const loadingOrNot = this.props.tournaments ? <>
+      {
+        this.props.tournaments.tournamentsArray.map((tournament, i) => {
+          return (
+            <TournamentRow
+              tournament={tournament}
+              key={i}
+            />
+          )
+        })
+      }
+    </> : <tr><td className='loadingColumn'>Loading...</td></tr>;
+
     return (
-      <div>
-        <h2>Tournament List</h2>
+      <>
         <table>
           <tbody>
             <tr className='headerRow'>
@@ -19,19 +46,10 @@ export default class TournamentList extends React.Component {
               <th className='dateColumn'>Date</th>
               <th className='urlColumn'>Bracket URL</th>
             </tr>
-            {
-              this.props.tournaments.map((tournament, i) => {
-                return (
-                  <TournamentRow
-                    tournament={tournament}
-                    key={i}
-                  />
-                )
-              })
-            }
+            {loadingOrNot}
           </tbody>
         </table>
-      </div>
+      </>
     );
   };
 };
@@ -42,8 +60,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-TournamentList.propTypes = {
-  tournaments: PropTypes.array,
+const mapDispatchToProps = (dispatch) => {
+  return {
+    storeData: (data, dataSet) => {
+      dispatch(storeData(data, dataSet));
+    },
+  };
 };
 
-connect(mapStateToProps, null);
+TournamentList.propTypes = {
+  tournaments: PropTypes.object,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TournamentList);

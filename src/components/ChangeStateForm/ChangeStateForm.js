@@ -5,20 +5,11 @@ export default class ChangeStateForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      user: '',
-      state: ''
-    };
+    this.state = {};
+    this.state.user = '';
+    this.state.state = '';
   };
-  
-  handleChange = (event) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
-  
+
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.handleChangeState(this.state.user, this.state.state);
@@ -30,20 +21,19 @@ export default class ChangeStateForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' name='user' placeholder='Your Tag' onChange={this.handleChange} required/>
+      <form onSubmit={this.handleSubmit}>
+        <input type='text' name='user' placeholder='Your Tag' onChange={(event) => this.props.handleChange(event, this)} required/>
 
-          <h3>Enter Home State(USA) Territory(Canada) or Country</h3>
-          <input type='text' name='state' placeholder='Your State/Region' onChange={this.handleChange} required/>
+        <h3>Enter Home State(USA) Territory(Canada) or Country</h3>
+        <input type='text' name='state' placeholder='Your State/Region' onChange={(event) => this.props.handleChange(event, this)} required/>
 
-          <button type='submit'>Submit</button>
-        </form>
-      </div>
+        <button type='submit'>Submit</button>
+      </form>
     );
   };
 };
 
 ChangeStateForm.propTypes = {
   handleChangeState: PropTypes.func,
-}
+  handleChange: PropTypes.func,
+};

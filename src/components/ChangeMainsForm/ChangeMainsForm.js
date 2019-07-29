@@ -16,14 +16,6 @@ export default class ChangeMainsForm extends React.Component {
       doWeDelete: '',
     };
   };
-
-  handleChange = (event) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value,
-    });
-  };
   
   handleSubmitRequest = (event) => {
     event.preventDefault();
@@ -38,7 +30,7 @@ export default class ChangeMainsForm extends React.Component {
   };
   
   createColorForm = (main) => {
-    return <select name='color' value={this.state.color} onChange={this.handleChange} required>
+    return <select name='color' value={this.state.color} onChange={(event) => this.props.handleChange(event, this)} required>
         <option value='' disabled>Choose Color</option>
         {
           characterColors[main].map((color, i) => {
@@ -56,15 +48,15 @@ export default class ChangeMainsForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmitRequest}>
-          <input type='text' placeholder='Your Tag' name='user' onChange={this.handleChange} required/>
+          <input type='text' placeholder='Your Tag' name='user' onChange={(event) => this.props.handleChange(event, this)} required/>
           
-          <select name='doWeDelete' value={this.state.doWeDelete} onChange={this.handleChange} required>
+          <select name='doWeDelete' value={this.state.doWeDelete} onChange={(event) => this.props.handleChange(event, this)} required>
             <option value='' disabled>Add or Replace</option>
             <option value='add to'>Add To Mains</option>
             <option value='replace'>Replace Mains</option>
           </select>
 
-          <select name='main' value={this.state.main} onChange={this.handleChange} required>
+          <select name='main' value={this.state.main} onChange={(event) => this.props.handleChange(event, this)} required>
             <option value='' disabled>Choose Main</option>
             <option value='bowser'>Bowser</option>
             <option value='captainFalcon'>Captain Falcon</option>
@@ -106,4 +98,5 @@ export default class ChangeMainsForm extends React.Component {
 
 ChangeMainsForm.propTypes = {
   handleChangeMains: PropTypes.func,
+  handleChange: PropTypes.func,
 };

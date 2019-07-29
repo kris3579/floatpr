@@ -6,6 +6,7 @@ export default class SetsRow extends React.Component {
   render() {
     return (
       <tr>
+        <td className='roundColumn'>{this.props.set.round}</td>
         <td className='winnerColumn'>
           <Link to={{pathname: `/player/${this.props.set.winner_name}`}}>
             {this.props.set.winner_name}
@@ -19,6 +20,7 @@ export default class SetsRow extends React.Component {
         </td>
 
         <td className='scoreColumn'>{this.props.set.score}</td>
+        <td className='tournamentColumn'>{this.props.set.tournament_name}</td>
       </tr>
     );
   };

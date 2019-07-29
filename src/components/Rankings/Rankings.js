@@ -7,7 +7,7 @@ export default class Rankings extends React.Component {
     super(props);
 
     this.state = {};
-    this.state.playerFilter = '';
+    this.state.rankingFilter = 'activeWashingtonPlayers';
   };
 
   handleChange = (event) => {
@@ -17,19 +17,11 @@ export default class Rankings extends React.Component {
     });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.getChallongeTournament(this.state.tournament);
-    this.setState({
-      tournament: '',
-    });
-  };
-
   render() {
     return (
       <div>
         <form>
-          <select name='playerFilter' value={this.state.playerFilter} onChange={this.handleChange} required>
+          <select name='rankingFilter' value={this.state.rankingFilter} onChange={this.handleChange} required>
             <option value='activeWashingtonPlayers'>Active Washington Players</option>
             <option value='allActivePlayers'>All Active Players</option>
             <option value='allPlayers'>All Players</option>
@@ -37,7 +29,7 @@ export default class Rankings extends React.Component {
           </select>
         </form>
         <RankingTable
-          rankingFilter={this.state.playerFilter}
+          rankingFilter={this.state.rankingFilter}
         />
       </div>
     );
