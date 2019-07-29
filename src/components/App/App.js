@@ -1,10 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import PropTypes from 'prop-types';
-// import superagent from 'superagent';
 
-// import storeData from '../../actions/dataActions';
 import Header from '../Header/Header';
 import Rankings from '../Rankings/Rankings';
 import TournamentList from '../TournamentList/TournamentList';
@@ -17,17 +13,6 @@ import TournamentProfile from '../TournamentProfile/TournamentProfile';
 import './App.scss';
 
 export default class App extends React.Component {
-  // componentDidMount() {
-  //   superagent.get('http://localhost:3579/getPlayers')
-  //       .then((response) => {
-  //         console.log(response.body);
-  //         this.props.storeData(response.body, 'players');
-  //       })
-  //       .catch((error) => {
-  //         throw error;
-  //       });
-  // }
-
   render() {    
     return (
       <div className='App'>
@@ -45,17 +30,3 @@ export default class App extends React.Component {
     );
   };
 };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     storeData: (data, dataSet) => {
-//       dispatch(storeData(data, dataSet));
-//     },
-//   };
-// };
-
-// App.propTypes = {
-//   storeData: PropTypes.func,
-// };
-
-// export default connect(null, mapDispatchToProps)(App);
