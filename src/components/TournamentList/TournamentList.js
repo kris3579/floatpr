@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import superagent from 'superagent';
 
 import storeData from '../../actions/dataActions';
-import TournamentRow from '../TournamentRow/TournamentRow';
+import TournamentRow from './TournamentRow/TournamentRow';
 
 import './TournamentList.scss';
 

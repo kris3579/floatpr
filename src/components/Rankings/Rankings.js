@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RankingTable from '../RankingTable/RankingTable';
+import RankingTable from './RankingTable/RankingTable';
 
 export default class Rankings extends React.Component {
   constructor(props) {

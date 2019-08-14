@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import characterColors from '../../assets/characterColors';
+import characterColors from '../../../assets/characterColors';
 
 import './ChangeMainsForm.scss';
 

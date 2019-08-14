@@ -1,10 +1,10 @@
 import React from 'react';
 import superagent from 'superagent';
 
-import AddTournamentForm from '../AddTournamentForm/AddTournamentForm';
-import ChangeMainsForm from '../ChangeMainsForm/ChangeMainsForm';
-import ChangeStateForm from '../ChangeStateForm/ChangeStateForm';
-import CombineResultsForm from '../CombineResultsForm/CombineResultsForm';
+import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
+import ChangeMainsForm from './ChangeMainsForm/ChangeMainsForm';
+import ChangeStateForm from './ChangeStateForm/ChangeStateForm';
+import CombineResultsForm from './CombineResultsForm/CombineResultsForm';
 
 import './RequestPage.scss';
 

@@ -4,30 +4,38 @@ import Async from 'react-async';
 import PropTypes from 'prop-types';
 import superagent from 'superagent';
 
-import storeData from '../../actions/dataActions';
-import PlayerRow from '../PlayerRow/PlayerRow';
+import storeData from '../../../actions/dataActions';
+import PlayerRow from './PlayerRow/PlayerRow';
 
 import './RankingTable.scss';
 
 class RankingTable extends React.Component {
   playersData = () => {
-    if (!this.props.playersObject) {
-      console.log('here1');
-      return superagent.get('http://localhost:3579/getPlayers')
+    console.log(this.props.playersObject);
+
+    return new Promise((resolve, reject) => {
+
+      if (!this.props.playersObject) {
+        console.log('here1');
+        return superagent.get('http://localhost:3579/getPlayers')
         .then((response) => {
           this.props.storeData(response.body, 'players');
-          return response.body;
+          console.log(response.body);
+          resolve(response.body);
         })
         .catch((error) => {
-          throw error;
+          reject(error);
         });
-    }
-
-    if (this.props.playersObject) {
-      console.log('here2');
-      return this.props.playersObject;
-    }
-    throw Error('Something went wrong');
+      }
+      
+      if (this.props.playersObject) {
+        console.log('here2');
+        
+        resolve(this.props.playersObject);
+      }
+      
+      reject('Something went wrong');
+    });
   };
 
   render() {

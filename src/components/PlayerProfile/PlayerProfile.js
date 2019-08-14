@@ -5,44 +5,52 @@ import PropTypes from 'prop-types';
 import superagent from 'superagent';
 
 import storeData from '../../actions/dataActions';
-import PersonalHead2Head from '../PersonalHead2Head/PersonalHead2Head';
+import PlayerMatchupState from './PlayerMatchupState/PlayerMatchupState';
 import SetsTable from '../SetsTable/SetsTable';
 
 class PlayerProfile extends React.Component {
   playersData = () => {
-    if (!this.props.playersObject) {
-      superagent.get('http://localhost:3579/getPlayers')
+    return new Promise((resolve, reject) => {
+
+      if (!this.props.playersObject) {
+        return superagent.get('http://localhost:3579/getPlayers')
         .then((response) => {
           this.props.storeData(response.body, 'players');
-          return response.body;
+          resolve(response.body);
         })
         .catch((error) => {
-          throw error;
+          reject(error);
         });
-    }
-    
-    if (this.props.playersObject) {
-      return this.props.playersObject;
-    }
-    throw Error('Something went wrong');
+      }
+      
+      if (this.props.playersObject) {
+        resolve(this.props.playersObject);
+      }
+      
+      reject('Something went wrong');
+    });
   };
 
   setsData = () => {
-    if (!this.props.sets) {
-      return superagent.get('http://localhost:3579/getSets')
+    return new Promise((resolve, reject) => {
+      
+      if (!this.props.sets) {
+        return superagent.get('http://localhost:3579/getSets')
         .then((response) => {
-          console.log(response.body);
           this.props.storeData(response.body, 'sets');
+          resolve(response.body);
         })
         .catch((error) => {
-          throw error;
+          reject(error);
         });
-    }
+      }
+      
+      if (this.props.sets) {
+        resolve(this.props.sets);
+      }
 
-    if (this.props.sets) {
-      return this.props.sets;
-    }
-    throw Error('Something went wrong');
+      reject('Something went wrong');
+    });
   };
 
   render() {
@@ -77,13 +85,13 @@ class PlayerProfile extends React.Component {
                 {playersData[player].active_attendance}<br/>
               </p>
 
-              {/* <AsyncSets promiseFn={this.setsData}>
+              <AsyncSets promiseFn={this.setsData}>
                 <AsyncSets.Loading>Loading...</AsyncSets.Loading>
                 <AsyncSets.Resolved>
                   {setsData => (
                     <>
                       <h4>Personal Head2Head Table</h4>
-                      <PersonalHead2Head
+                      <PlayerMatchupState
                         player={playersData[player]}
                         sets={setsData}
                       />
@@ -100,7 +108,7 @@ class PlayerProfile extends React.Component {
                   )}
                 </AsyncSets.Resolved>
                 <AsyncSets.Rejected>{error => error.message}</AsyncSets.Rejected>
-              </AsyncSets> */}
+              </AsyncSets>
             </>
           )}
         </AsyncPlayers.Resolved>

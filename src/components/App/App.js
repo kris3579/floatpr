@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import Header from '../Header/Header';
+import Header from './Header/Header';
 import Rankings from '../Rankings/Rankings';
 import TournamentList from '../TournamentList/TournamentList';
 import RequestPage from '../RequestPage/RequestPage';

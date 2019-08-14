@@ -9,8 +9,8 @@ export default class MatchupList extends React.Component {
           {
             this.props.deselectedMatchups.map((matchup, i) => {
               return (
-                <li key={i} onClick={this.props.handleSelectMatchup(matchup)}>{matchup.opponent}</li>
-              )
+                <li key={i}><button onClick={(event) => this.props.handleSelectMatchup(event, matchup)}>{matchup.opponent}</button></li>
+              );
             })
           }
         </ul>

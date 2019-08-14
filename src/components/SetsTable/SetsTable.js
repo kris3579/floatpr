@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SetsRow from '../SetsRow/SetsRow';
+import SetsRow from './SetsRow/SetsRow';
 
 export default class SetsTable extends React.Component {
   render() {

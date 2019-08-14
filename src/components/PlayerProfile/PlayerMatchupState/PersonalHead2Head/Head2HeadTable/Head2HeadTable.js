@@ -25,7 +25,7 @@ export default class Head2HeadTable extends React.Component {
                     <strong>{matchup.gameScore}</strong><br/>
                     {matchup.gamePercentages}
                   </td>
-                  <td className='remove'><img src={require('../../assets/delete.png')} onClick={this.props.handleDeselectMatchup(matchup)} alt='Red X'></img></td>
+                  <td className='remove'><img src={require('../../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'></img></td>
                 </tr>
               )
             })
