@@ -18,12 +18,12 @@ export default class Head2HeadTable extends React.Component {
                 <tr key={i}>
                   <td className='matchupColumn'>{matchup.name}</td>
                   <td className='setsCompariosn'>
-                    <strong>{matchup.setScore}</strong><br/>
-                    {matchup.setPercentages}
+                    <strong>{`${matchup.setScore[0]}-${matchup.setScore[1]}`}</strong><br/>
+                    {`${matchup.setPercentages[0]}-${matchup.setPercentages[1]}`}
                   </td>
                   <td className='gamesCompariosn'>
-                    <strong>{matchup.gameScore}</strong><br/>
-                    {matchup.gamePercentages}
+                    <strong>{`${matchup.gameScore[0]}-${matchup.setScore[1]}`}</strong><br/>
+                    {`${matchup.gamePercentages[0]}-${matchup.gamePercentages[1]}`}
                   </td>
                   <td className='remove'><img src={require('../../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'></img></td>
                 </tr>

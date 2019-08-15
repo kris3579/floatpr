@@ -38,7 +38,7 @@ export default class PersonalHead2Head extends React.Component {
       return matchup.name !== matchupToDeselect.name;
     });
 
-    const addMatchupToDeselectedMatchups = [this.state.deselectedMatchups, matchupToDeselect];
+    const addMatchupToDeselectedMatchups = [...this.state.deselectedMatchups, matchupToDeselect];
 
     const sortBySetsPlayed = this.props.sortBySetsPlayed(addMatchupToDeselectedMatchups);
 
@@ -49,16 +49,17 @@ export default class PersonalHead2Head extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     return (
       <>
         <MatchupList
           deselectedMatchups={this.state.deselectedMatchups}
           handleSelectMatchup={this.handleSelectMatchup}
         />
-        {/* <Head2HeadTable
+        <Head2HeadTable
           handleDeselectMatchup={this.handleDeselectMatchup}
           selectedMatchups={this.state.selectedMatchups}
-        /> */}
+        />
       </>
     );
   };

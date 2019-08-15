@@ -13,9 +13,16 @@ export default class PlayerMatchupState extends React.Component {
   };
 
   sortBySetsPlayed = (matchups) => {
-    return Object.keys(matchups).sort((a, b) => {
+    const orderedMatchups = [];
+    
+    Object.keys(matchups).sort((a, b) => {
       return a.setsPlayed - b.setsPlayed;
-    });
+    })
+      .forEach((key) => {
+        orderedMatchups.push(matchups[key]);
+      });
+
+    return orderedMatchups;
   };
 
   render() {
@@ -78,12 +85,13 @@ export default class PlayerMatchupState extends React.Component {
     const deselectedMatchups = [];
     const selectedMatchups = [];
 
-    sortBySetsPlayed.forEach((setKey, i) => {
+    sortBySetsPlayed.forEach((matchup, i) => {
       if (i < 5) {
-        selectedMatchups.push(allMatchups[setKey]);
+        selectedMatchups.push(matchup);
       } else {
-        deselectedMatchups.push(allMatchups[setKey]);
+        deselectedMatchups.push(matchup);
       }
+
     });
 
     return (
