@@ -2,44 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Async from 'react-async';
 import PropTypes from 'prop-types';
-import superagent from 'superagent';
 
 import storeData from '../../../actions/dataActions';
+import DataRetrievalFunctions from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
 import PlayerRow from './PlayerRow/PlayerRow';
 
 import './RankingTable.scss';
 
 class RankingTable extends React.Component {
-  playersData = () => {
-    console.log(this.props.playersObject);
-
-    return new Promise((resolve, reject) => {
-
-      if (!this.props.playersObject) {
-        console.log('here1');
-        return superagent.get('http://localhost:3579/getPlayers')
-        .then((response) => {
-          this.props.storeData(response.body, 'players');
-          console.log(response.body);
-          resolve(response.body);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-      }
-      
-      if (this.props.playersObject) {
-        console.log('here2');
-        
-        resolve(this.props.playersObject);
-      }
-      
-      reject('Something went wrong');
-    });
-  };
-
   render() {
-    let rankingArray = [];
+    const dataRetrievalFunctions = new DataRetrievalFunctions();
+
+    let rankingArray = '';
     let tableHeader = 'Active Washington Players';
 
     switch (this.props.rankingFilter) {
@@ -60,14 +34,14 @@ class RankingTable extends React.Component {
         tableHeader = 'Out-of-State Players';
         break;
       default:
-        rankingArray = [];
+        rankingArray = '';
     };
 
     return (
-      <Async promiseFn={this.playersData}>
+      <Async promiseFn={dataRetrievalFunctions.playersData} storeDataFunction={this.props.storeData} playersObject={this.props.playersObject}>
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {data => (
+          {playersData => (
             <>
               <h2>{tableHeader}</h2>
               <table>
@@ -81,7 +55,7 @@ class RankingTable extends React.Component {
                     <th className='winRateColumn'>Game Win Rate</th>
                   </tr>
                   {
-                    data[rankingArray].map((player, i) => {
+                    playersData[rankingArray].map((player, i) => {
                       return (
                         <PlayerRow
                           rank={i + 1}

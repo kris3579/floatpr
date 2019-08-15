@@ -2,65 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createInstance } from 'react-async';
 import PropTypes from 'prop-types';
-import superagent from 'superagent';
 
 import storeData from '../../actions/dataActions';
+import DataRetrievalFunctions from '../../dataRetrievalFunctions/dataRetrievalFunctions';
 import PlayerMatchupState from './PlayerMatchupState/PlayerMatchupState';
 import SetsTable from '../SetsTable/SetsTable';
 
 class PlayerProfile extends React.Component {
-  playersData = () => {
-    return new Promise((resolve, reject) => {
-
-      if (!this.props.playersObject) {
-        return superagent.get('http://localhost:3579/getPlayers')
-        .then((response) => {
-          this.props.storeData(response.body, 'players');
-          resolve(response.body);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-      }
-      
-      if (this.props.playersObject) {
-        resolve(this.props.playersObject);
-      }
-      
-      reject('Something went wrong');
-    });
-  };
-
-  setsData = () => {
-    return new Promise((resolve, reject) => {
-      
-      if (!this.props.sets) {
-        return superagent.get('http://localhost:3579/getSets')
-        .then((response) => {
-          this.props.storeData(response.body, 'sets');
-          resolve(response.body);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-      }
-      
-      if (this.props.sets) {
-        resolve(this.props.sets);
-      }
-
-      reject('Something went wrong');
-    });
-  };
-
   render() {
     const player = this.props.match.params.playerName;
 
     const AsyncPlayers = createInstance();
     const AsyncSets = createInstance();
+    
+    const dataRetrievalFunctions = new DataRetrievalFunctions();
 
     return (
-      <AsyncPlayers promiseFn={this.playersData}>
+      <AsyncPlayers promiseFn={dataRetrievalFunctions.playersData} storeDataFunction={this.props.storeData} playersObject={this.props.playersObject}>
         <AsyncPlayers.Loading>Loading...</AsyncPlayers.Loading>
         <AsyncPlayers.Resolved>
           {playersData => (
@@ -85,7 +43,7 @@ class PlayerProfile extends React.Component {
                 {playersData[player].active_attendance}<br/>
               </p>
 
-              <AsyncSets promiseFn={this.setsData}>
+              <AsyncSets promiseFn={dataRetrievalFunctions.setsData} storeDataFunction={this.props.storeData} sets={this.props.sets}>
                 <AsyncSets.Loading>Loading...</AsyncSets.Loading>
                 <AsyncSets.Resolved>
                   {setsData => (
