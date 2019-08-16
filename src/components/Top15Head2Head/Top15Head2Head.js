@@ -4,11 +4,10 @@ import { createInstance } from 'react-async';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import DataRetrievalFunctions from '../../dataRetrievalFunctions/dataRetrievalFunctions';
 import storeData from '../../actions/dataActions';
+import DataRetrievalFunctions from '../../dataRetrievalFunctions/dataRetrievalFunctions';
 
 class Top15Head2Head extends React.Component {
-  
   getHead2Head = (player1, player2, setsData) => {
     let player1Wins = 0;
     let player2Wins = 0;
