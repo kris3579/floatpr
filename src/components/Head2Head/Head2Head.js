@@ -4,18 +4,22 @@ import { createInstance } from 'react-async';
 import PropTypes from 'prop-types';
 
 import storeData from '../../actions/dataActions';
+import getHead2HeadData from '../../dataRetrievalFunctions/getHead2HeadData';
 import DataRetrievalFunctions from '../../dataRetrievalFunctions/dataRetrievalFunctions';
-import PlayerMatchupState from './PlayerMatchupState/PlayerMatchupState';
 import SetsTable from '../SetsTable/SetsTable';
 
-class PlayerProfile extends React.Component {
-  render() {
-    const player = this.props.match.params.playerName;
 
+class Head2Head extends React.Component {
+  render() {
     const AsyncPlayers = createInstance();
     const AsyncSets = createInstance();
-    
+
     const dataRetrievalFunctions = new DataRetrievalFunctions();
+
+    const player1 = this.props.match.params.player1;
+    const player2 = this.props.match.params.player2;
+
+    let head2HeadData;
 
     return (
       <AsyncPlayers promiseFn={dataRetrievalFunctions.playersData} storeDataFunction={this.props.storeData} playersObject={this.props.playersObject}>
@@ -23,43 +27,17 @@ class PlayerProfile extends React.Component {
         <AsyncPlayers.Resolved>
           {playersData => (
             <>
-              <h2>{playersData[player].name}</h2>
-              <div>
-                {
-                  playersData[player].mains.map((main, i) => {
-                    return (
-                      <img src={require(`../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img>
-                    )
-                  })
-                }
-              </div>
-              <p>
-                {playersData[player].rating}<br/>
-                {playersData[player].set_win_rate}<br/>
-                {playersData[player].game_win_rate}<br/>
-              </p>
-              <p>
-                {playersData[player].attendance}<br/>
-                {playersData[player].active_attendance}<br/>
-              </p>
-
+              <h2>{`${player1} vs ${player2}`}</h2>
               <AsyncSets promiseFn={dataRetrievalFunctions.setsData} storeDataFunction={this.props.storeData} sets={this.props.sets}>
                 <AsyncSets.Loading>Loading...</AsyncSets.Loading>
                 <AsyncSets.Resolved>
                   {setsData => (
                     <>
-                      <h4>Personal Head2Head Table</h4>
-                      <PlayerMatchupState
-                        player={playersData[player]}
-                        sets={setsData}
-                      />
-
-                      <h4>Sets Table</h4>
                       <SetsTable
-                        playerA={playersData[player].name}
-                        playerB='none'
+                        player1={player1}
+                        player2={player2}
                         sets={setsData}
-                        setsType='playerSets'
+                        setsType='head2HeadSets'
                         tournament='none'
                       />
                     </>
@@ -79,7 +57,7 @@ class PlayerProfile extends React.Component {
 const mapStateToProps = (state) => {
   return {
     playersObject: state.players,
-    sets: state.sets,
+    setsArray: state.sets,
   };
 };
 
@@ -91,10 +69,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-PlayerProfile.propTypes = {
+Head2Head.propTypes = {
   playersObject: PropTypes.object,
-  sets: PropTypes.array,
+  setsArray: PropTypes.array,
   storeData: PropTypes.func,
-}; 
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(Head2Head);

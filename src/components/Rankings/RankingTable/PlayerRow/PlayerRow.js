@@ -8,7 +8,7 @@ export default class PlayerRow extends React.Component {
   render() {
     return (
       <tr>
-        <td className='rankColumn'>{this.props.player.rank}</td>
+        <td className='rankColumn'>{this.props.rank}</td>
       
         <td className='nameColumn'>
           <Link className='playerLink' to={{pathname: `/player/${this.props.player.name}`}}>
@@ -19,8 +19,8 @@ export default class PlayerRow extends React.Component {
         <td className='mainsColumn'>{
           this.props.player.mains.map((main, i) => {
             return (
-              <img src={require(`../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img>
-            )
+              <img src={require(`../../../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img>
+            );
           })
         }</td>
 
@@ -33,5 +33,6 @@ export default class PlayerRow extends React.Component {
 };
 
 PlayerRow.propTypes = {
-  player: PropTypes.object
+  player: PropTypes.object,
+  rank: PropTypes.number,
 };

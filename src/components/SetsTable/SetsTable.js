@@ -1,23 +1,47 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import SetsRow from '../SetsRow/SetsRow';
+import SetsRow from './SetsRow/SetsRow';
 
 export default class SetsTable extends React.Component {
   render() {
+    let sets;
+
+    if (this.props.sets) {
+      switch(this.props.setsType) {
+        case 'tournamentSets':
+          sets = this.props.sets.filter((set) => {
+            return set.tournament_name === this.props.tournament;
+          });
+          break;
+        case 'playerSets':
+          sets = this.props.sets.filter((set) => {
+            return set.winner_name === this.props.player1 || set.loser_name === this.props.player1;
+          });
+          break;
+        case 'head2HeadSets':
+          sets = this.props.sets.filter((set) => {
+            return (set.winner_name === this.props.player1 && set.loser_name === this.props.player2) || (set.winner_name === this.props.player2 && set.loser_name === this.props.player1);
+          });
+          break;
+        default:
+          sets = [];
+      };
+    }
+
     return (
       <div>
         <table>
           <tbody>
             <tr className='headerRow'>
+              <th className='roundColumn'>Round</th>
               <th className='winnerColumn'>Winner</th>
               <th className='loserColumn'>Loser</th>
               <th className='scoreColumn'>Score</th>
-              <th className='round?Column'>Round</th>
+              <th className='tournamentColumn'>tournament</th>
             </tr>
             {
-              this.props.setsArray.map((set, i) => {
+              sets.map((set, i) => {
                 return (
                   <SetsRow
                     set={set}
@@ -33,15 +57,10 @@ export default class SetsTable extends React.Component {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    setsArray: state.sets,
-  };
-};
-
 SetsTable.propTypes = {
-  setsArray: PropTypes.array,
-  tournament: PropTypes.object,
+  player1: PropTypes.string,
+  player2: PropTypes.string,
+  sets: PropTypes.array,
+  setsType: PropTypes.string,
+  tournament: PropTypes.string,
 };
-
-connect(mapStateToProps, null);

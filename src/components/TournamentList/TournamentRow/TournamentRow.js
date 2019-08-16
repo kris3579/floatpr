@@ -11,7 +11,7 @@ export default class TournamentRow extends React.Component {
     return (
       <tr>
         <td className='tournamentNameColumn'>
-          <Link className='tournmentLink' to={{pathname: `/tournament/${this.props.tournament.name}`}}>
+          <Link className='tournmentLink' to={{pathname: `/tournament/${this.props.tournament.id}`}}>
             {this.props.tournament.name}
           </Link>
         </td>
