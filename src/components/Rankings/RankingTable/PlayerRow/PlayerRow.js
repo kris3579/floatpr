@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import './PlayerRow.scss';
-
 export default class PlayerRow extends React.Component {
   render() {
     return (
@@ -11,7 +9,7 @@ export default class PlayerRow extends React.Component {
         <td className='rankColumn'>{this.props.rank}</td>
       
         <td className='nameColumn'>
-          <Link className='playerLink' to={{pathname: `/player/${this.props.player.name}`}}>
+          <Link className='link' to={{pathname: `/player/${this.props.player.name}`}}>
             {this.props.player.name}
           </Link>
         </td>

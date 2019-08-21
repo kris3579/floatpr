@@ -49,7 +49,6 @@ export default class PersonalHead2Head extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <>
         <MatchupList

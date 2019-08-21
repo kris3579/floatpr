@@ -7,20 +7,24 @@ export default class SetsRow extends React.Component {
     return (
       <tr>
         <td className='roundColumn'>{this.props.set.round}</td>
-        <td className='winnerColumn'>
-          <Link to={{pathname: `/player/${this.props.set.winner_name}`}}>
+        <td className='playerColumn'>
+          <Link className='link' to={{pathname: `/player/${this.props.set.winner_name}`}}>
             {this.props.set.winner_name}
           </Link>
         </td>
 
-        <td className='loserColumn'>
-          <Link to={{pathname: `/player/${this.props.set.loser_name}`}}>
+        <td className='playerColumn'>
+          <Link className='link' to={{pathname: `/player/${this.props.set.loser_name}`}}>
             {this.props.set.loser_name}
           </Link>
         </td>
 
         <td className='scoreColumn'>{this.props.set.score}</td>
-        <td className='tournamentColumn'>{this.props.set.tournament_name}</td>
+        <td className='tournamentColumn'>
+          <Link className='link' to={{pathname: `/tournaments/${this.props.set.tournament_name}`}}>
+            {this.props.set.tournament_name}
+          </Link>
+        </td>
       </tr>
     );
   };

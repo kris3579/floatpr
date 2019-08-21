@@ -12,7 +12,7 @@ export default class ChangeStateForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.handleChangeState(this.state.user, this.state.state);
+    this.props.handleChangeHomeState(this.state.user, this.state.state);
     this.setState({
       user: '',
       state: '',
@@ -34,6 +34,6 @@ export default class ChangeStateForm extends React.Component {
 };
 
 ChangeStateForm.propTypes = {
-  handleChangeState: PropTypes.func,
+  handleChangeHomeState: PropTypes.func,
   handleChange: PropTypes.func,
 };
