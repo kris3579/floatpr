@@ -3,10 +3,8 @@ import superagent from 'superagent';
 
 import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
 import ChangeMainsForm from './ChangeMainsForm/ChangeMainsForm';
-import ChangeStateForm from './ChangeStateForm/ChangeStateForm';
+import ChangeHomeStateForm from './ChangeHomeStateForm/ChangeHomeStateForm';
 import CombineResultsForm from './CombineResultsForm/CombineResultsForm';
-
-import './RequestPage.scss';
 
 export default class RequestPage extends React.Component {
   constructor(props) {
@@ -85,7 +83,7 @@ export default class RequestPage extends React.Component {
     return name.replace(firstLetterOnWord, this.upperCase);
   };
 
-  handleChangeState = (user, state) => {
+  handleChangeHomeState = (user, state) => {
     this.setState({
       request: `Your request to change the home state/region of ${user} to ${state} has been submitted.`
     });
@@ -126,8 +124,8 @@ export default class RequestPage extends React.Component {
       handleChangeMains={this.handleChangeMains}
       handleChange={this.handleChange}
     />;
-    const changeStateForm = <ChangeStateForm 
-      handleChangeState={this.handleChangeState}
+    const changeHomeStateForm = <ChangeHomeStateForm 
+      handleChangeHomeState={this.handleChangeHomeState}
       handleChange={this.handleChange}  
     />;
     const combineResultsForm = <CombineResultsForm 
@@ -135,7 +133,24 @@ export default class RequestPage extends React.Component {
       handleChange={this.handleChange}
     />;
 
-    const displayedForm = this.state.request === 'addTournament' ? addTournamentForm : this.state.request === 'changeMains' ? changeMainsForm : this.state.request === 'combineResults' ? combineResultsForm : this.state.request === 'changeState' ? changeStateForm : <div>{this.state.request}</div>;
+    let displayedForm;
+
+    switch(this.state.request) {
+      case 'addTournament':
+        displayedForm = addTournamentForm;
+        break;
+      case 'changeMains':
+        displayedForm = changeMainsForm;
+        break;
+      case 'changeHomeState':
+        displayedForm = changeHomeStateForm;
+        break;
+      case 'combineResults':
+        displayedForm = combineResultsForm;
+        break;
+      default:
+        displayedForm = <></>;
+    }
 
     return (
       <div>
@@ -143,21 +158,28 @@ export default class RequestPage extends React.Component {
 
         <div className='chooseRequest'>
           <form>
-            <input className='requestOptions' type='radio' name='requestOptions' value='addTournament' onChange={this.handleRequest}/>
-            <label className='requestOptions'>Add An Unaccounted For Tournament</label>
-            <br/>
-            
-            <input className='requestOptions' type='radio' name='requestOptions' value='changeMains' onChange={this.handleRequest}/>
-            <label className='requestOptions'>Add/Change Mains</label>
+            <label className='requestLabel'>
+              <input className='requestOptions' type='radio' name='requestOptions' value='addTournament' onChange={this.handleRequest}/>
+              Add An Unaccounted For Tournament
+            </label>
             <br/>
           
-            <input className='requestOptions' type='radio' name='requestOptions' value='changeState' onChange={this.handleRequest}/>
-            <label className='requestOptions'>Change A Player's State/Region</label>
+            <label className='requestLabel'>
+              <input className='requestOptions' type='radio' name='requestOptions' value='changeMains' onChange={this.handleRequest}/>
+              Add/Change Mains
+            </label>
+            <br/>
+          
+            <label className='requestLabel'>
+              <input className='requestOptions' type='radio' name='requestOptions' value='changeHomeState' onChange={this.handleRequest}/>
+              Change A Player's State/Region
+            </label>
             <br/>
             
-            <input className='requestOptions' type='radio' name='requestOptions' value='combineResults' onChange={this.handleRequest}/>
-            <label className='requestOptions'>Combine Results of Two Tags</label>
-            <br/>
+            <label className='requestLabel'>
+              <input className='requestOptions' type='radio' name='requestOptions' value='combineResults' onChange={this.handleRequest}/>
+              Combine Results of Two Tags
+            </label>
           </form>
         </div>
 

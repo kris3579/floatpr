@@ -6,8 +6,11 @@ import PersonalHead2Head from './PersonalHead2Head/PersonalHead2Head';
 
 export default class PlayerMatchupState extends React.Component {
   calculateWinRates = (player1Score, player2Score) => {
-    const player1WinRate = Math.round(((player1Score / (player1Score + player2Score)) * 100) * 100) / 100;
-    const player2WinRate = Math.round(((player2Score / (player2Score + player1Score)) * 100) * 100) / 100;
+    const player1WinRate = (player1Score / (player1Score + player2Score)).toFixed(2);
+    const player2WinRate = (player2Score / (player2Score + player1Score)).toFixed(2);
+
+    // const player1WinRate = Math.round(((player1Score / (player1Score + player2Score)) * 100) * 100) / 100;
+    // const player2WinRate = Math.round(((player2Score / (player2Score + player1Score)) * 100) * 100) / 100;
 
     return [player1WinRate, player2WinRate];
   };
@@ -28,13 +31,14 @@ export default class PlayerMatchupState extends React.Component {
   render() {
     const allMatchups = {};
 
-    this.props.sets.forEach((set) => {
-      if (set.winner_name === this.props.player.name) {
-        const matchupName = `${this.props.player.name} vs ${set.loser_name}`;
+    this.props.setsArray.forEach((set) => {
+      if (set.winner_name === this.props.playerName) {
+        const matchupName = `${this.props.playerName} vs ${set.loser_name}`;
 
+        console.log(allMatchups.hasOwnProperty(matchupName));
         if (allMatchups.hasOwnProperty(matchupName) === false) {
           allMatchups[matchupName] = {
-            name: <span><Link to={{pathname: `/player/${this.props.player.name}`}}>{this.props.player.name}</Link> vs <Link to={{pathname: `/player/${set.loser_name}`}}>{set.loser_name}</Link></span>,
+            name: <span><Link to={{pathname: `/player/${this.props.playerName}`}}>{this.props.playerName}</Link> vs <Link to={{pathname: `/player/${set.loser_name}`}}>{set.loser_name}</Link></span>,
             opponent: set.loser_name,
             setsPlayed: 1,
             setScore: [1, 0],
@@ -54,12 +58,13 @@ export default class PlayerMatchupState extends React.Component {
         }
       }
 
-      if (set.loser_name === this.props.player.name) {
-        const matchupName = `${this.props.player.name} vs ${set.winner_name}`;
+      if (set.loser_name === this.props.playerName) {
+        const matchupName = `${this.props.playerName} vs ${set.winner_name}`;
+        console.log(allMatchups.hasOwnProperty(matchupName));
 
         if (allMatchups.hasOwnProperty(matchupName) === false) {
           allMatchups[matchupName] = {
-            name: <span><Link to={{pathname: `/player/${this.props.player.name}`}}>{this.props.player.name}</Link> vs <Link to={{pathname: `/player/${set.winner_name}`}}>{set.winner_name}</Link></span>,
+            name: <span><Link to={{pathname: `/player/${this.props.playerName}`}}>{this.props.playerName}</Link> vs <Link to={{pathname: `/player/${set.winner_name}`}}>{set.winner_name}</Link></span>,
             opponent: set.winner_name,
             setsPlayed: 1,
             setScore: [0 ,1],
@@ -106,6 +111,6 @@ export default class PlayerMatchupState extends React.Component {
 };
 
 PlayerMatchupState.propTypes = {
-  player: PropTypes.object,
-  sets: PropTypes.array,
+  playerName: PropTypes.string,
+  setsArray: PropTypes.array,
 };

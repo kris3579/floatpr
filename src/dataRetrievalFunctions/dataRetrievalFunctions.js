@@ -26,7 +26,7 @@ export default class DataRetrievalFunctions {
   setsData(props) {
     return new Promise((resolve, reject) => {
       
-      if (!props.sets) {
+      if (!props.setsArray) {
         return superagent.get('http://localhost:3579/getSets')
         .then((response) => {
           props.storeDataFunction(response.body, 'sets');
@@ -37,8 +37,8 @@ export default class DataRetrievalFunctions {
         });
       }
       
-      if (props.sets) {
-        resolve(props.sets);
+      if (props.setsArray) {
+        resolve(props.setsArray);
       }
 
       reject('Something went wrong');
@@ -47,11 +47,10 @@ export default class DataRetrievalFunctions {
 
   tournamentsData(props) {
     return new Promise((resolve, reject) => {
-      
-      if (!props.tournaments) {
+      if (!props.tournamentsObject) {
         return superagent.get('http://localhost:3579/getTournaments')
         .then((response) => {
-          props.storeData(response.body, 'tournaments');
+          props.storeDataFunction(response.body, 'tournaments');
           resolve(response.body);
         })
         .catch((error) => {
@@ -60,7 +59,7 @@ export default class DataRetrievalFunctions {
       }
       
       if (props.tournaments) {
-        resolve(props.tournaments);
+        resolve(props.tournamentsObject);
       }
 
       reject('Something went wrong');

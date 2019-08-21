@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+import PlayersAsyncWrapper from '../AsyncWrappers/PlayersAsyncWrapper/PlayersAsyncWrapper';
 import RankingTable from './RankingTable/RankingTable';
 
 export default class Rankings extends React.Component {
@@ -19,7 +21,7 @@ export default class Rankings extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <form>
           <select name='rankingFilter' value={this.state.rankingFilter} onChange={this.handleChange} required>
             <option value='activeWashingtonPlayers'>Active Washington Players</option>
@@ -28,10 +30,17 @@ export default class Rankings extends React.Component {
             <option value='outOfStatePlayers'>Out-of-State Players</option>
           </select>
         </form>
-        <RankingTable
-          rankingFilter={this.state.rankingFilter}
-        />
-      </div>
+        <PlayersAsyncWrapper>
+          <RankingTable
+            playersObject={this.state.playersObject}
+            rankingFilter={this.state.rankingFilter}
+          />
+        </PlayersAsyncWrapper>
+      </>
     );
   }
+};
+
+Rankings.propTypes = {
+  playersObject: PropTypes.object,
 };
