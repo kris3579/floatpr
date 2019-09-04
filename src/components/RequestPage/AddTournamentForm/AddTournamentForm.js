@@ -19,11 +19,15 @@ export default class AddTournamentForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type='text' name='tournamentURL' placeholder='Tournament URL' onChange={(event) => this.props.handleChange(event, this)} required/>
+      <>
+        <h3 className='requestDescription'>Add an unnacounted for tournament</h3>
 
-        <button type='submit'>Submit</button>
-      </form>
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' name='tournamentURL' placeholder='Tournament URL' onChange={(event) => this.props.handleChange(event, this)} required/>
+
+          <button type='submit' className='requestButton'>Submit</button>
+        </form>
+      </>
     );
   };
 };

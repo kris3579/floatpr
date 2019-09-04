@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import characterColors from '../../../assets/characterColors';
 
-import './ChangeMainsForm.scss';
-
 export default class ChangeMainsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -47,6 +45,8 @@ export default class ChangeMainsForm extends React.Component {
 
     return (
       <div>
+        <h3 className='requestDescription'>Choose to add to/replace your mains, enter new main and color</h3>
+
         <form onSubmit={this.handleSubmitRequest}>
           <input type='text' placeholder='Your Tag' name='user' onChange={(event) => this.props.handleChange(event, this)} required/>
           
@@ -88,7 +88,7 @@ export default class ChangeMainsForm extends React.Component {
 
           {colorForm}
 
-          <button type='submit'>Submit</button>
+          <button type='submit' className='requestButton'>Submit</button>
         </form>
 
       </div>

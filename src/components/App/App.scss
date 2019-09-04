@@ -12,6 +12,16 @@ form {
   margin: 5px 0px;
 }
 
+input {
+  width: 30vw;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+select {
+  margin: 20px 10px;
+}
+
 .link {
   color: blue;
   font-size: 18px;
@@ -105,12 +115,12 @@ tr:nth-child(odd) {
 }
 
 // Request Page styling
-.chooseRequest {
+.formDiv {
   border: 1px solid black;
   background-color: #aaaaaa;
-  margin: 0 auto;
-  padding: 10px 10px 10px 45px;
-  width: 70%;
+  padding: 10px 10px 10px 10px;
+  margin: 15px auto 40px;
+  width: 90%;
 }
 
 .requestLabel {
@@ -118,6 +128,11 @@ tr:nth-child(odd) {
   text-align: left;
 }
 
-.requestOptions {
-  margin-right: 10px;
+.requestButton {
+  display: block;
+  margin: 10px auto 0px;
+}
+
+.requestDescription {
+  margin-top: 0px;
 }

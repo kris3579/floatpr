@@ -12,6 +12,7 @@ export default class RequestPage extends React.Component {
 
     this.state = {
       request:'',
+      submittedRequest: '',
     };
   };
   
@@ -26,12 +27,14 @@ export default class RequestPage extends React.Component {
   handleRequest = (event) => {
     this.setState({
       request: event.target.value,
+      submittedRequest: '',
     });
   };
 
   handleAddTournament = (tournamentUrl) => {
     this.setState({
-      request: `Your request to add the tournament located at ${tournamentUrl} has been submitted.`,
+      request: '',
+      submittedRequest: `Your request to add the tournament located at ${tournamentUrl} has been submitted.`,
     });
 
     superagent.post('http://localhost:3579/userRequest')
@@ -48,7 +51,8 @@ export default class RequestPage extends React.Component {
   handleChangeMains = (user, color, main, requestText) => {
     const formattedName = this.formatName(main);
     this.setState({
-      request: `Your request to ${requestText} mains has been submitted. Main: ${formattedName}, Color: ${color}`,
+      request: '',
+      submittedRequest: `Your request to ${requestText} mains has been submitted. Main: ${formattedName}, Color: ${color}`,
     });
     
     const despacedName = formattedName.replace(/\s/g, '');
@@ -84,8 +88,10 @@ export default class RequestPage extends React.Component {
   };
 
   handleChangeHomeState = (user, state) => {
+    
     this.setState({
-      request: `Your request to change the home state/region of ${user} to ${state} has been submitted.`
+      request: '',
+      submittedRequest: `Your request to change the home state/region of ${user} to ${state} has been submitted.`
     });
 
     superagent.post('http://localhost:3579/userRequest')
@@ -101,7 +107,8 @@ export default class RequestPage extends React.Component {
 
   handleCombineResults = (userTag, secondTag) => {
     this.setState({
-      request: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
+      request: '',
+      submittedRequest: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
     });
 
     superagent.post('http://localhost:3579/userRequest')
@@ -149,42 +156,27 @@ export default class RequestPage extends React.Component {
         displayedForm = combineResultsForm;
         break;
       default:
-        displayedForm = <></>;
+        displayedForm = <strong>Choose a request!</strong>;
     }
 
     return (
-      <div>
-        <p>User Request Form</p>
+      <>
+        <form>
+          <select name='requestOptions' value={this.state.request} onChange={this.handleRequest} required>
+            <option value='' disabled>Choose Request</option>
+            <option value='changeMains'>Add/Change Mains</option>
+            <option value='changeHomeState'>Change State/Region</option>
+            <option value='combineResults'>Combine Results</option>
+            <option value='addTournament'>Add Tournament</option>
+          </select>
+        </form>
 
-        <div className='chooseRequest'>
-          <form>
-            <label className='requestLabel'>
-              <input className='requestOptions' type='radio' name='requestOptions' value='addTournament' onChange={this.handleRequest}/>
-              Add An Unaccounted For Tournament
-            </label>
-            <br/>
-          
-            <label className='requestLabel'>
-              <input className='requestOptions' type='radio' name='requestOptions' value='changeMains' onChange={this.handleRequest}/>
-              Add/Change Mains
-            </label>
-            <br/>
-          
-            <label className='requestLabel'>
-              <input className='requestOptions' type='radio' name='requestOptions' value='changeHomeState' onChange={this.handleRequest}/>
-              Change A Player's State/Region
-            </label>
-            <br/>
-            
-            <label className='requestLabel'>
-              <input className='requestOptions' type='radio' name='requestOptions' value='combineResults' onChange={this.handleRequest}/>
-              Combine Results of Two Tags
-            </label>
-          </form>
+        <div className='formDiv'>
+          {displayedForm}
         </div>
 
-        {displayedForm}
-      </div>
+        <strong>{this.state.submittedRequest}</strong>
+      </>
     );
   };
 };

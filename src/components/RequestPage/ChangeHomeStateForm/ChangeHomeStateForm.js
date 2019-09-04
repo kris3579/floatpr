@@ -12,7 +12,7 @@ export default class ChangeStateForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.handleChangeHomeState(this.state.user, this.state.state);
+    this.props.handleChangeHomeState(this.state.user, this.state.state.toUpperCase());
     this.setState({
       user: '',
       state: '',
@@ -22,12 +22,12 @@ export default class ChangeStateForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <h3 className='requestDescription'>Enter Home State(WA), Territory(BC), or Country(JPN)</h3>
+        
         <input type='text' name='user' placeholder='Your Tag' onChange={(event) => this.props.handleChange(event, this)} required/>
+        <input type='text' name='state' placeholder='Your State/Region' onChange={(event) => this.props.handleChange(event, this)} pattern='[A-Za-z]{2,3}' required/>
 
-        <h3>Enter Home State(USA) Territory(Canada) or Country</h3>
-        <input type='text' name='state' placeholder='Your State/Region' onChange={(event) => this.props.handleChange(event, this)} required/>
-
-        <button type='submit'>Submit</button>
+        <button type='submit' className='requestButton'>Submit</button>
       </form>
     );
   };
