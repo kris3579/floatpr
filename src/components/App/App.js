@@ -24,7 +24,7 @@ export default class App extends React.Component {
           <Route exact path={'/requests'} component={RequestPage}/>
           <Route exact path={'/about'} component={About}/>
           <Route exact path={'/player/:playerName'} component={PlayerProfile}/>
-          <Route exact path={'/tournament/:tournamentId'} component={TournamentProfile}/>
+          <Route exact path={'/tournaments/:tournamentId'} component={TournamentProfile}/>
           <Route exact path={'/headToHead'} component={Head2Head}/>
           <Route exact path={'/headToHead/:player1Name/:player2Name'} component={IndividualHead2Head}/>
         </BrowserRouter>

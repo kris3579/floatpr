@@ -24,8 +24,8 @@ export default class PlayerProfile extends React.Component {
           />
 
           <SetsTable
-            playerA={player}
-            playerB='none'
+            player1={player}
+            player2='none'
             setsType='playerSets'
             tournament='none'
           />
