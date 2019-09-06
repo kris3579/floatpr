@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import characterColors from '../../../assets/characterColors';
 
-import './ChangeMainsForm.scss';
-
 export default class ChangeMainsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +28,7 @@ export default class ChangeMainsForm extends React.Component {
   };
   
   createColorForm = (main) => {
-    return <select name='color' value={this.state.color} onChange={(event) => this.props.handleChange(event, this)} required>
+    return <select name='color' value={this.state.color} onChange={(event) => this.props.handleChange(event, this)} className='formSelect' required>
         <option value='' disabled>Choose Color</option>
         {
           characterColors[main].map((color, i) => {
@@ -47,16 +45,18 @@ export default class ChangeMainsForm extends React.Component {
 
     return (
       <div>
+        <h3>Choose to add to/replace your mains, enter new main and color</h3>
+
         <form onSubmit={this.handleSubmitRequest}>
           <input type='text' placeholder='Your Tag' name='user' onChange={(event) => this.props.handleChange(event, this)} required/>
           
-          <select name='doWeDelete' value={this.state.doWeDelete} onChange={(event) => this.props.handleChange(event, this)} required>
+          <select name='doWeDelete' value={this.state.doWeDelete} onChange={(event) => this.props.handleChange(event, this)} className='formSelect' required>
             <option value='' disabled>Add or Replace</option>
             <option value='add to'>Add To Mains</option>
             <option value='replace'>Replace Mains</option>
           </select>
 
-          <select name='main' value={this.state.main} onChange={(event) => this.props.handleChange(event, this)} required>
+          <select name='main' value={this.state.main} onChange={(event) => this.props.handleChange(event, this)} className='formSelect' required>
             <option value='' disabled>Choose Main</option>
             <option value='bowser'>Bowser</option>
             <option value='captainFalcon'>Captain Falcon</option>
@@ -88,7 +88,7 @@ export default class ChangeMainsForm extends React.Component {
 
           {colorForm}
 
-          <button type='submit'>Submit</button>
+          <button type='submit' className='requestButton'>Submit</button>
         </form>
 
       </div>

@@ -6,11 +6,9 @@ import PersonalHead2Head from './PersonalHead2Head/PersonalHead2Head';
 
 export default class PlayerMatchupState extends React.Component {
   calculateWinRates = (player1Score, player2Score) => {
-    const player1WinRate = (player1Score / (player1Score + player2Score)).toFixed(2);
-    const player2WinRate = (player2Score / (player2Score + player1Score)).toFixed(2);
 
-    // const player1WinRate = Math.round(((player1Score / (player1Score + player2Score)) * 100) * 100) / 100;
-    // const player2WinRate = Math.round(((player2Score / (player2Score + player1Score)) * 100) * 100) / 100;
+    const player1WinRate = `${(((player1Score / (player1Score + player2Score)).toFixed(2)) * 100)}%`;
+    const player2WinRate = `${(((player2Score / (player2Score + player1Score)).toFixed(2)) * 100)}%`;
 
     return [player1WinRate, player2WinRate];
   };
@@ -35,7 +33,6 @@ export default class PlayerMatchupState extends React.Component {
       if (set.winner_name === this.props.playerName) {
         const matchupName = `${this.props.playerName} vs ${set.loser_name}`;
 
-        console.log(allMatchups.hasOwnProperty(matchupName));
         if (allMatchups.hasOwnProperty(matchupName) === false) {
           allMatchups[matchupName] = {
             name: <span><Link to={{pathname: `/player/${this.props.playerName}`}}>{this.props.playerName}</Link> vs <Link to={{pathname: `/player/${set.loser_name}`}}>{set.loser_name}</Link></span>,
@@ -60,7 +57,6 @@ export default class PlayerMatchupState extends React.Component {
 
       if (set.loser_name === this.props.playerName) {
         const matchupName = `${this.props.playerName} vs ${set.winner_name}`;
-        console.log(allMatchups.hasOwnProperty(matchupName));
 
         if (allMatchups.hasOwnProperty(matchupName) === false) {
           allMatchups[matchupName] = {
@@ -80,6 +76,7 @@ export default class PlayerMatchupState extends React.Component {
           allMatchups[matchupName].setPercentages = this.calculateWinRates(allMatchups[matchupName].setScore[0], allMatchups[matchupName].setScore[1]);
           allMatchups[matchupName].gameScore[0] += set.loser_score;
           allMatchups[matchupName].gameScore[1] += set.winner_score;
+          console.log(allMatchups[matchupName].gameScore)
           allMatchups[matchupName].gamePercentages = this.calculateWinRates(allMatchups[matchupName].gameScore[0], allMatchups[matchupName].gameScore[1]);
         }
       }

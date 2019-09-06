@@ -36,6 +36,7 @@ export default class RankingTable extends React.Component {
           <tbody>
             <tr className='headerRow'>
               <th className='rankColumn'>Rank</th>
+              <th className='regionColumn'>State/Region</th>
               <th className='tagColumn'>Tag</th>
               <th className='fightersColumn'>Fighters</th>
               <th className='ratingColumn'>Rating</th>

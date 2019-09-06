@@ -1,23 +1,45 @@
 import React from 'react';
 
-import SetsAsyncWrapper from '../AsyncWrappers/SetsAsyncWrapper/SetsAsyncWrapper'
-import SetsTable from '../SetsTable/SetsTable';
-
+import Top15Head2Head from './Top15Head2Head/Top15Head2Head';
 
 export default class Head2Head extends React.Component {
-  render() {
-    const player1 = this.props.match.params.player1;
-    const player2 = this.props.match.params.player2;
+  constructor(props) {
+    super(props);
 
+    this.state = {};
+    this.state.player1 = '';
+    this.state.player2 = '';
+  };
+  
+  handleSubmit = (event) => {
+    event.preventDefault();
+  }
+
+  handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  render() {
     return (
-      <SetsAsyncWrapper>
-        <SetsTable
-          player1={player1}
-          player2={player2}
-          setsType='head2HeadSets'
-          tournament='none'
-        />
-      </SetsAsyncWrapper>
+      <>
+        <div className='formDiv'>
+          <h3>Enter two players to find their head 2 head</h3>
+          
+          <form onSubmit={this.handleSubmit}>
+
+            <input type='text' name='Player 1' placeholder='Player 1' onChange={(event) => this.props.handleChange(event)} required/>
+            <input type='text' name='Player 2' placeholder='Player 2' onChange={(event) => this.props.handleChange(event)} required/>
+          
+            <button type='submit' className='requestButton'>Submit</button>
+          </form>
+        </div>
+
+        <Top15Head2Head/>
+      </>
     );
   };
 };

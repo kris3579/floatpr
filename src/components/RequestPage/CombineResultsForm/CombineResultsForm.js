@@ -24,11 +24,13 @@ export default class CombineResultsForm extends React.Component {
 
     return (
       <div>
+        <h3>Merge results from a tag into another</h3>
+
         <form onSubmit={this.handleSubmit}>
           <input type='text' placeholder='Main Tag' name='userTag' onChange={(event) => this.props.handleChange(event, this)} required/>
           <input type='text' placeholder='Tag to Merge' name='secondTag' onChange={(event) => this.props.handleChange(event, this)} required/>
           
-          <button type='submit'>Submit</button>
+          <button type='submit' className='requestButton'>Submit</button>
         </form>
       </div>
     );

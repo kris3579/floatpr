@@ -4,12 +4,26 @@ body {
   width: 90vw;
 }
 
+h3 {
+  margin-top: 0px;
+}
+
+nav {
+  margin-bottom: 15px;
+}
+
 span {
   font-weight: bold;
 }
 
-form {
-  margin: 5px 0px;
+input {
+  width: 30vw;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+select {
+  margin: 15px;
 }
 
 .link {
@@ -17,6 +31,34 @@ form {
   font-size: 18px;
   text-decoration: none;
 }
+
+// Nav styling
+.navUl {
+  background-color: #333333;
+  height: 5vh;
+  list-style: none;
+  padding-left: 7.5px;
+  margin: 0px;
+}
+
+.navLi:last-child > a {
+  border-right: none;
+}
+
+.navLi {
+  float: left;
+  height: 5vh;
+  line-height: 5vh;
+}
+
+.navLink {
+  border-right: 1px solid white; 
+  color: white;
+  padding: 0px 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
 
 // Tables styling
 table {
@@ -105,12 +147,16 @@ tr:nth-child(odd) {
 }
 
 // Request Page styling
-.chooseRequest {
+.formDiv {
   border: 1px solid black;
   background-color: #aaaaaa;
-  margin: 0 auto;
-  padding: 10px 10px 10px 45px;
-  width: 70%;
+  padding: 10px 10px 10px 10px;
+  margin: 20px auto 40px;
+  width: 90%;
+}
+
+.formSelect {
+  margin: 0px 10px;
 }
 
 .requestLabel {
@@ -118,6 +164,7 @@ tr:nth-child(odd) {
   text-align: left;
 }
 
-.requestOptions {
-  margin-right: 10px;
+.requestButton {
+  display: block;
+  margin: 10px auto 0px;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PlayersAndSetsAsyncWrapper from '../AsyncWrappers/SetsAsyncWrapper/SetsAsyncWrapper';
+import SetsAsyncWrapper from '../../AsyncWrappers/SetsAsyncWrapper/SetsAsyncWrapper';
 import Top15Table from './Top15Table/Top15Table';
 
 export default class Top15Head2Head extends React.Component {
@@ -24,9 +24,9 @@ export default class Top15Head2Head extends React.Component {
 
   render() {
     return (
-      <PlayersAndSetsAsyncWrapper>
+      <SetsAsyncWrapper>
         <Top15Table/>
-      </PlayersAndSetsAsyncWrapper>
+      </SetsAsyncWrapper>
     );
   };
 };
