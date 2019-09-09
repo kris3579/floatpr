@@ -14,6 +14,7 @@ export default class Head2HeadTable extends React.Component {
           </tr>
           {
             this.props.selectedMatchups.map((matchup, i) => {
+              console.log(matchup);
               return (
                 <tr key={i}>
                   <td className='matchupColumn'>{matchup.name}</td>
@@ -22,10 +23,10 @@ export default class Head2HeadTable extends React.Component {
                     {`${matchup.setPercentages[0]}-${matchup.setPercentages[1]}`}
                   </td>
                   <td className='gamesCompariosn'>
-                    <strong>{`${matchup.gameScore[0]}-${matchup.setScore[1]}`}</strong><br/>
+                    <strong>{`${matchup.gameScore[0]}-${matchup.gameScore[1]}`}</strong><br/>
                     {`${matchup.gamePercentages[0]}-${matchup.gamePercentages[1]}`}
                   </td>
-                  <td className='remove'><img src={require('../../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'></img></td>
+                  <td className='remove'><img src={require('../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'></img></td>
                 </tr>
               )
             })

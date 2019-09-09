@@ -9,7 +9,7 @@ import About from '../About/About';
 import PlayerProfile from '../PlayerProfile/PlayerProfile';
 import TournamentProfile from '../TournamentProfile/TournamentProfile';
 import Head2Head from '../Head2Head/Head2Head';
-import IndividualHead2Head from '../IndividualHead2Head/IndividualHead2Head';
+import PairHead2Head from '../PairHead2Head/PairHead2Head';
 
 import './App.scss';
 
@@ -23,10 +23,10 @@ export default class App extends React.Component {
           <Route exact path={'/tournaments'} component={TournamentList}/>
           <Route exact path={'/requests'} component={RequestPage}/>
           <Route exact path={'/about'} component={About}/>
-          <Route exact path={'/player/:playerName'} component={PlayerProfile}/>
-          <Route exact path={'/tournaments/:tournamentId'} component={TournamentProfile}/>
+          <Route exact path={'/player/:player'} component={PlayerProfile}/>
+          <Route exact path={'/tournament/:tournamentId'} component={TournamentProfile}/>
           <Route exact path={'/headToHead'} component={Head2Head}/>
-          <Route exact path={'/headToHead/:player1Name/:player2Name'} component={IndividualHead2Head}/>
+          <Route exact path={'/headToHead/:player1/:player2'} component={PairHead2Head}/>
         </BrowserRouter>
       </div>
     );

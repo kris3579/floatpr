@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default class SetsRow extends React.Component {
   render() {
-    console.log(this.props.set);
     return (
       <tr>
         <td className='roundColumn'>{this.props.set.round}</td>

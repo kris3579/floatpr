@@ -67,14 +67,14 @@ export default class RequestPage extends React.Component {
     }
     
     superagent.post('http://localhost:3579/userRequest')
-    .set('Content-type', 'application/json')
-    .send(`{"requestType":"editMains","user":"${user}","newMain":"${newMain}","doWeDelete":"${doWeDelete}"}`)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      throw error;
-    });
+      .set('Content-Type', 'application/json')
+      .send(`{"requestType":"editMains","user":"${user}","newMain":"${newMain}","doWeDelete":"${doWeDelete}"}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        throw error;
+      });
   };
   
   upperCase = (str) => {

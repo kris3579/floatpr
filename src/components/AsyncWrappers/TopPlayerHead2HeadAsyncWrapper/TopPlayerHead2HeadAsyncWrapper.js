@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Async from 'react-async';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import storeData from '../../../actions/dataActions';
 import DataRetrievalFunctions from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
 
-class TournamentsAsyncWrapper extends React.Component {
+class TopPlayerHead2HeadAsyncWrapper extends React.Component {
   render() {
     const dataRetrievalFunctions = new DataRetrievalFunctions();
 
@@ -14,21 +14,21 @@ class TournamentsAsyncWrapper extends React.Component {
     if (Array.isArray(this.props.children) === false) {
       childrenArray = [this.props.children];
     }
-    
+
     return (
       <Async
-        promiseFn={dataRetrievalFunctions.tournamentsData}
+        promiseFn={dataRetrievalFunctions.pairHead2HeadData}
         storeDataFunction={this.props.storeData}
-        playersObject={this.props.playersObject}
+        topPlayerHead2HeadObject={this.props.topPlayerHead2HeadObject}
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {tournamentsData => (
+          {head2HeadData => (
             <>
               {
                 childrenArray.map((child, i) => {
                   return (
-                    React.cloneElement(child, { tournamentsObject: tournamentsData, key: i })
+                    React.cloneElement(child, { topPlayerHead2HeadObject: head2HeadData, key: i })
                   )
                 })
               }
@@ -36,27 +36,28 @@ class TournamentsAsyncWrapper extends React.Component {
           )}
         </Async.Resolved>
         <Async.Rejected>{error => error.message}</Async.Rejected>
-      </Async>
+      </Async> 
     );
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    tournamentsObject: state.tournaments,
-  }
+    topPlayerHead2HeadObject: state.topPlayerHead2Head,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     storeData: (data, dataSet) => {
-      dispatch(storeData(data, dataSet));
+      dispatch(storeData(data,dataSet));
     },
   };
 };
- 
-TournamentsAsyncWrapper.propTypes = {
-  storedata: PropTypes.func,
+
+TopPlayerHead2HeadAsyncWrapper.propTypes = {
+  topPlayerHead2HeadObject: PropTypes.object,
+  storeData: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TournamentsAsyncWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(TopPlayerHead2HeadAsyncWrapper);

@@ -10,7 +10,7 @@ export default class TournamentInfo extends React.Component {
       <>
         <h2>{tournament.name}</h2>
         <p>{tournament.url}</p>
-        <p>{tournament.date}</p>
+        <p>{Date.parse(tournament.date)}</p>
 
         <h4>Results</h4>
         <ul>
