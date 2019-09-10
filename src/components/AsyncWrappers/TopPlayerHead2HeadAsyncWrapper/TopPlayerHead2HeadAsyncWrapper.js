@@ -17,7 +17,7 @@ class TopPlayerHead2HeadAsyncWrapper extends React.Component {
 
     return (
       <Async
-        promiseFn={dataRetrievalFunctions.pairHead2HeadData}
+        promiseFn={dataRetrievalFunctions.topPlayerHead2HeadData}
         storeDataFunction={this.props.storeData}
         topPlayerHead2HeadObject={this.props.topPlayerHead2HeadObject}
       >

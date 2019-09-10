@@ -40,7 +40,7 @@ export default class Head2Head extends React.Component {
           </form>
         </div>
 
-        {/* <Top15Head2Head/> */}
+        <Top15Head2Head/>
       </>
     );
   };

@@ -90,7 +90,7 @@ export default class DataRetrievalFunctions {
     });
   };
 
-  topPlayersHead2HeadData(props) {
+  topPlayerHead2HeadData(props) {
     return new Promise((resolve, reject) => {
       if (!props.topPlayerHead2HeadObject) {
         return superagent.get('http://localhost:3579/getTopPlayerHead2Head')

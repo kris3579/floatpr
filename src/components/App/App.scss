@@ -26,7 +26,7 @@ select {
   margin: 15px;
 }
 
-.link {
+a {
   color: blue;
   font-size: 18px;
   text-decoration: none;
@@ -55,7 +55,6 @@ select {
   border-right: 1px solid white; 
   color: white;
   padding: 0px 10px;
-  text-align: center;
   text-decoration: none;
 }
 
@@ -63,8 +62,8 @@ select {
 // Tables styling
 table {
   width: 100%;
+  border: solid black 1px;
   border-spacing: 0px;
-  font-weight: bold;
   text-align: center;
 }
 
@@ -87,6 +86,11 @@ tr:nth-child(odd) {
 .headerRow {
   background-color:#333333 !important;
   color: white;
+}
+
+.percentagesComparison {
+  font-size: 12px;
+  font-weight: normal;
 }
 
 //Player Rankings Table styling
@@ -144,6 +148,27 @@ tr:nth-child(odd) {
 
 .dateColumn {
   width: 10%;
+}
+
+// Top Player Head 2 Head Table stying 
+.head2HeadTable {
+  table-layout: fixed;
+}
+
+.head2HeadTd {
+  border: solid 0.5px black;
+  font-size: 18px;
+  line-height: 16px;
+}
+
+.head2HeadLink {
+  color: white;
+  font-size: 100%;
+  text-decoration: none;
+}
+
+.noDataTd {
+  font-size: 14px;
 }
 
 // Request Page styling

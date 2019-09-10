@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 export default class PairHead2HeadProfile extends React.Component {
   render() {
-    console.log(this.props.head2HeadObject);
     return (
       <>
         <p>{this.props.head2HeadObject.matchupName}</p>
