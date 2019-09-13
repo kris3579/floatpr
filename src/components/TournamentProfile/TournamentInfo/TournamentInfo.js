@@ -4,24 +4,44 @@ import PropTypes from 'prop-types';
 
 export default class TournamentInfo extends React.Component {
   render() {
-    console.log(this.props);
     const tournament = this.props.tournamentsObject[this.props.tournamentId];
+    const parsedPlacements = JSON.parse(tournament.placements);
     return (
       <>
         <h2>{tournament.name}</h2>
-        <p>{tournament.url}</p>
-        <p>{Date.parse(tournament.date)}</p>
+        <a href={tournament.url}>{tournament.url}</a>
+        <p>{new Date(tournament.date).toDateString()}</p>
 
-        <h4>Results</h4>
+        <h3>Results</h3>
         <ul>
           {
-            Object.keys(JSON.parse(tournament.placements)).map((placement, i) => {
+            Object.keys(parsedPlacements).map((placement, i) => {
+              let shownPlacement = ''
+              
+              switch(placement) {
+                case '1':
+                  shownPlacement = '1st';
+                  break;
+                case '2':
+                  shownPlacement = '2nd';
+                  break;
+                case '3':
+                  shownPlacement = '3rd';
+                  break;
+                default:
+                  shownPlacement = `${placement}th`;
+              }
+
               return (
-                <li key={i}><strong>{`${placement}:`}</strong>
+                <li key={i}><strong>{`${shownPlacement}: `}</strong>
                   {
-                    JSON.parse(tournament.placements)[placement].map((player, i) => {
+                    parsedPlacements[placement].map((player, i) => {
+                      let doWeAddSeperation = ' - ';
+                      if (!parsedPlacements[placement][i + 1]) {
+                        doWeAddSeperation = '';
+                      }
                       return (
-                        <Link to={{pathname: `/player/${player}`}} key={i}>{player}, </Link>
+                        <span key={i}><Link to={{pathname: `/player/${player}`}}>{player}</Link>{doWeAddSeperation}</span>
                       )
                     })
                   }
@@ -30,6 +50,8 @@ export default class TournamentInfo extends React.Component {
             })
           }
         </ul>
+
+        <h3>Tournament Sets</h3>
       </>
     );
   };

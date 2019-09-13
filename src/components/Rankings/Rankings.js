@@ -27,7 +27,6 @@ export default class Rankings extends React.Component {
             <option value='activeWashingtonPlayers'>Active Washington Players</option>
             <option value='allActivePlayers'>All Active Players</option>
             <option value='allPlayers'>All Players</option>
-            <option value='outOfStatePlayers'>Out-of-State Players</option>
           </select>
         </form>
         <PlayersAsyncWrapper>

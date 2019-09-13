@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Top15Head2Head from './Top15Head2Head/Top15Head2Head';
+import Top10Head2Head from './Top10Head2Head/Top10Head2Head';
 
 export default class Head2Head extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export default class Head2Head extends React.Component {
     return (
       <>
         <div className='formDiv'>
-          <h3>Enter two players to find their head 2 head</h3>
+          <h3>Find Head to Head Data Between Two Players</h3>
           
           <form onSubmit={this.handleSubmit}>
 
@@ -40,7 +40,7 @@ export default class Head2Head extends React.Component {
           </form>
         </div>
 
-        <Top15Head2Head/>
+        <Top10Head2Head/>
       </>
     );
   };

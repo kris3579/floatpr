@@ -19,7 +19,7 @@ class TournamentsAsyncWrapper extends React.Component {
       <Async
         promiseFn={dataRetrievalFunctions.tournamentsData}
         storeDataFunction={this.props.storeData}
-        playersObject={this.props.playersObject}
+        tournamentsObject={this.props.tournamentsObject}
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>

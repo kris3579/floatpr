@@ -3,7 +3,6 @@ import superagent from 'superagent';
 export default class DataRetrievalFunctions {
   playersData(props) {
     return new Promise((resolve, reject) => {
-
       if (!props.playersObject) {
         return superagent.get('http://localhost:3579/getPlayers')
         .then((response) => {
@@ -24,8 +23,7 @@ export default class DataRetrievalFunctions {
   };
 
   setsData(props) {
-    return new Promise((resolve, reject) => {
-      
+    return new Promise((resolve, reject) => {      
       if (!props.setsArray) {
         return superagent.get('http://localhost:3579/getSets')
         .then((response) => {

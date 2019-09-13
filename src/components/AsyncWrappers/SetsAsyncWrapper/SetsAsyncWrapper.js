@@ -20,7 +20,7 @@ class SetsAsyncWrapper extends React.Component {
       <Async
         promiseFn={dataRetrievalFunctions.setsData}
         storeDataFunction={this.props.storeData}
-        sets={this.props.sets}
+        setsArray={this.props.setsArray}
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>

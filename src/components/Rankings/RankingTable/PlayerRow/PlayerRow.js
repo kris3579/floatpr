@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 export default class PlayerRow extends React.Component {
   render() {
     return (
-      <tr>
+      <tr className='nonColoredRow'>
         <td className='rankColumn'>{this.props.rank}</td>
         <td className='regionColumn'>{this.props.player.state}</td>
       
         <td className='nameColumn'>
-          <Link className='link' to={{pathname: `/player/${this.props.player.name}`}}>
+          <Link to={{pathname: `/player/${this.props.player.name}`}}>
             {this.props.player.name}
           </Link>
         </td>
@@ -24,8 +24,8 @@ export default class PlayerRow extends React.Component {
         }</td>
 
         <td className='scoreColumn'>{this.props.player.rating}</td>
-        <td className='winRateColumn'>{this.props.player.set_win_rate}</td>
-        <td className='winRateColumn'>{this.props.player.game_win_rate}</td>
+        <td className='winRateColumn'>{`${this.props.player.set_win_rate}%`}</td>
+        <td className='winRateColumn'>{`${this.props.player.game_win_rate}%`}</td>
       </tr>
     );
   };

@@ -45,7 +45,7 @@ export default class ChangeMainsForm extends React.Component {
 
     return (
       <div>
-        <h3>Choose to add to/replace your mains, enter new main and color</h3>
+        <h3>Add to or Replace your mains, Enter New Main and Color</h3>
 
         <form onSubmit={this.handleSubmitRequest}>
           <input type='text' placeholder='Your Tag' name='user' onChange={(event) => this.props.handleChange(event, this)} required/>
