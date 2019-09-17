@@ -11,6 +11,7 @@ export default class AddTournamentForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     this.props.handleAddTournament(this.state.tournamentURL);
     this.setState({
       tournamentURL: '',

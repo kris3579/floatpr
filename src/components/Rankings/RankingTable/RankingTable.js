@@ -11,8 +11,8 @@ export default class RankingTable extends React.Component {
       case 'activeWashingtonPlayers':
         rankingArray = 'activeWashingtonPlayers';
         break;
-      case 'allActivePlayers':
-        rankingArray = 'allActivePlayers';
+      case 'washingtonPlayers':
+        rankingArray = 'washingtonPlayers';
         break;
       case 'allPlayers':
         rankingArray = 'allPlayers';
