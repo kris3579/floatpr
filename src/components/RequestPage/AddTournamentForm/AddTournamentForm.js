@@ -11,6 +11,7 @@ export default class AddTournamentForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     this.props.handleAddTournament(this.state.tournamentURL);
     this.setState({
       tournamentURL: '',
@@ -20,7 +21,7 @@ export default class AddTournamentForm extends React.Component {
   render() {
     return (
       <>
-        <h3>Add an unnacounted for tournament</h3>
+        <h3>Add Unnacounted For Tournament</h3>
 
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='tournamentURL' placeholder='Tournament URL' onChange={(event) => this.props.handleChange(event, this)} required/>

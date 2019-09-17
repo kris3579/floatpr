@@ -7,16 +7,21 @@ export default class TournamentRow extends React.Component {
     const dateString = new Date(this.props.tournament.date).toDateString();
     const parsedPlacements = JSON.parse(this.props.tournament.placements);
     return (
-      <tr>
+      <tr className='nonColoredRow'>
         <td className='tournamentNameColumn'>
-          <Link className='link' to={{pathname: `/tournament/${this.props.tournament.id}`}}>
+          <Link to={{pathname: `/tournament/${this.props.tournament.id}`}}>
             {this.props.tournament.name}
           </Link>
         </td>
 
-        <td className='tournamentWinnerColumn'>{parsedPlacements[1]}</td>
+        <td className='tournamentWinnerColumn'>
+          <Link to={{pathname: `/player/${parsedPlacements[1]}`}}>
+            {parsedPlacements[1]}
+          </Link>
+        </td>
+
         <td className='dateColumn'>{dateString}</td>
-        <td className='tournamentUrlColumn'>{<a className='link' href={this.props.tournament.url}>{this.props.tournament.url}</a>}</td>
+        <td className='tournamentUrlColumn'>{<a href={this.props.tournament.url}>{this.props.tournament.url}</a>}</td>
       </tr>
     );
   };

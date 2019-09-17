@@ -23,11 +23,11 @@ export default class Rankings extends React.Component {
     return (
       <>
         <form>
+          <label>Ranking:</label>
           <select name='rankingFilter' value={this.state.rankingFilter} onChange={this.handleChange} required>
             <option value='activeWashingtonPlayers'>Active Washington Players</option>
-            <option value='allActivePlayers'>All Active Players</option>
+            <option value='washingtonPlayers'>All Washington Players</option>
             <option value='allPlayers'>All Players</option>
-            <option value='outOfStatePlayers'>Out-of-State Players</option>
           </select>
         </form>
         <PlayersAsyncWrapper>

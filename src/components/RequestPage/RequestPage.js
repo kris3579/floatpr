@@ -24,20 +24,27 @@ export default class RequestPage extends React.Component {
     });
   };
 
-  handleRequest = (event) => {
+  handleRequestChange = (event) => {
     this.setState({
       request: event.target.value,
       submittedRequest: '',
     });
   };
 
-  handleAddTournament = (tournamentUrl) => {
-    this.setState({
-      request: '',
-      submittedRequest: `Your request to add the tournament located at ${tournamentUrl} has been submitted.`,
-    });
+  handleConfirmRequest = () => {
+    return window.confirm('Are you sure you would like to make this request?');
+  }
 
-    superagent.post('http://localhost:3579/userRequest')
+  handleAddTournament = (tournamentUrl) => {
+    const confirmation = this.handleConfirmRequest();
+
+    if (confirmation === true) {
+      this.setState({
+        request: '',
+        submittedRequest: `Your request to add the tournament located at ${tournamentUrl} has been submitted.`,
+      });
+      
+      superagent.post('http://localhost:3579/userRequest')
       .set('Content-Type', 'application/json')
       .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
       .then((response) => {
@@ -46,35 +53,41 @@ export default class RequestPage extends React.Component {
       .catch((error) => {
         throw error;
       });
+    }
   };
   
   handleChangeMains = (user, color, main, requestText) => {
-    const formattedName = this.formatName(main);
-    this.setState({
-      request: '',
-      submittedRequest: `Your request to ${requestText} mains has been submitted. Main: ${formattedName}, Color: ${color}`,
-    });
-    
-    const despacedName = formattedName.replace(/\s/g, '');
-    const newMain = color += despacedName;
-    
-    let doWeDelete = null;
-    
-    if (requestText === 'replace') {
-      doWeDelete = true;
-    } else if (requestText === 'add to') {
-      doWeDelete = false;
+    const confirmation = this.handleConfirmRequest();
+
+    if (confirmation === true) {
+      const formattedName = this.formatName(main);
+
+      this.setState({
+        request: '',
+        submittedRequest: `Your request to ${requestText} mains has been submitted. Main: ${formattedName}, Color: ${color}`,
+      });
+      
+      const despacedName = formattedName.replace(/\s/g, '');
+      const newMain = color += despacedName;
+      
+      let doWeDelete = null;
+      
+      if (requestText === 'replace') {
+        doWeDelete = true;
+      } else if (requestText === 'add to') {
+        doWeDelete = false;
+      }
+      
+      superagent.post('http://localhost:3579/userRequest')
+      .set('Content-Type', 'application/json')
+      .send(`{"requestType":"editMains","user":"${user}","newMain":"${newMain}","doWeDelete":"${doWeDelete}"}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        throw error;
+      });
     }
-    
-    superagent.post('http://localhost:3579/userRequest')
-    .set('Content-type', 'application/json')
-    .send(`{"requestType":"editMains","user":"${user}","newMain":"${newMain}","doWeDelete":"${doWeDelete}"}`)
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      throw error;
-    });
   };
   
   upperCase = (str) => {
@@ -88,13 +101,15 @@ export default class RequestPage extends React.Component {
   };
 
   handleChangeHomeState = (user, state) => {
-    
-    this.setState({
-      request: '',
-      submittedRequest: `Your request to change the home state/region of ${user} to ${state} has been submitted.`
-    });
+    const confirmation = this.handleConfirmRequest();
 
-    superagent.post('http://localhost:3579/userRequest')
+    if (confirmation === true) {
+      this.setState({
+        request: '',
+        submittedRequest: `Your request to change the home state/region of ${user} to ${state} has been submitted.`
+      });
+      
+      superagent.post('http://localhost:3579/userRequest')
       .set('Content-Type', 'application/json')
       .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
       .then((response) => {
@@ -103,15 +118,19 @@ export default class RequestPage extends React.Component {
       .catch((error) => {
         throw error;
       })
+    }
   };
 
   handleCombineResults = (userTag, secondTag) => {
-    this.setState({
-      request: '',
-      submittedRequest: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
-    });
+    const confirmation = this.handleConfirmRequest();
 
-    superagent.post('http://localhost:3579/userRequest')
+    if (confirmation === true) {
+      this.setState({
+        request: '',
+        submittedRequest: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
+      });
+      
+      superagent.post('http://localhost:3579/userRequest')
       .set('Content-Type', 'application/json')
       .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
       .then((response) => {
@@ -120,6 +139,7 @@ export default class RequestPage extends React.Component {
       .catch((error) => {
         throw error;
       });
+    }
   };
 
   render() {
@@ -162,7 +182,7 @@ export default class RequestPage extends React.Component {
     return (
       <>
         <form>
-          <select name='requestOptions' value={this.state.request} onChange={this.handleRequest} required>
+          <select name='requestOptions' value={this.state.request} onChange={this.handleRequestChange} required>
             <option value='' disabled>Choose Request</option>
             <option value='changeMains'>Add/Change Mains</option>
             <option value='changeHomeState'>Change State/Region</option>

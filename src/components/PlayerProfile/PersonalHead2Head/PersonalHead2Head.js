@@ -9,9 +9,22 @@ export default class PersonalHead2Head extends React.Component {
     super(props);
 
     this.state = {};
-    this.state.allMatchups = this.props.allMatchups;
-    this.state.deselectedMatchups = this.props.deselectedMatchups;
-    this.state.selectedMatchups = this.props.selectedMatchups;
+    this.state.allMatchups = this.props.matchupsObject.allMatchups;
+    this.state.selectedMatchups = this.props.matchupsObject.mostPlayed;
+    this.state.deselectedMatchups = this.props.matchupsObject.lessPlayed;
+  };
+
+  sortBySetsPlayed = (matchups) => {
+    const orderedMatchups = []
+  
+    matchups.sort((a, b) => {
+      return b.setsPlayed - a.setsPlayed;
+    })
+      .forEach((matchup) => {
+        orderedMatchups.push(matchup);
+      });
+
+    return orderedMatchups;
   };
 
   handleSelectMatchup = (event, matchupToSelect) => {
@@ -23,7 +36,7 @@ export default class PersonalHead2Head extends React.Component {
 
     const addMatchupToSelectedMatchups = [...this.state.selectedMatchups, matchupToSelect];
 
-    const sortBySetsPlayed = this.props.sortBySetsPlayed(addMatchupToSelectedMatchups);
+    const sortBySetsPlayed = this.sortBySetsPlayed(addMatchupToSelectedMatchups);
     
     this.setState({
       deselectedMatchups: removeFromDeselctedMatchups,
@@ -40,7 +53,7 @@ export default class PersonalHead2Head extends React.Component {
 
     const addMatchupToDeselectedMatchups = [...this.state.deselectedMatchups, matchupToDeselect];
 
-    const sortBySetsPlayed = this.props.sortBySetsPlayed(addMatchupToDeselectedMatchups);
+    const sortBySetsPlayed = this.sortBySetsPlayed(addMatchupToDeselectedMatchups);
 
     this.setState({
       deselectedMatchups: sortBySetsPlayed,
@@ -65,8 +78,5 @@ export default class PersonalHead2Head extends React.Component {
 };
 
 PersonalHead2Head.propTypes = {
-  allMatchups: PropTypes.object,
-  deselectedMatchups: PropTypes.array,
-  selectedMathcups: PropTypes.array,
-  sortBySetsPlayed: PropTypes.func,
+  matchupsObject: PropTypes.object,
 };

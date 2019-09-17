@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Top15Head2Head from './Top15Head2Head/Top15Head2Head';
+import Top10Head2Head from './Top10Head2Head/Top10Head2Head';
 
 export default class Head2Head extends React.Component {
   constructor(props) {
@@ -13,7 +13,9 @@ export default class Head2Head extends React.Component {
   
   handleSubmit = (event) => {
     event.preventDefault();
-  }
+    console.log(this.state);
+    this.props.history.push(`/headToHead/${this.state.player1}/${this.state.player2}`);
+  };
 
   handleChange = (event) => {
     event.preventDefault();
@@ -27,18 +29,18 @@ export default class Head2Head extends React.Component {
     return (
       <>
         <div className='formDiv'>
-          <h3>Enter two players to find their head 2 head</h3>
+          <h3>Find Head to Head Data Between Two Players</h3>
           
           <form onSubmit={this.handleSubmit}>
 
-            <input type='text' name='Player 1' placeholder='Player 1' onChange={(event) => this.props.handleChange(event)} required/>
-            <input type='text' name='Player 2' placeholder='Player 2' onChange={(event) => this.props.handleChange(event)} required/>
+            <input type='text' name='player1' placeholder='player1' onChange={(event) => this.handleChange(event)} required/>
+            <input type='text' name='player2' placeholder='player2' onChange={(event) => this.handleChange(event)} required/>
           
             <button type='submit' className='requestButton'>Submit</button>
           </form>
         </div>
 
-        <Top15Head2Head/>
+        <Top10Head2Head/>
       </>
     );
   };

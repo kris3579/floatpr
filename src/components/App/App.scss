@@ -4,8 +4,21 @@ body {
   width: 90vw;
 }
 
+h1 {
+  font-size: 2.75em;
+  margin: 5px;
+}
+
 h3 {
   margin-top: 0px;
+}
+
+h4 {
+  margin-bottom: 0px;
+}
+
+p {
+  margin-top: 5px;
 }
 
 nav {
@@ -26,17 +39,19 @@ select {
   margin: 15px;
 }
 
-.link {
+a {
   color: blue;
-  font-size: 18px;
   text-decoration: none;
 }
 
-// Nav styling
+ul {
+  list-style: none;
+}
+
+// Nav Styling
 .navUl {
   background-color: #333333;
   height: 5vh;
-  list-style: none;
   padding-left: 7.5px;
   margin: 0px;
 }
@@ -54,18 +69,17 @@ select {
 .navLink {
   border-right: 1px solid white; 
   color: white;
+  font-size: 18px;
   padding: 0px 10px;
-  text-align: center;
   text-decoration: none;
 }
 
-
-// Tables styling
+// Tables Styling
 table {
-  width: 100%;
+  border: solid black 1px;
   border-spacing: 0px;
-  font-weight: bold;
-  text-align: center;
+  margin-bottom: 25px;
+  width: 100%;
 }
 
 th {
@@ -73,7 +87,7 @@ th {
 }
 
 td {
-  padding: 5px 0px;
+  padding: 7.5px 0px;
 }
 
 tr:nth-child(even) {
@@ -89,9 +103,14 @@ tr:nth-child(odd) {
   color: white;
 }
 
-//Player Rankings Table styling
+.percentagesComparison {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+//Player Rankings Table Styling
 .rankColumn {
-  width: 10%;
+  width: 5%;
 }
 
 .tagColumn {
@@ -103,31 +122,56 @@ tr:nth-child(odd) {
 }
 
 .ratingColumn {
-  width: 15%;
+  width: 20%;
 }
 
 .winRateColumn {
-  width: 10%;
+  width: 15%;
 }
 
-// Sets Table styling
+// Sets Table Styling
 .roundColumn {
   width: 20%; 
 }
 
 .playerColumn {
-  width: 15%;
+  width: 20%;
 }
 
 .scoreColumn {
-  width: 10%
+  width: 5%
 }
 
 .tournamentsColumn {
   width: 20%
 }
 
-// Tournaments Table styling
+.greenText {
+  color: rgb(20, 130, 20);
+}
+
+.redText {
+  color: rgb(190, 20, 20);
+}
+
+.personalHead2HeadTable {
+  float: left;
+  width: 70%;
+}
+
+.matchupList {
+  float: right;
+  margin: 0px 0px 25px 0px;
+  padding: 0px;
+  width: 30%;
+}
+
+.matchupButton {
+  display: inline-block;
+  margin: 2.5px 5px;
+}
+
+// Tournaments Table Styling
 .tournamentNameColumn {
   padding-left: 15px;
   text-align: left;
@@ -146,12 +190,37 @@ tr:nth-child(odd) {
   width: 10%;
 }
 
-// Request Page styling
+// Top Player Head 2 Head Table Styling 
+.head2HeadTable {
+  table-layout: fixed;
+}
+
+.head2HeadTh {
+  padding: 14px 0px;
+  border: solid 0.5px black;
+  line-height: 16px;
+}
+
+.head2HeadTd {
+  border: solid 0.5px black;
+  line-height: 16px;
+}
+
+.head2HeadLink {
+  color: white;
+  text-decoration: none;
+}
+
+.noDataTd {
+  font-size: 14px;
+}
+
+// Request Page Styling
 .formDiv {
   border: 1px solid black;
   background-color: #aaaaaa;
   padding: 10px 10px 10px 10px;
-  margin: 20px auto 40px;
+  margin: 20px auto 25px;
   width: 90%;
 }
 

@@ -6,20 +6,42 @@ import SetsRow from './SetsRow/SetsRow';
 export default class SetsTable extends React.Component {
   render() {
     let sets;
+    let leftPlayer = 'Winner';
+    let rightPlayer = 'Loser';
+    let player = '';
+
+    let headerRow = <tr className='headerRow'>
+      <th className='roundColumn'>Round</th>
+      <th className='playerColumn'>{leftPlayer}</th>
+      <th className='scoreColumn'>Score</th>
+      <th className='playerColumn'>{rightPlayer}</th>
+      <th className='tournamentColumn'>tournament</th>
+    </tr>;
 
     switch(this.props.setsType) {
       case 'tournamentSets':
+        headerRow = <tr className='headerRow'>
+        <th className='roundColumn'>Round</th>
+        <th className='playerColumn'>{leftPlayer}</th>
+        <th className='scoreColumn'>Score</th>
+        <th className='playerColumn'>{rightPlayer}</th>
+      </tr>;
+
         sets = this.props.setsArray.filter((set) => {
           return `${set.tournament_id}` === this.props.tournamentId;
         });
         break;
       case 'playerSets':
+        leftPlayer = 'Player';
+        rightPlayer = 'Opponent';
+        player = this.props.player1;
+
         sets = this.props.setsArray.filter((set) => {
           return set.winner_name === this.props.player1 || set.loser_name === this.props.player1;
         });
         break;
-      case 'head2HeadSets':
-        sets = this.props.setsArray.filter((set) => {
+      case 'pairHead2HeadSets':
+        sets = this.props.head2HeadObject.setsArray.filter((set) => {
           return (set.winner_name === this.props.player1 && set.loser_name === this.props.player2) || (set.winner_name === this.props.player2 && set.loser_name === this.props.player1);
         });
         break;
@@ -31,19 +53,15 @@ export default class SetsTable extends React.Component {
       <div>
         <table>
           <tbody>
-            <tr className='headerRow'>
-              <th className='roundColumn'>Round</th>
-              <th className='playerColumn'>Winner</th>
-              <th className='scoreColumn'>Score</th>
-              <th className='playerColumn'>Loser</th>
-              <th className='tournamentColumn'>tournament</th>
-            </tr>
+            {headerRow}
             {
               sets.map((set, i) => {
                 return (
                   <SetsRow
-                    set={set}
                     key={i}
+                    set={set}
+                    setsType={this.props.setsType}
+                    player={player}
                   />
                 )
               })
@@ -56,6 +74,7 @@ export default class SetsTable extends React.Component {
 };
 
 SetsTable.propTypes = {
+  head2HeadObject: PropTypes.object,
   player1: PropTypes.string,
   player2: PropTypes.string,
   setsArray: PropTypes.array,

@@ -1,14 +1,15 @@
 import React from 'react';
 
+import IndividualHead2HeadAsyncWrapper from '../AsyncWrappers/IndividualHead2HeadAsyncWrapper/IndividualHead2HeadAsyncWrapper';
 import PlayersAsyncWrapper from '../AsyncWrappers/PlayersAsyncWrapper/PlayersAsyncWrapper';
 import SetsAsyncWrapper from '../AsyncWrappers/SetsAsyncWrapper/SetsAsyncWrapper';
 import PlayerInfo from './PlayerInfo/PlayerInfo';
-import PlayerMatchupState from './PlayerMatchupState/PlayerMatchupState';
+import PersonalHead2Head from './PersonalHead2Head/PersonalHead2Head';
 import SetsTable from '../SetsTable/SetsTable';
 
 export default class PlayerProfile extends React.Component {
   render() {
-    const player = this.props.match.params.playerName;
+    const player = this.props.match.params.player;
 
     return (
       <>
@@ -18,11 +19,13 @@ export default class PlayerProfile extends React.Component {
           />
         </PlayersAsyncWrapper>
 
-        <SetsAsyncWrapper>
-          <PlayerMatchupState
-            playerName={player}
-          />
+        <IndividualHead2HeadAsyncWrapper
+          player={player}
+        >
+          <PersonalHead2Head/>
+        </IndividualHead2HeadAsyncWrapper>
 
+        <SetsAsyncWrapper>
           <SetsTable
             player1={player}
             player2='none'

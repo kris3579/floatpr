@@ -16,7 +16,11 @@ class PlayersAsyncWrapper extends React.Component {
     }
 
     return (
-      <Async promiseFn={dataRetrievalFunctions.playersData} storeDataFunction={this.props.storeData} playersObject={this.props.playersObject}>
+      <Async
+        promiseFn={dataRetrievalFunctions.playersData}
+        storeDataFunction={this.props.storeData}
+        playersObject={this.props.playersObject}
+      >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
           {playersData => (
@@ -40,7 +44,7 @@ class PlayersAsyncWrapper extends React.Component {
 const mapStateToProps = (state) => {
   return {
     playersObject: state.players,
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -52,6 +56,7 @@ const mapDispatchToProps = (dispatch) => {
 };
  
 PlayersAsyncWrapper.propTypes = {
+  playersObject: PropTypes.object,
   storedata: PropTypes.func,
 };
 
