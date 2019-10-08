@@ -56,6 +56,7 @@ const mapDispatchToProps = (dispatch) => {
 };
  
 TournamentsAsyncWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
   storeData: PropTypes.func,
   tournamentsObject: PropTypes.object,
 };

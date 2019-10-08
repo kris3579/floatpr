@@ -40,5 +40,6 @@ export default class IndividualHead2HeadAsyncWrapper extends React.Component {
 }
 
 IndividualHead2HeadAsyncWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
   player: PropTypes.string,
 };

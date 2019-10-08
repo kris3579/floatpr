@@ -31,7 +31,7 @@ export default class TournamentsTable extends React.Component {
       </>
     );
   }
-};
+}
 
 TournamentsTable.propTypes = {
   tournamentsObject: PropTypes.object,

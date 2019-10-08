@@ -35,13 +35,13 @@ export default class TournamentInfo extends React.Component {
               return (
                 <li key={i}><strong>{`${shownPlacement}: `}</strong>
                   {
-                    parsedPlacements[placement].map((player, i) => {
+                    parsedPlacements[placement].map((player, j) => {
                       let doWeAddSeperation = ' - ';
-                      if (!parsedPlacements[placement][i + 1]) {
+                      if (!parsedPlacements[placement][j + 1]) {
                         doWeAddSeperation = '';
                       }
                       return (
-                        <span key={i}><Link to={{ pathname: `/player/${player}` }}>{player}</Link>{doWeAddSeperation}</span>
+                        <span key={j}><Link to={{ pathname: `/player/${player}` }}>{player}</Link>{doWeAddSeperation}</span>
                       );
                     })
                   }
@@ -55,7 +55,7 @@ export default class TournamentInfo extends React.Component {
       </>
     );
   }
-};
+}
 
 TournamentInfo.propTypes = {
   tournamentId: PropTypes.string,

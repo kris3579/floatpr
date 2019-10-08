@@ -56,8 +56,9 @@ const mapDispatchToProps = (dispatch) => {
 };
  
 PlayersAsyncWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
   playersObject: PropTypes.object,
-  storedata: PropTypes.func,
+  storeData: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayersAsyncWrapper);

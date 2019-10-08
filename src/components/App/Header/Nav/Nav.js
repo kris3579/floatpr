@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 export default class Nav extends React.Component {
   render() {
-
     return (
       <nav>
         <ul className='navUl'>
@@ -15,5 +14,5 @@ export default class Nav extends React.Component {
         </ul>
       </nav>
     );
-  };
-};
+  }
+}

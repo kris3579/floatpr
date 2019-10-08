@@ -1,7 +1,7 @@
 import React from 'react';
 import Chartify from 'chartify';
 
-export default class PlayerGraphs extends React.Component {
+export default class PlayerGraph extends React.Component {
   render() {
     const config = {
       theme: 'blue',

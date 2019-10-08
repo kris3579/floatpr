@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Async from 'react-async';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,28 +24,28 @@ class SetsAsyncWrapper extends React.Component {
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {setsData => (
+          {(setsData) => (
             <>
               {
                 childrenArray.map((child, i) => {
                   return (
                     React.cloneElement(child, { setsArray: setsData, key: i })
-                  )
+                  );
                 })
               }
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{error => error.message}</Async.Rejected>
+        <Async.Rejected>{(error) => error.message}</Async.Rejected>
       </Async>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
     setsArray: state.sets,
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -57,7 +57,9 @@ const mapDispatchToProps = (dispatch) => {
 };
  
 SetsAsyncWrapper.propTypes = {
-  storedata: PropTypes.func,
+  children: PropTypes.node.isRequired,
+  setsArray: PropTypes.array,
+  storeData: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SetsAsyncWrapper);

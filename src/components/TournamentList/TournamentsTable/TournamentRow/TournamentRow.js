@@ -25,7 +25,7 @@ export default class TournamentRow extends React.Component {
       </tr>
     );
   }
-};
+}
 
 TournamentRow.propTypes = {
   tournament: PropTypes.object,

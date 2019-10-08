@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import IndividualHead2HeadAsyncWrapper from '../AsyncWrappers/IndividualHead2HeadAsyncWrapper/IndividualHead2HeadAsyncWrapper';
 import PlayersAsyncWrapper from '../AsyncWrappers/PlayersAsyncWrapper/PlayersAsyncWrapper';
@@ -9,7 +10,7 @@ import SetsTable from '../SetsTable/SetsTable';
 
 export default class PlayerProfile extends React.Component {
   render() {
-    const player = this.props.match.params.player;
+    const { player } = this.props.match.params;
 
     return (
       <>
@@ -37,3 +38,11 @@ export default class PlayerProfile extends React.Component {
     );
   }
 }
+
+PlayerProfile.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      player: PropTypes.string,
+    }),
+  }),
+};

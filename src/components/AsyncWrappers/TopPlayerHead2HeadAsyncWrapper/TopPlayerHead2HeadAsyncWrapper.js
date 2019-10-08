@@ -56,6 +56,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 TopPlayerHead2HeadAsyncWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
   storeData: PropTypes.func,
   topPlayerHead2HeadObject: PropTypes.object,
 };

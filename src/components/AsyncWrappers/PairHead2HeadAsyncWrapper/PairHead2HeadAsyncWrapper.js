@@ -40,6 +40,7 @@ export default class PairHead2HeadAsyncWrapper extends React.Component {
 }
 
 PairHead2HeadAsyncWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
   player1: PropTypes.string,
   player2: PropTypes.string,
 };

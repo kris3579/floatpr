@@ -34,7 +34,7 @@ export default class CombineResultsForm extends React.Component {
       </div>
     );
   }
-};
+}
 
 CombineResultsForm.propTypes = {
   handleChange: PropTypes.func,

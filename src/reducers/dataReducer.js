@@ -1,7 +1,9 @@
 export default (state = {}, { type, payload, dataSet }) => {
+  let newState;
+
   switch (type) {
     case 'STORE_DATA':
-      const newState = { ...state };
+      newState = { ...state };
       newState[dataSet] = payload;
       return newState;
     default:
