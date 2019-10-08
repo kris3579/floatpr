@@ -8,7 +8,7 @@ export default class SetsRow extends React.Component {
       <td className='roundColumn'>{this.props.set.round}</td>
 
       <td className='playerColumn'>
-        <Link to={{pathname: `/player/${this.props.set.winner_name}`}}>
+        <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
           {this.props.set.winner_name}
         </Link>
       </td>
@@ -16,13 +16,13 @@ export default class SetsRow extends React.Component {
       <td className='scoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
       
       <td className='playerColumn'>
-        <Link to={{pathname: `/player/${this.props.set.loser_name}`}}>
+        <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
           {this.props.set.loser_name}
         </Link>
       </td>
 
       <td className='tournamentColumn'>
-        <Link to={{pathname: `/tournament/${this.props.set.tournament_id}`}}>
+        <Link to={{ pathname: `/tournament/${this.props.set.tournament_id}` }}>
           {this.props.set.tournament_name}
         </Link>
       </td>
@@ -33,7 +33,7 @@ export default class SetsRow extends React.Component {
       <td className='roundColumn'>{this.props.set.round}</td>
 
       <td className='playerColumn'>
-        <Link to={{pathname: `/player/${this.props.set.winner_name}`}}>
+        <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
           {this.props.set.winner_name}
         </Link>
       </td>
@@ -41,7 +41,7 @@ export default class SetsRow extends React.Component {
       <td className='scoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
       
       <td className='playerColumn'>
-        <Link to={{pathname: `/player/${this.props.set.loser_name}`}}>
+        <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
           {this.props.set.loser_name}
         </Link>
       </td>
@@ -53,7 +53,7 @@ export default class SetsRow extends React.Component {
         <td className='roundColumn'><span className='greenText'>{this.props.set.round}</span></td>
 
         <td className='playerColumn'>
-          <Link to={{pathname: `/player/${this.props.set.winner_name}`}}>
+          <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
             {this.props.set.winner_name}
           </Link>
         </td>
@@ -61,13 +61,13 @@ export default class SetsRow extends React.Component {
         <td className='scoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
         
         <td className='playerColumn'>
-          <Link to={{pathname: `/player/${this.props.set.loser_name}`}}>
+          <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
             {this.props.set.loser_name}
           </Link>
         </td>
 
         <td className='tournamentColumn'>
-          <Link to={{pathname: `/tournament/${this.props.set.tournament_id}`}}>
+          <Link to={{ pathname: `/tournament/${this.props.set.tournament_id}` }}>
             {this.props.set.tournament_name}
           </Link>
         </td>
@@ -79,7 +79,7 @@ export default class SetsRow extends React.Component {
         <td className='roundColumn'><span className='redText'>{this.props.set.round}</span></td>
 
         <td className='playerColumn'>
-          <Link to={{pathname: `/player/${this.props.set.loser_name}`}}>
+          <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
             {this.props.set.loser_name}
           </Link>
         </td>
@@ -87,13 +87,13 @@ export default class SetsRow extends React.Component {
         <td className='scoreColumn'>{this.props.set.loser_score}-{this.props.set.winner_score}</td>
         
         <td className='playerColumn'>
-          <Link to={{pathname: `/player/${this.props.set.winner_name}`}}>
+          <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
             {this.props.set.winner_name}
           </Link>
         </td>
 
         <td className='tournamentColumn'>
-          <Link to={{pathname: `/tournament/${this.props.set.tournament_id}`}}>
+          <Link to={{ pathname: `/tournament/${this.props.set.tournament_id}` }}>
             {this.props.set.tournament_name}
           </Link>
         </td>
@@ -105,8 +105,8 @@ export default class SetsRow extends React.Component {
         {rowToRender}
       </>
     );
-  };
-};
+  }
+}
 
 SetsRow.propTypes = {
   player: PropTypes.string,

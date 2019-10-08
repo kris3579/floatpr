@@ -35,5 +35,5 @@ export default class PlayerProfile extends React.Component {
         </SetsAsyncWrapper>
       </>
     );
-  };
-};
+  }
+}

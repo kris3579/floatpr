@@ -21,23 +21,23 @@ export default class PairHead2HeadAsyncWrapper extends React.Component {
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {head2HeadData => (
+          {(head2HeadData) => (
             <>
               {
                 childrenArray.map((child, i) => {
                   return (
                     React.cloneElement(child, { head2HeadObject: head2HeadData, key: i })
-                  )
+                  );
                 })
               }
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{error => error.message}</Async.Rejected>
+        <Async.Rejected>{(error) => error.message}</Async.Rejected>
       </Async>
     );
-  };
-};
+  }
+}
 
 PairHead2HeadAsyncWrapper.propTypes = {
   player1: PropTypes.string,

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import SetsAsyncWrapper from '../AsyncWrappers/SetsAsyncWrapper/SetsAsyncWrapper';
 import TournamentAsyncWrapper from '../AsyncWrappers/TournamentsAsyncWrapper/TournamentsAsyncWrapper';
@@ -23,5 +24,9 @@ export default class TournamentProfile extends React.Component {
         </SetsAsyncWrapper>
       </TournamentAsyncWrapper>
     );
-  };
+  }
+}
+
+TournamentProfile.propTypes = {
+  tournamentId: PropTypes.number, 
 };

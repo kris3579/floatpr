@@ -16,9 +16,9 @@ export default class TournamentInfo extends React.Component {
         <ul>
           {
             Object.keys(parsedPlacements).map((placement, i) => {
-              let shownPlacement = ''
+              let shownPlacement = '';
               
-              switch(placement) {
+              switch (placement) {
                 case '1':
                   shownPlacement = '1st';
                   break;
@@ -41,12 +41,12 @@ export default class TournamentInfo extends React.Component {
                         doWeAddSeperation = '';
                       }
                       return (
-                        <span key={i}><Link to={{pathname: `/player/${player}`}}>{player}</Link>{doWeAddSeperation}</span>
-                      )
+                        <span key={i}><Link to={{ pathname: `/player/${player}` }}>{player}</Link>{doWeAddSeperation}</span>
+                      );
                     })
                   }
                 </li>
-              )
+              );
             })
           }
         </ul>
@@ -54,7 +54,7 @@ export default class TournamentInfo extends React.Component {
         <h3>Tournament Sets</h3>
       </>
     );
-  };
+  }
 };
 
 TournamentInfo.propTypes = {

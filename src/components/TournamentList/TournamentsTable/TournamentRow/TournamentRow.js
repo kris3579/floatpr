@@ -9,13 +9,13 @@ export default class TournamentRow extends React.Component {
     return (
       <tr className='nonColoredRow'>
         <td className='tournamentNameColumn'>
-          <Link to={{pathname: `/tournament/${this.props.tournament.id}`}}>
+          <Link to={{ pathname: `/tournament/${this.props.tournament.id}` }}>
             {this.props.tournament.name}
           </Link>
         </td>
 
         <td className='tournamentWinnerColumn'>
-          <Link to={{pathname: `/player/${parsedPlacements[1]}`}}>
+          <Link to={{ pathname: `/player/${parsedPlacements[1]}` }}>
             {parsedPlacements[1]}
           </Link>
         </td>
@@ -24,7 +24,7 @@ export default class TournamentRow extends React.Component {
         <td className='tournamentUrlColumn'>{<a href={this.props.tournament.url}>{this.props.tournament.url}</a>}</td>
       </tr>
     );
-  };
+  }
 };
 
 TournamentRow.propTypes = {

@@ -23,23 +23,23 @@ class TopPlayerHead2HeadAsyncWrapper extends React.Component {
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {head2HeadData => (
+          {(head2HeadData) => (
             <>
               {
                 childrenArray.map((child, i) => {
                   return (
                     React.cloneElement(child, { topPlayerHead2HeadObject: head2HeadData, key: i })
-                  )
+                  );
                 })
               }
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{error => error.message}</Async.Rejected>
+        <Async.Rejected>{(error) => error.message}</Async.Rejected>
       </Async> 
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -50,14 +50,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     storeData: (data, dataSet) => {
-      dispatch(storeData(data,dataSet));
+      dispatch(storeData(data, dataSet));
     },
   };
 };
 
 TopPlayerHead2HeadAsyncWrapper.propTypes = {
-  topPlayerHead2HeadObject: PropTypes.object,
   storeData: PropTypes.func,
+  topPlayerHead2HeadObject: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopPlayerHead2HeadAsyncWrapper);

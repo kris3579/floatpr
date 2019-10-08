@@ -9,7 +9,7 @@ export default class IndividualHead2HeadAsyncWrapper extends React.Component {
     const dataRetrievalFunctions = new DataRetrievalFunctions();
 
     let childrenArray = this.props.children;
-    if(Array.isArray(this.props.children) === false) {
+    if (Array.isArray(this.props.children) === false) {
       childrenArray = [this.props.children];
     }
 
@@ -20,25 +20,25 @@ export default class IndividualHead2HeadAsyncWrapper extends React.Component {
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {head2HeadData => (
+          {(head2HeadData) => (
             <>
             {
               childrenArray.map((child, i) => {
                 return (
                   React.cloneElement(child, { matchupsObject: head2HeadData, key: i })
-                )
+                );
               })
             }
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{error => error.message}</Async.Rejected>
+        <Async.Rejected>{(error) => error.message}</Async.Rejected>
       </Async>
       
     );
-  };
-};
+  }
+}
 
 IndividualHead2HeadAsyncWrapper.propTypes = {
   player: PropTypes.string,
-}
+};

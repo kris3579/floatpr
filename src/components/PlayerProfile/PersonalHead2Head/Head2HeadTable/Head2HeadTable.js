@@ -27,14 +27,14 @@ export default class Head2HeadTable extends React.Component {
                   </td>
                   <td className='remove'><img src={require('../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'></img></td>
                 </tr>
-              )
+              );
             })
           }
         </tbody>
       </table>
     );
-  };
-};
+  }
+}
 
 Head2HeadTable.propTypes = {
   handleDeselectMatchup: PropTypes.func,

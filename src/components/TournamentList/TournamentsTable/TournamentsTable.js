@@ -23,14 +23,14 @@ export default class TournamentsTable extends React.Component {
                   tournament={tournament}
                   key={i}
                   />
-                  )
-                })
+                );
+              })
               }
           </tbody>
         </table>
       </>
     );
-  };
+  }
 };
 
 TournamentsTable.propTypes = {

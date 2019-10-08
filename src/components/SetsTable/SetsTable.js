@@ -18,7 +18,7 @@ export default class SetsTable extends React.Component {
       <th className='tournamentColumn'>tournament</th>
     </tr>;
 
-    switch(this.props.setsType) {
+    switch (this.props.setsType) {
       case 'tournamentSets':
         headerRow = <tr className='headerRow'>
         <th className='roundColumn'>Round</th>
@@ -47,7 +47,7 @@ export default class SetsTable extends React.Component {
         break;
       default:
         sets = [];
-    };
+    }
 
     return (
       <div>
@@ -63,15 +63,15 @@ export default class SetsTable extends React.Component {
                     setsType={this.props.setsType}
                     player={player}
                   />
-                )
+                );
               })
             }
           </tbody>
         </table>
       </div>
     );
-  };
-};
+  }
+}
 
 SetsTable.propTypes = {
   head2HeadObject: PropTypes.object,

@@ -10,5 +10,5 @@ export default class Top15Head2Head extends React.Component {
         <Top10Table/>
       </TopPlayerHead2HeadAsyncWrapper>
     );
-  };
-};
+  }
+}

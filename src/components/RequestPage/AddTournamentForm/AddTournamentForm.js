@@ -7,7 +7,7 @@ export default class AddTournamentForm extends React.Component {
 
     this.state = {};
     this.state.tournamentURL = '';
-  };
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -30,8 +30,8 @@ export default class AddTournamentForm extends React.Component {
         </form>
       </>
     );
-  };
-};
+  }
+}
 
 AddTournamentForm.propTypes = {
   handleAddTournament: PropTypes.func,

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// import PlayerGraph from './PlayerGraph/PlayerGraph';
+
 export default class PlayerInfo extends React.Component {
   render() {
     const player = this.props.playersObject[this.props.playerName];
@@ -13,7 +15,7 @@ export default class PlayerInfo extends React.Component {
             player.mains.map((main, i) => {
               return (
                 <img src={require(`../../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img>
-              )
+              );
             })
           }
         </div>
@@ -26,12 +28,14 @@ export default class PlayerInfo extends React.Component {
           {player.attendance}<br/>
           {player.active_attendance}<br/>
         </p>
+
+        {/* <PlayerGraph/> */}
       </>
     );
-  };
-};
+  }
+}
 
 PlayerInfo.propTypes = {
-  player: PropTypes.string,
+  playerName: PropTypes.string,
   playersObject: PropTypes.object,
 };

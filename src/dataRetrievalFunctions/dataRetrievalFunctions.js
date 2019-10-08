@@ -5,13 +5,13 @@ export default class DataRetrievalFunctions {
     return new Promise((resolve, reject) => {
       if (!props.playersObject) {
         return superagent.get('http://localhost:3579/getPlayers')
-        .then((response) => {
-          props.storeDataFunction(response.body, 'players');
-          resolve(response.body);
-        })
-        .catch((error) => {
-          reject(error);
-        });
+          .then((response) => {
+            props.storeDataFunction(response.body, 'players');
+            resolve(response.body);
+          })
+          .catch((error) => {
+            reject(error);
+          });
       }
       
       if (props.playersObject) {
@@ -20,19 +20,19 @@ export default class DataRetrievalFunctions {
       
       reject('Something went wrong');
     });
-  };
+  }
 
   setsData(props) {
     return new Promise((resolve, reject) => {      
       if (!props.setsArray) {
         return superagent.get('http://localhost:3579/getSets')
-        .then((response) => {
-          props.storeDataFunction(response.body, 'sets');
-          resolve(response.body);
-        })
-        .catch((error) => {
-          reject(error);
-        });
+          .then((response) => {
+            props.storeDataFunction(response.body, 'sets');
+            resolve(response.body);
+          })
+          .catch((error) => {
+            reject(error);
+          });
       }
       
       if (props.setsArray) {
@@ -41,7 +41,7 @@ export default class DataRetrievalFunctions {
 
       reject('Something went wrong');
     });
-  };
+  }
 
   tournamentsData(props) {
     return new Promise((resolve, reject) => {
@@ -62,7 +62,7 @@ export default class DataRetrievalFunctions {
 
       reject('Something went wrong');
     });
-  };
+  }
 
   individualHead2HeadData(props) {
     return new Promise((resolve, reject) => {
@@ -74,7 +74,7 @@ export default class DataRetrievalFunctions {
           reject(error);
         });
     });
-  };
+  }
 
   pairHead2HeadData(props) {
     return new Promise((resolve, reject) => {
@@ -86,7 +86,7 @@ export default class DataRetrievalFunctions {
           reject(error);
         });
     });
-  };
+  }
 
   topPlayerHead2HeadData(props) {
     return new Promise((resolve, reject) => {
@@ -107,5 +107,5 @@ export default class DataRetrievalFunctions {
 
       reject('Something went wrong');
     });
-  };
-};
+  }
+}

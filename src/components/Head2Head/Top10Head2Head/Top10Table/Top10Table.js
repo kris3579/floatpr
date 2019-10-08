@@ -17,12 +17,12 @@ export default class Top10Table extends React.Component {
                   return (
                     <th className='head2HeadTh' key={i}>
                       {/* <ReactFitText minFontSize={16}> */}
-                        <Link className='head2HeadLink' to={{pathname: `/player/${player.name}`}}>
+                        <Link className='head2HeadLink' to={{ pathname: `/player/${player.name}` }}>
                           {player.name}
                         </Link>
                       {/* </ReactFitText> */}
                     </th>
-                  )
+                  );
                 })
               }
             </tr>
@@ -32,7 +32,7 @@ export default class Top10Table extends React.Component {
                   <tr key={i}>
                     <td className='head2HeadTd headerRow'>
                       {/* <ReactFitText minFontSize={16}> */}
-                        <Link className='head2HeadLink' to={{pathname: `/player/${leftPlayer.name}`}}>
+                        <Link className='head2HeadLink' to={{ pathname: `/player/${leftPlayer.name}` }}>
                           <strong>{leftPlayer.name}</strong>
                         </Link>
                       {/* </ReactFitText> */}
@@ -43,14 +43,14 @@ export default class Top10Table extends React.Component {
                         if (leftPlayer.rank === rightPlayer.rank) {
                           return (
                             <td className='head2HeadTd' key={j}></td>
-                            )
-                        } else if (leftPlayer.rank < rightPlayer.rank) {
-                          let matchup = `${leftPlayer.rank}-${rightPlayer.rank}`;
+                          );
+                        } if (leftPlayer.rank < rightPlayer.rank) {
+                          const matchup = `${leftPlayer.rank}-${rightPlayer.rank}`;
 
                           if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0 && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
                             return (
                               <td className='head2HeadTd' key={j}><strong className='noDataTd'>N/A</strong></td>
-                            )
+                            );
                           }
 
                           return (
@@ -58,14 +58,14 @@ export default class Top10Table extends React.Component {
                               <strong>{`${this.props.topPlayerHead2HeadObject[matchup].setScore[0]}-${this.props.topPlayerHead2HeadObject[matchup].setScore[1]}`}</strong><br/>
                               <span className='percentagesComparison'>{`${this.props.topPlayerHead2HeadObject[matchup].setPercentages[0]}-${this.props.topPlayerHead2HeadObject[matchup].setPercentages[1]}`}</span>
                             </td>
-                          )
-                        } else if (leftPlayer.rank > rightPlayer.rank) {
-                          let matchup = `${rightPlayer.rank}-${leftPlayer.rank}`;
+                          );
+                        } if (leftPlayer.rank > rightPlayer.rank) {
+                          const matchup = `${rightPlayer.rank}-${leftPlayer.rank}`;
 
                           if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0 && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
                             return (
                               <td className='head2HeadTd' key={j}><strong className='noDataTd'>N/A</strong></td>
-                            )
+                            );
                           }
 
                           return (
@@ -73,20 +73,20 @@ export default class Top10Table extends React.Component {
                               <strong>{`${this.props.topPlayerHead2HeadObject[matchup].setScore[1]}-${this.props.topPlayerHead2HeadObject[matchup].setScore[0]}`}</strong><br/>
                               <span className='percentagesComparison'>{`${this.props.topPlayerHead2HeadObject[matchup].setPercentages[1]}-${this.props.topPlayerHead2HeadObject[matchup].setPercentages[0]}`}</span>
                             </td>
-                          )
+                          );
                         }
                       })
                     }
                   </tr>
-                )
+                );
               })
             }          
           </tbody>
         </table>
       </>
     );
-  };
-};
+  }
+}
 
 Top10Table.propTypes = {
   topPlayerHead2HeadObject: PropTypes.object,

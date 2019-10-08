@@ -16,8 +16,8 @@ export default class PairHead2HeadProfile extends React.Component {
         <p>{`${this.props.head2HeadObject.gamePercentages[0]}-${this.props.head2HeadObject.gamePercentages[1]}`}</p>
       </>
     );
-  };
-};
+  }
+}
 
 PairHead2HeadProfile.propTypes = {
   head2HeadObject: PropTypes.object,

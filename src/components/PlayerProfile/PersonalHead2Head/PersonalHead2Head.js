@@ -12,10 +12,10 @@ export default class PersonalHead2Head extends React.Component {
     this.state.allMatchups = this.props.matchupsObject.allMatchups;
     this.state.selectedMatchups = this.props.matchupsObject.mostPlayed;
     this.state.deselectedMatchups = this.props.matchupsObject.lessPlayed;
-  };
+  }
 
   sortBySetsPlayed = (matchups) => {
-    const orderedMatchups = []
+    const orderedMatchups = [];
   
     matchups.sort((a, b) => {
       return b.setsPlayed - a.setsPlayed;
@@ -57,7 +57,7 @@ export default class PersonalHead2Head extends React.Component {
 
     this.setState({
       deselectedMatchups: sortBySetsPlayed,
-      selectedMatchups: removeFromSelectedMatchups
+      selectedMatchups: removeFromSelectedMatchups,
     });
   };
 
@@ -74,8 +74,8 @@ export default class PersonalHead2Head extends React.Component {
         />
       </>
     );
-  };
-};
+  }
+}
 
 PersonalHead2Head.propTypes = {
   matchupsObject: PropTypes.object,

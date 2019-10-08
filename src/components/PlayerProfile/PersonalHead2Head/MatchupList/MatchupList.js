@@ -17,8 +17,8 @@ export default class MatchupList extends React.Component {
         </ul>
       </>
     );
-  };
-};
+  }
+}
 
 MatchupList.propTypes = {
   deselectedMatchups: PropTypes.array,

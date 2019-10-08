@@ -1,10 +1,10 @@
 export default (state = {}, { type, payload, dataSet }) => {
-  switch(type) {
+  switch (type) {
     case 'STORE_DATA':
-      const newState = Object.assign({}, state);
+      const newState = { ...state };
       newState[dataSet] = payload;
       return newState;
     default:
       return state;
-  };
+  }
 };

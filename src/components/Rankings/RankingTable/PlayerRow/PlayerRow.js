@@ -10,7 +10,7 @@ export default class PlayerRow extends React.Component {
         <td className='regionColumn'>{this.props.player.state}</td>
       
         <td className='nameColumn'>
-          <Link to={{pathname: `/player/${this.props.player.name}`}}>
+          <Link to={{ pathname: `/player/${this.props.player.name}` }}>
             {this.props.player.name}
           </Link>
         </td>
@@ -28,8 +28,8 @@ export default class PlayerRow extends React.Component {
         <td className='winRateColumn'>{`${this.props.player.game_win_rate}%`}</td>
       </tr>
     );
-  };
-};
+  }
+}
 
 PlayerRow.propTypes = {
   player: PropTypes.object,

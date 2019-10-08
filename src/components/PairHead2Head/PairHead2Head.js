@@ -25,5 +25,5 @@ export default class PairHead2Head extends React.Component {
         />
       </PairHead2HeadAsyncWrapper>
     );
-  };
-};
+  }
+}

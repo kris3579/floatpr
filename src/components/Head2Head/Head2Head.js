@@ -9,7 +9,7 @@ export default class Head2Head extends React.Component {
     this.state = {};
     this.state.player1 = '';
     this.state.player2 = '';
-  };
+  }
   
   handleSubmit = (event) => {
     event.preventDefault();
@@ -43,5 +43,5 @@ export default class Head2Head extends React.Component {
         <Top10Head2Head/>
       </>
     );
-  };
-};
+  }
+}

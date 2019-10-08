@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Async from 'react-async';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -23,23 +23,23 @@ class PlayersAsyncWrapper extends React.Component {
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {playersData => (
+          {(playersData) => (
             <>
               {
                 childrenArray.map((child, i) => {
                   return (
                     React.cloneElement(child, { playersObject: playersData, key: i })
-                  )
+                  );
                 })
               }
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{error => error.message}</Async.Rejected>
+        <Async.Rejected>{(error) => error.message}</Async.Rejected>
       </Async>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
