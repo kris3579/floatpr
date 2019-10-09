@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import storeData from '../../../actions/dataActions';
-import DataRetrievalFunctions from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
+import { getTournamentsData } from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
 
 class TournamentsAsyncWrapper extends React.Component {
   render() {
-    const dataRetrievalFunctions = new DataRetrievalFunctions();
-
     let childrenArray = this.props.children;
     if (Array.isArray(this.props.children) === false) {
       childrenArray = [this.props.children];
@@ -17,7 +15,7 @@ class TournamentsAsyncWrapper extends React.Component {
     
     return (
       <Async
-        promiseFn={dataRetrievalFunctions.tournamentsData}
+        promiseFn={getTournamentsData}
         storeDataFunction={this.props.storeData}
         tournamentsObject={this.props.tournamentsObject}
       >

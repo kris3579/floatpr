@@ -18,7 +18,7 @@ export default class ChangeMainsForm extends React.Component {
   handleSubmitRequest = (event) => {
     event.preventDefault();
     console.log(this.state.user, this.state.color, this.state.main, this.state.doWeDelete);
-    this.props.handleChangeMains(this.state.user, this.state.color, this.state.main, this.state.doWeDelete);
+    this.props.handleChangeMains(this.state.user, this.state.color, this.state.main, this.state.doWeDelete); // eslint-disable-line
     this.setState({
       user: '',
       main: '',

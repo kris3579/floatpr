@@ -42,7 +42,8 @@ export default class SetsTable extends React.Component {
         break;
       case 'pairHead2HeadSets':
         sets = this.props.head2HeadObject.setsArray.filter((set) => {
-          return (set.winner_name === this.props.player1 && set.loser_name === this.props.player2) || (set.winner_name === this.props.player2 && set.loser_name === this.props.player1);
+          return (set.winner_name === this.props.player1 && set.loser_name === this.props.player2) 
+          || (set.winner_name === this.props.player2 && set.loser_name === this.props.player1);
         });
         break;
       default:

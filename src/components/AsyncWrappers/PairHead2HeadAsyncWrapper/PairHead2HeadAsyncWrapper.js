@@ -2,12 +2,10 @@ import React from 'react';
 import Async from 'react-async';
 import PropTypes from 'prop-types';
 
-import DataRetrievalFunctions from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
+import { getPairHead2HeadData } from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
 
 export default class PairHead2HeadAsyncWrapper extends React.Component {
   render() {
-    const dataRetrievalFunctions = new DataRetrievalFunctions();
-
     let childrenArray = this.props.children;
     if (Array.isArray(this.props.children) === false) {
       childrenArray = [this.props.children];
@@ -15,7 +13,7 @@ export default class PairHead2HeadAsyncWrapper extends React.Component {
 
     return (
       <Async 
-        promiseFn={dataRetrievalFunctions.pairHead2HeadData}
+        promiseFn={getPairHead2HeadData}
         player1={this.props.player1}
         player2={this.props.player2}
       >

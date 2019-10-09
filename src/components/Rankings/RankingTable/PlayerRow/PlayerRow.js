@@ -18,7 +18,7 @@ export default class PlayerRow extends React.Component {
         <td className='mainsColumn'>{
           this.props.player.mains.map((main, i) => {
             return (
-              <img src={require(`../../../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img>
+              <img src={require(`../../../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img> // eslint-disable-line
             );
           })
         }</td>

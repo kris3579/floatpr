@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PairHead2HeadAsyncWrapper from '../AsyncWrappers/PairHead2HeadAsyncWrapper/PairHead2HeadAsyncWrapper'
+import PairHead2HeadAsyncWrapper from '../AsyncWrappers/PairHead2HeadAsyncWrapper/PairHead2HeadAsyncWrapper';
 import PairHead2HeadProfile from './PairHead2HeadProfile/PairHead2HeadProfile';
 import SetsTable from '../SetsTable/SetsTable';
 
@@ -28,7 +28,7 @@ export default class PairHead2Head extends React.Component {
   }
 }
 
-PairHead2Head.propYpes = {
+PairHead2Head.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       player1: PropTypes.string,
