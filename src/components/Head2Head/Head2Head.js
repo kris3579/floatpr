@@ -48,5 +48,5 @@ export default class Head2Head extends React.Component {
 }
 
 Head2Head.propTypes = {
-  history: PropTypes.shape,
+  history: PropTypes.object,
 };

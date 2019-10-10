@@ -42,21 +42,20 @@ export default class Top10Table extends React.Component {
                       this.props.topPlayerHead2HeadObject.rankingOrder.map((rightPlayer, j) => {
                         if (leftPlayer.rank < rightPlayer.rank) {
                           const matchup = `${leftPlayer.rank}-${rightPlayer.rank}`;
-
-                          if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0 
-                          && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
+                          
+                          if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0 && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
                             return (
                               <td className='head2HeadTd' key={j}><strong className='noDataTd'>N/A</strong></td>
                             );
                           }
-
+                            
                           return (
                             <td className='head2HeadTd' key={j}>
                               <strong>
                                 {`${this.props.topPlayerHead2HeadObject[matchup].setScore[0]}-${this.props.topPlayerHead2HeadObject[matchup].setScore[1]}`}
                               </strong><br/>
                               <span className='percentagesComparison'>
-                                {`${this.props.topPlayerHead2HeadObject[matchup].setPercentages[0]}-${this.props.topPlayerHead2HeadObject[matchup].setPercentages[1]}`}
+                                {`${this.props.topPlayerHead2HeadObject[matchup].setAvg[0]}-${this.props.topPlayerHead2HeadObject[matchup].setAvg[1]}`}
                               </span>
                             </td>
                           );
@@ -65,8 +64,7 @@ export default class Top10Table extends React.Component {
                         if (leftPlayer.rank > rightPlayer.rank) {
                           const matchup = `${rightPlayer.rank}-${leftPlayer.rank}`;
 
-                          if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0
-                          && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
+                          if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0 && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
                             return (
                               <td className='head2HeadTd' key={j}><strong className='noDataTd'>N/A</strong></td>
                             );
@@ -78,7 +76,7 @@ export default class Top10Table extends React.Component {
                                 {`${this.props.topPlayerHead2HeadObject[matchup].setScore[1]}-${this.props.topPlayerHead2HeadObject[matchup].setScore[0]}`}
                               </strong><br/>
                               <span className='percentagesComparison'>
-                                {`${this.props.topPlayerHead2HeadObject[matchup].setPercentages[1]}-${this.props.topPlayerHead2HeadObject[matchup].setPercentages[0]}`}
+                                {`${this.props.topPlayerHead2HeadObject[matchup].setAvg[1]}-${this.props.topPlayerHead2HeadObject[matchup].setAvg[0]}`}
                               </span>
                             </td>
                           );

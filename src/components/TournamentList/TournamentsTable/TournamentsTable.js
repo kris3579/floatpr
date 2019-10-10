@@ -14,7 +14,7 @@ export default class TournamentsTable extends React.Component {
               <th className='tournamentNameColumn'>Name</th>
               <th className='tournamentWinnerColumn'>Winner</th>
               <th className='dateColumn'>Date</th>
-              <th className='tournamentUrlColumn'>Bracket URL</th>
+              <th className='tournamentUrlColumn'>Bracket Link</th>
             </tr>
             {
               this.props.tournamentsObject.tournamentsArray.map((tournament, i) => {
