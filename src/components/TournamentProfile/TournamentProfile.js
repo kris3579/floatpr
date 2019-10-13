@@ -30,7 +30,7 @@ export default class TournamentProfile extends React.Component {
 TournamentProfile.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      tournamentId: PropTypes.number,
+      tournamentId: PropTypes.string,
     }),
   }),
 };

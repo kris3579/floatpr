@@ -11,7 +11,7 @@ export default class About extends React.Component {
           full-stack software developer and to keep tabs on the local Melee community because
           I find local statistics more interesting than on a national scale. It could also
           function as a relativly accurate resource for players to compare themselves against
-          other competitors in the state, as well as a guideline for any TO`&apos;`s to use
+          other competitors in the state, as well as a guideline for any TO&apos;s to use
           for seeding their brackets. Credit to M Hartley for creating HartPR, the spiritual
           predecesor to FloatPR, and a large inspiration for me getting into code in the first
           place!
@@ -19,10 +19,10 @@ export default class About extends React.Component {
 
         <h4>How It Works</h4>
         <p>
-          FloatPR uses an <a href='https://github.com/ReedD/glicko-two'>implementation</a>
-          of the Glicko-2 formula created by Mark Glickman to rank players. A Player must be
+          FloatPR uses an <a href='https://github.com/ReedD/glicko-two'>implementation</a> of
+          the Glicko-2 formula created by Mark Glickman to rank players. A Player must be
           from Washington, have attended at least five brackets total, and have attended at
-          least two brackets in as many months to be considered `&apos;`active`&apos;` Any
+          least two brackets in as many months to be considered &apos;active&apos; Any
           bracket in Washington with at least 8 attendees may be added. I will update the
           database with relevant tournaments from Challonge and SmashGG on a weekly basis.
         </p>
@@ -34,7 +34,7 @@ export default class About extends React.Component {
         </p>
         <p>
           - Request to add or replace the mains of your player profile 
-          (including changing your main`&apos;`s color)<br/>
+          (including changing your main&apos;s color)<br/>
           - Request to change the home state/region of your player profile<br/>
           - Request to merge the results of one tag into another<br/>
           - Request to use the results from a recent unaccounted for tournament

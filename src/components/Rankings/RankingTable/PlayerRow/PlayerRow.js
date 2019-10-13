@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default class PlayerRow extends React.Component {
   render() {
     return (
-      <tr className='nonColoredRow'>
+      <tr>
         <td className='rankColumn'>{this.props.rank}</td>
         <td className='regionColumn'>{this.props.player.state}</td>
       

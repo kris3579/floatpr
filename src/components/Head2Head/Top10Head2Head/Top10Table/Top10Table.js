@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 export default class Top10Table extends React.Component {
   render() {
+    const { topPlayerHead2HeadObject } = this.props;
+
     return (
       <>
         <h3>WA Top 10 Head to Head Table</h3>
@@ -13,7 +15,7 @@ export default class Top10Table extends React.Component {
             <tr className='headerRow'>
               <th className='head2HeadTh'></th>
               {
-                this.props.topPlayerHead2HeadObject.rankingOrder.map((player, i) => {
+                topPlayerHead2HeadObject.rankingOrder.map((player, i) => {
                   return (
                     <th className='head2HeadTh' key={i}>
                       {/* <ReactFitText minFontSize={16}> */}
@@ -27,7 +29,7 @@ export default class Top10Table extends React.Component {
               }
             </tr>
             {
-              this.props.topPlayerHead2HeadObject.rankingOrder.map((leftPlayer, i) => {
+              topPlayerHead2HeadObject.rankingOrder.map((leftPlayer, i) => {
                 return (
                   <tr key={i}>
                     <td className='head2HeadTd headerRow'>
@@ -39,11 +41,12 @@ export default class Top10Table extends React.Component {
                     </td>
 
                     {
-                      this.props.topPlayerHead2HeadObject.rankingOrder.map((rightPlayer, j) => {
+                      topPlayerHead2HeadObject.rankingOrder.map((rightPlayer, j) => {
                         if (leftPlayer.rank < rightPlayer.rank) {
-                          const matchup = `${leftPlayer.rank}-${rightPlayer.rank}`;
+                          const matchupName = `${leftPlayer.rank}-${rightPlayer.rank}`;
+                          const matchup = topPlayerHead2HeadObject[matchupName];
                           
-                          if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0 && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
+                          if (matchup.setScore[0] === 0 && matchup.setScore[1] === 0) {
                             return (
                               <td className='head2HeadTd' key={j}><strong className='noDataTd'>N/A</strong></td>
                             );
@@ -52,19 +55,20 @@ export default class Top10Table extends React.Component {
                           return (
                             <td className='head2HeadTd' key={j}>
                               <strong>
-                                {`${this.props.topPlayerHead2HeadObject[matchup].setScore[0]}-${this.props.topPlayerHead2HeadObject[matchup].setScore[1]}`}
+                                {`${matchup.setScore[0]}-${matchup.setScore[1]}`}
                               </strong><br/>
                               <span className='percentagesComparison'>
-                                {`${this.props.topPlayerHead2HeadObject[matchup].setAvg[0]}-${this.props.topPlayerHead2HeadObject[matchup].setAvg[1]}`}
+                                {`${matchup.setAvg[0]}-${matchup.setAvg[1]}`}
                               </span>
                             </td>
                           );
                         } 
                         
                         if (leftPlayer.rank > rightPlayer.rank) {
-                          const matchup = `${rightPlayer.rank}-${leftPlayer.rank}`;
+                          const matchupName = `${rightPlayer.rank}-${leftPlayer.rank}`;
+                          const matchup = topPlayerHead2HeadObject[matchupName];
 
-                          if (this.props.topPlayerHead2HeadObject[matchup].setScore[0] === 0 && this.props.topPlayerHead2HeadObject[matchup].setScore[1] === 0) {
+                          if (matchup.setScore[0] === 0 && matchup.setScore[1] === 0) {
                             return (
                               <td className='head2HeadTd' key={j}><strong className='noDataTd'>N/A</strong></td>
                             );
@@ -73,10 +77,10 @@ export default class Top10Table extends React.Component {
                           return (
                             <td className='head2HeadTd' key={j}>
                               <strong>
-                                {`${this.props.topPlayerHead2HeadObject[matchup].setScore[1]}-${this.props.topPlayerHead2HeadObject[matchup].setScore[0]}`}
+                                {`${matchup.setScore[1]}-${matchup.setScore[0]}`}
                               </strong><br/>
                               <span className='percentagesComparison'>
-                                {`${this.props.topPlayerHead2HeadObject[matchup].setAvg[1]}-${this.props.topPlayerHead2HeadObject[matchup].setAvg[0]}`}
+                                {`${matchup.setAvg[1]}-${matchup.setAvg[0]}`}
                               </span>
                             </td>
                           );

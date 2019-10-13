@@ -26,8 +26,9 @@ export const getPairHead2HeadData = (props) => {
 
 export const getPlayersData = (props) => {
   return new Promise((resolve, reject) => {
+    console.log(props);
     if (props.playersObject) {
-      resolve(props.playersObject);
+      return resolve(props.playersObject);
     }
 
     return superagent.get('http://localhost:3579/getPlayers')
@@ -44,7 +45,7 @@ export const getPlayersData = (props) => {
 export const getSetsData = (props) => {
   return new Promise((resolve, reject) => {
     if (props.setsArray) {
-      resolve(props.setsArray);
+      return resolve(props.setsArray);
     }
 
     return superagent.get('http://localhost:3579/getSets')
@@ -61,7 +62,7 @@ export const getSetsData = (props) => {
 export const getTournamentsData = (props) => {
   return new Promise((resolve, reject) => {
     if (props.tournamentsObject) {
-      resolve(props.tournamentsObject);
+      return resolve(props.tournamentsObject);
     }
 
     return superagent.get('http://localhost:3579/getTournaments')
@@ -78,7 +79,7 @@ export const getTournamentsData = (props) => {
 export const getTopPlayerHead2HeadData = (props) => {
   return new Promise((resolve, reject) => {
     if (props.topPlayerHead2HeadObject) {
-      resolve(props.topPlayerHead2HeadObject);
+      return resolve(props.topPlayerHead2HeadObject);
     }
 
     return superagent.get('http://localhost:3579/getTopPlayerHead2Head')

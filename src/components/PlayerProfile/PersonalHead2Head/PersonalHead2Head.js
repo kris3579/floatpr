@@ -18,6 +18,16 @@ export default class PersonalHead2Head extends React.Component {
     const orderedMatchups = [];
   
     matchups.sort((a, b) => {
+      if (a.setsPlayed === b.setsPlayed && a.setAvg[0] === b.setAvg[0]) {
+        console.log('here');
+        return b.gamesPlayed - a.gamesPlayed;
+      }
+  
+      if (a.setsPlayed === b.setsPlayed) {
+        return b.setAvg[0] - a.setAvg[0];
+      }
+  
+
       return b.setsPlayed - a.setsPlayed;
     })
       .forEach((matchup) => {

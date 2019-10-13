@@ -5,14 +5,17 @@ import { Link } from 'react-router-dom';
 export default class TournamentRow extends React.Component {
   render() {
     const parsedPlacements = JSON.parse(this.props.tournament.placements);
-    const dateString = new Date(this.props.tournament.date).toDateString();
+    let dateString = new Date(this.props.tournament.date).toDateString();
+    dateString = dateString.replace(/(?<=[a-z]\b)/, ',');
+    dateString = dateString.replace(/(?<=\d)\s/, '-');
+    dateString = dateString.replace(/(?<=[a-z])\s/, '-');
 
     let shortenedURL = this.props.tournament.url.substring(this.props.tournament.url.indexOf(':') + 3);
     shortenedURL = shortenedURL.replace(/\/tournament/, '');
     shortenedURL = shortenedURL.replace(/\/event.*/, '');
 
     return (
-      <tr className='nonColoredRow'>
+      <tr>
         <td className='tournamentNameColumn'>
           <Link to={{ pathname: `/tournament/${this.props.tournament.id}` }}>
             {this.props.tournament.name}

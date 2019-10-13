@@ -187,7 +187,7 @@ export default class RequestPage extends React.Component {
     return (
       <>
         <form>
-          <select name='requestOptions' value={this.state.request} onChange={this.handleRequestChange} required>
+          <select value={this.state.request} onChange={this.handleRequestChange} required>
             <option value='' disabled>Choose Request</option>
             <option value='changeMains'>Add/Change Mains</option>
             <option value='changeHomeState'>Change State/Region</option>
