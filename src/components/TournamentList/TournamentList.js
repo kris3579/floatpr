@@ -10,5 +10,5 @@ export default class TournamentList extends React.Component {
         <TournametsTable/>
       </TournamentAsyncWrapper>
     );
-  };
-};
+  }
+}

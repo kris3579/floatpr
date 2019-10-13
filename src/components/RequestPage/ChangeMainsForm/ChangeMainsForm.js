@@ -13,12 +13,12 @@ export default class ChangeMainsForm extends React.Component {
       color: '',
       doWeDelete: '',
     };
-  };
+  }
   
   handleSubmitRequest = (event) => {
     event.preventDefault();
-    console.log(this.state.user, this.state.color, this.state.main, this.state.doWeDelete)
-    this.props.handleChangeMains(this.state.user, this.state.color, this.state.main, this.state.doWeDelete);
+    console.log(this.state.user, this.state.color, this.state.main, this.state.doWeDelete);
+    this.props.handleChangeMains(this.state.user, this.state.color, this.state.main, this.state.doWeDelete); // eslint-disable-line
     this.setState({
       user: '',
       main: '',
@@ -34,8 +34,8 @@ export default class ChangeMainsForm extends React.Component {
           characterColors[main].map((color, i) => {
             return (
               <option key={i}>{color}</option>
-              )
-            })
+            );
+          })
           }
       </select>;
   };
@@ -93,8 +93,8 @@ export default class ChangeMainsForm extends React.Component {
 
       </div>
     );
-  };
-};
+  }
+}
 
 ChangeMainsForm.propTypes = {
   handleChangeMains: PropTypes.func,

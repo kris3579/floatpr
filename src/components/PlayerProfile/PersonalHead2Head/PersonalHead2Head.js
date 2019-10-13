@@ -12,12 +12,22 @@ export default class PersonalHead2Head extends React.Component {
     this.state.allMatchups = this.props.matchupsObject.allMatchups;
     this.state.selectedMatchups = this.props.matchupsObject.mostPlayed;
     this.state.deselectedMatchups = this.props.matchupsObject.lessPlayed;
-  };
+  }
 
   sortBySetsPlayed = (matchups) => {
-    const orderedMatchups = []
+    const orderedMatchups = [];
   
     matchups.sort((a, b) => {
+      if (a.setsPlayed === b.setsPlayed && a.setAvg[0] === b.setAvg[0]) {
+        console.log('here');
+        return b.gamesPlayed - a.gamesPlayed;
+      }
+  
+      if (a.setsPlayed === b.setsPlayed) {
+        return b.setAvg[0] - a.setAvg[0];
+      }
+  
+
       return b.setsPlayed - a.setsPlayed;
     })
       .forEach((matchup) => {
@@ -57,11 +67,12 @@ export default class PersonalHead2Head extends React.Component {
 
     this.setState({
       deselectedMatchups: sortBySetsPlayed,
-      selectedMatchups: removeFromSelectedMatchups
+      selectedMatchups: removeFromSelectedMatchups,
     });
   };
 
   render() {
+    console.log(this.state);
     return (
       <>
         <MatchupList
@@ -74,8 +85,8 @@ export default class PersonalHead2Head extends React.Component {
         />
       </>
     );
-  };
-};
+  }
+}
 
 PersonalHead2Head.propTypes = {
   matchupsObject: PropTypes.object,

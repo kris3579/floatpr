@@ -19,7 +19,7 @@ export default class RankingTable extends React.Component {
         break;
       default:
         rankingArray = '';
-    };
+    }
 
     return (
       <table>
@@ -41,14 +41,14 @@ export default class RankingTable extends React.Component {
                   player={player}
                   key={i}
                 />
-              )
+              );
             })
           }
         </tbody>
       </table>
     );
-  };
-};
+  }
+}
 
 RankingTable.propTypes = {
   playersObject: PropTypes.object,

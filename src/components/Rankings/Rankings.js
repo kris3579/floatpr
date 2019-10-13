@@ -10,7 +10,7 @@ export default class Rankings extends React.Component {
 
     this.state = {};
     this.state.rankingFilter = 'activeWashingtonPlayers';
-  };
+  }
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -39,7 +39,7 @@ export default class Rankings extends React.Component {
       </>
     );
   }
-};
+}
 
 Rankings.propTypes = {
   playersObject: PropTypes.object,

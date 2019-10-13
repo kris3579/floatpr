@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 export default class PlayerRow extends React.Component {
   render() {
     return (
-      <tr className='nonColoredRow'>
+      <tr>
         <td className='rankColumn'>{this.props.rank}</td>
         <td className='regionColumn'>{this.props.player.state}</td>
       
         <td className='nameColumn'>
-          <Link to={{pathname: `/player/${this.props.player.name}`}}>
+          <Link to={{ pathname: `/player/${this.props.player.name}` }}>
             {this.props.player.name}
           </Link>
         </td>
@@ -18,7 +18,7 @@ export default class PlayerRow extends React.Component {
         <td className='mainsColumn'>{
           this.props.player.mains.map((main, i) => {
             return (
-              <img src={require(`../../../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img>
+              <img src={require(`../../../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img> // eslint-disable-line
             );
           })
         }</td>
@@ -28,8 +28,8 @@ export default class PlayerRow extends React.Component {
         <td className='winRateColumn'>{`${this.props.player.game_win_rate}%`}</td>
       </tr>
     );
-  };
-};
+  }
+}
 
 PlayerRow.propTypes = {
   player: PropTypes.object,

@@ -14,27 +14,44 @@ export default class Head2HeadTable extends React.Component {
           </tr>
           {
             this.props.selectedMatchups.map((matchup, i) => {
+              let setAvgStatus = 'yellowText';
+              let gameAvgStatus = 'yellowText';
+
+              if (matchup.setAvg[0] > matchup.setAvg[1]) {
+                setAvgStatus = 'greenText';
+              }
+              if (matchup.setAvg[0] < matchup.setAvg[1]) {
+                setAvgStatus = 'redText';
+              }
+
+              if (matchup.gameAvg[0] > matchup.gameAvg[1]) {
+                gameAvgStatus = 'greenText';
+              }
+              if (matchup.gameAvg[0] < matchup.gameAvg[1]) {
+                gameAvgStatus = 'redText';
+              }
+
               return (
-                <tr className='nonColoredRow' key={i}>
+                <tr key={i}>
                   <td className='matchupColumn'>{matchup.name}</td>
                   <td>
-                    <strong>{`${matchup.setScore[0]}-${matchup.setScore[1]}`}</strong><br/>
-                    <span className='percentagesComparison'>{`${matchup.setPercentages[0]}-${matchup.setPercentages[1]}`}</span>
+                    <strong className={setAvgStatus}>{`${matchup.setScore[0]}-${matchup.setScore[1]}`}</strong><br/>
+                    <span className='percentagesComparison'>{`${matchup.setAvg[0]}-${matchup.setAvg[1]}`}</span>
                   </td>
                   <td>
-                    <strong>{`${matchup.gameScore[0]}-${matchup.gameScore[1]}`}</strong><br/>
-                    <span className='percentagesComparison'>{`${matchup.gamePercentages[0]}-${matchup.gamePercentages[1]}`}</span>
+                    <strong className={gameAvgStatus}>{`${matchup.gameScore[0]}-${matchup.gameScore[1]}`}</strong><br/>
+                    <span className='percentagesComparison'>{`${matchup.gameAvg[0]}-${matchup.gameAvg[1]}`}</span>
                   </td>
                   <td className='remove'><img src={require('../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'></img></td>
                 </tr>
-              )
+              );
             })
           }
         </tbody>
       </table>
     );
-  };
-};
+  }
+}
 
 Head2HeadTable.propTypes = {
   handleDeselectMatchup: PropTypes.func,

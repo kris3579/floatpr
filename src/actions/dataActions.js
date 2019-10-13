@@ -1,8 +1,8 @@
-const storeData = (data, dataSet) => {
+const storeData = (data, dataSetType) => {
   return {
     type: 'STORE_DATA',
     payload: data,
-    dataSet: dataSet,
+    dataSet: dataSetType,
   };
 };
 

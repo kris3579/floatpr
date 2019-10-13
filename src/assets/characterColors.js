@@ -3,7 +3,7 @@ const characterColors = {
     'Neutral',
     'Red',
     'Blue',
-    'Black'
+    'Black',
   ],
   captainFalcon: [
     'Neutral',
@@ -11,59 +11,59 @@ const characterColors = {
     'Red',
     'White',
     'Green',
-    'Blue'
+    'Blue',
   ],
   docterMario: [
     'Neutral',
     'Red',
     'Blue',
     'Green',
-    'Black'
+    'Black',
   ],
   donkeyKong: [
     'Neutral',
     'Black',
     'Red',
     'Blue',
-    'Green'
+    'Green',
   ],
   falco: [
     'Neutral',
     'Red',
     'Blue',
-    'Green'
+    'Green',
   ],
   fox: [
     'Neutral',
     'Red',
     'Blue',
-    'Green'
+    'Green',
   ],
   gameAndWatch: [
     'Neutral',
     'Red',
     'Blue',
-    'Green'
+    'Green',
   ],
   ganondorf: [
     'Neutral',
     'Red',
     'Blue',
     'Green',
-    'Purple'
+    'Purple',
   ],
   iceClimbers: [
     'Neutral',
     'Green',
     'Orange',
-    'Red'
+    'Red',
   ],
   jigglypuff: [
     'Neutral',
     'Red',
     'Blue',
     'Green',
-    'Crown'
+    'Crown',
   ],
   kirby: [
     'Neutral',
@@ -71,86 +71,86 @@ const characterColors = {
     'Blue',
     'Red',
     'Green',
-    'White'
+    'White',
   ],
   link: [
     'Neutral',
     'Red',
     'Blue',
     'Black',
-    'White'
+    'White',
   ],
   luigi: [
     'Neutral',
     'White',
     'Blue',
-    'Pink'
+    'Pink',
   ],
   mario: [
     'Neutral',
     'Yellow',
     'Black',
     'Blue',
-    'Green'
+    'Green',
   ],
   marth: [
     'Neutral',
     'Red',
     'Green',
     'Black',
-    'White'
+    'White',
   ],
   mewtwo: [
     'Neutral',
     'Red',
     'Blue',
-    'Green'
+    'Green',
   ],
   ness: [
     'Neutral',
     'Yellow',
     'Blue',
-    'Green'
+    'Green',
   ],
   peach: [
     'Neutral',
     'Daisy',
     'White',
     'Blue',
-    'Green'
+    'Green',
   ],
   pichu: [
     'Neutral',
     'Red',
     'Blue',
-    'Green'
+    'Green',
   ],
   pikachu: [
     'Neutral',
     'Red',
     'Blue',
-    'Green'
+    'Green',
   ],
   roy: [
     'Neutral',
     'Red',
     'Blue',
     'Green',
-    'Yellow'
+    'Yellow',
   ],
   samus: [
     'Neutral',
     'Pink',
     'Black',
     'Green',
-    'Purple'
+    'Purple',
   ],
   sheik: [
     'Neutral',
     'Red',
     'Blue',
     'Green',
-    'White'
+    'White',
   ],
   yoshi: [
     'Neutral',
@@ -158,21 +158,21 @@ const characterColors = {
     'Blue',
     'Yellow',
     'Pink',
-    'Cyan'
+    'Cyan',
   ],
   youngLink: [
     'Neutral',
     'Red',
     'Blue',
     'White',
-    'Black'
+    'Black',
   ],
   zelda: [
     'Neutral',
     'Red',
     'Blue',
     'Green',
-    'White'
+    'White',
   ],
 };
 

@@ -8,7 +8,7 @@ export default class ChangeStateForm extends React.Component {
     this.state = {};
     this.state.user = '';
     this.state.state = '';
-  };
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -33,8 +33,8 @@ export default class ChangeStateForm extends React.Component {
         </form>
         </>
     );
-  };
-};
+  }
+}
 
 ChangeStateForm.propTypes = {
   handleChangeHomeState: PropTypes.func,

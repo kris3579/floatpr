@@ -1,15 +1,13 @@
-import React from 'react'
+import React from 'react';
 import Async from 'react-async';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import storeData from '../../../actions/dataActions';
-import DataRetrievalFunctions from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
+import { getPlayersData } from '../../../dataRetrievalFunctions/dataRetrievalFunctions';
 
 class PlayersAsyncWrapper extends React.Component {
   render() {
-    const dataRetrievalFunctions = new DataRetrievalFunctions();
-
     let childrenArray = this.props.children;
     if (Array.isArray(this.props.children) === false) {
       childrenArray = [this.props.children];
@@ -17,29 +15,29 @@ class PlayersAsyncWrapper extends React.Component {
 
     return (
       <Async
-        promiseFn={dataRetrievalFunctions.playersData}
+        promiseFn={getPlayersData}
         storeDataFunction={this.props.storeData}
         playersObject={this.props.playersObject}
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
-          {playersData => (
+          {(playersData) => (
             <>
               {
                 childrenArray.map((child, i) => {
                   return (
                     React.cloneElement(child, { playersObject: playersData, key: i })
-                  )
+                  );
                 })
               }
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{error => error.message}</Async.Rejected>
+        <Async.Rejected>{(error) => error.message}</Async.Rejected>
       </Async>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -56,8 +54,9 @@ const mapDispatchToProps = (dispatch) => {
 };
  
 PlayersAsyncWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
   playersObject: PropTypes.object,
-  storedata: PropTypes.func,
+  storeData: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayersAsyncWrapper);

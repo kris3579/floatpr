@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Top10Head2Head from './Top10Head2Head/Top10Head2Head';
 
@@ -9,12 +10,12 @@ export default class Head2Head extends React.Component {
     this.state = {};
     this.state.player1 = '';
     this.state.player2 = '';
-  };
+  }
   
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
-    this.props.history.push(`/headToHead/${this.state.player1}/${this.state.player2}`);
+    const { history } = this.props;
+    history.push(`/headToHead/${this.state.player1}/${this.state.player2}`);
   };
 
   handleChange = (event) => {
@@ -43,5 +44,9 @@ export default class Head2Head extends React.Component {
         <Top10Head2Head/>
       </>
     );
-  };
+  }
+}
+
+Head2Head.propTypes = {
+  history: PropTypes.object,
 };

@@ -11,13 +11,13 @@ export default class PairHead2HeadProfile extends React.Component {
         <p>{this.props.head2HeadObject.setsPlayed}</p>
         <p>{this.props.head2HeadObject.gamesPlayed}</p>
         <p>{`${this.props.head2HeadObject.setScore[0]}-${this.props.head2HeadObject.setScore[1]}`}</p>
-        <p>{`${this.props.head2HeadObject.setPercentages[0]}-${this.props.head2HeadObject.setPercentages[1]}`}</p>
+        <p>{`${this.props.head2HeadObject.setAvg[0]}-${this.props.head2HeadObject.setAvg[1]}`}</p>
         <p>{`${this.props.head2HeadObject.gameScore[0]}-${this.props.head2HeadObject.gameScore[1]}`}</p>
-        <p>{`${this.props.head2HeadObject.gamePercentages[0]}-${this.props.head2HeadObject.gamePercentages[1]}`}</p>
+        <p>{`${this.props.head2HeadObject.gameAvg[0]}-${this.props.head2HeadObject.gameAvg[1]}`}</p>
       </>
     );
-  };
-};
+  }
+}
 
 PairHead2HeadProfile.propTypes = {
   head2HeadObject: PropTypes.object,
