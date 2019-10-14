@@ -41,7 +41,7 @@ class TournamentsAsyncWrapper extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    tournamentsObject: state.tournaments,
+    tournamentsObject: state.data.tournaments,
   };
 };
 

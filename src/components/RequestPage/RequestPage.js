@@ -47,9 +47,6 @@ export default class RequestPage extends React.Component {
       superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
-        .then((response) => {
-          console.log(response);
-        })
         .catch((error) => {
           throw error;
         });
@@ -82,9 +79,6 @@ export default class RequestPage extends React.Component {
         return superagent.post('http://localhost:3579/userRequest')
           .set('Content-Type', 'application/json')
           .send(`{"requestType":"editMains","user":"${user}","firstMain":"${firstMain}","secondMain":"${secondMain}","thirdMain":"${thirdMain}"}`)
-          .then((response) => {
-            console.log(response);
-          })
           .catch((error) => {
             throw error;
           });
@@ -110,9 +104,6 @@ export default class RequestPage extends React.Component {
       return superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"editMains","user":"${user}","firstMain":"${firstMain}","secondMain":"${secondMain}"`)
-        .then((response) => {
-          console.log(response);
-        })
         .catch((error) => {
           throw error;
         });
@@ -131,14 +122,10 @@ export default class RequestPage extends React.Component {
     return superagent.post('http://localhost:3579/userRequest')
       .set('Content-Type', 'application/json')
       .send(`{"requestType":"editMains","user":"${user}","firstMain":"${firstMain}"}`)
-      .then((response) => {
-        console.log(response);
-      })
       .catch((error) => {
         throw error;
       });
   }
-  // };
   
   upperCase = (str) => {
     return str.toUpperCase();
@@ -161,9 +148,6 @@ export default class RequestPage extends React.Component {
       superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
-        .then((response) => {
-          console.log(response);
-        })
         .catch((error) => {
           throw error;
         });
@@ -182,9 +166,6 @@ export default class RequestPage extends React.Component {
       superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
-        .then((response) => {
-          console.log(response);
-        })
         .catch((error) => {
           throw error;
         });

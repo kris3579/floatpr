@@ -42,7 +42,7 @@ class SetsAsyncWrapper extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    setsArray: state.sets,
+    setsArray: state.data.sets,
   };
 };
 

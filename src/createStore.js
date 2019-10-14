@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import dataReducer from './reducers/dataReducer';
+import mainReducer from './reducers/mainReducer';
 
 export default () => {
-  return createStore(dataReducer, composeWithDevTools());
+  return createStore(mainReducer, composeWithDevTools());
 };
