@@ -24,6 +24,7 @@ export default class PersonalHead2Head extends React.Component {
       }
   
       if (a.setsPlayed === b.setsPlayed) {
+        console.log(a.setAvg[0], b.setAvg[0]);
         return b.setAvg[0] - a.setAvg[0];
       }
   
