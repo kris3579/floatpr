@@ -48,7 +48,9 @@ export default class RequestPage extends React.Component {
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
         .catch((error) => {
-          throw error;
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
   };
@@ -95,7 +97,9 @@ export default class RequestPage extends React.Component {
         .set('Content-Type', 'application/json')
         .send(JSON.stringify(requestBody))
         .catch((error) => {
-          throw error;
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
   }
@@ -122,7 +126,9 @@ export default class RequestPage extends React.Component {
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
         .catch((error) => {
-          throw error;
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
   };
@@ -140,7 +146,9 @@ export default class RequestPage extends React.Component {
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
         .catch((error) => {
-          throw error;
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
   };
