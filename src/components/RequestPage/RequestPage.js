@@ -53,78 +53,52 @@ export default class RequestPage extends React.Component {
     }
   };
   
-  handleChangeMains = (user, main1, main2, main3) => {
+  handleChangeMains = (user, mains) => {
     const confirmation = this.handleConfirmRequest();
 
     if (confirmation === true) {
-      if (main3.character !== '') {
-        const formattedName1 = this.formatName(main1.character);
-        const formattedName2 = this.formatName(main2.character);
-        const formattedName3 = this.formatName(main3.character);
+      const requestBody = {
+        requestType: 'editMains',
+        user,
+      };
 
-        this.setState({
-          request: '',
-          submittedRequest: `Your request to change mains has been submitted. First: ${formattedName1}, Color: ${main1.color},
-            Second: ${formattedName2}, Color: ${main2.color}, Third: ${formattedName3}, Color: ${main3.color}`,
-        });
+      let submittedRequest = 'Your request to change mains has been submitted.';
 
-        const despacedName1 = formattedName1.replace(/\s/g, '');
-        const despacedName2 = formattedName2.replace(/\s/g, '');
-        const despacedName3 = formattedName3.replace(/\s/g, '');
+      mains.forEach((main, i) => {
+        console.log(requestBody);
+        const formattedName = this.formatName(main.character);
 
-        const firstMain = `${main1.color} ${despacedName1}`;
-        const secondMain = `${main2.color} ${despacedName2}`;
-        const thirdMain = `${main3.color} ${despacedName3}`;
+        if (i === 0) {
+          submittedRequest += ` Main: ${formattedName}, Color: ${main.color}`; 
+          const despacedName = formattedName.replace(/\s/g, '');
+          requestBody.firstMain = `${main.color} ${despacedName}`;
+        }
 
-        return superagent.post('http://localhost:3579/userRequest')
-          .set('Content-Type', 'application/json')
-          .send(`{"requestType":"editMains","user":"${user}","firstMain":"${firstMain}","secondMain":"${secondMain}","thirdMain":"${thirdMain}"}`)
-          .catch((error) => {
-            throw error;
-          });
-      }
-    }
-      
-    if (main2.character !== '') {
-      const formattedName1 = this.formatName(main1.character);
-      const formattedName2 = this.formatName(main2.character);
+        if (i === 1) {
+          submittedRequest += `, Second: ${formattedName}, Color: ${main.color}`;
+          const despacedName = formattedName.replace(/\s/g, '');
+          requestBody.secondMain = `${main.color} ${despacedName}`;
+        }
+
+        if (i === 2) {
+          submittedRequest += `, Third: ${formattedName}, Color: ${main.color}`;
+          const despacedName = formattedName.replace(/\s/g, '');
+          requestBody.thirdMain = `${main.color} ${despacedName}`;
+        }
+      });
 
       this.setState({
         request: '',
-        submittedRequest: `Your request to change mains has been submitted. First: ${formattedName1}, Color: ${main1.color},
-            Second: ${formattedName2}, Color: ${main2.color}`,
+        submittedRequest,
       });
 
-      const despacedName1 = formattedName1.replace(/\s/g, '');
-      const despacedName2 = formattedName2.replace(/\s/g, '');
-
-      const firstMain = `${main1.color} ${despacedName1}`;
-      const secondMain = `${main2.color} ${despacedName2}`;
-
-      return superagent.post('http://localhost:3579/userRequest')
+      superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
-        .send(`{"requestType":"editMains","user":"${user}","firstMain":"${firstMain}","secondMain":"${secondMain}"`)
+        .send(JSON.stringify(requestBody))
         .catch((error) => {
           throw error;
         });
     }
-
-    const formattedName1 = this.formatName(main1.character);
-
-    this.setState({
-      request: '',
-      submittedRequest: `Your request to change mains has been submitted. First: ${formattedName1}, Color: ${main1.color}`,
-    });
-    const despacedName1 = formattedName1.replace(/\s/g, '');
-
-    const firstMain = `${main1.color} ${despacedName1}`;
-
-    return superagent.post('http://localhost:3579/userRequest')
-      .set('Content-Type', 'application/json')
-      .send(`{"requestType":"editMains","user":"${user}","firstMain":"${firstMain}"}`)
-      .catch((error) => {
-        throw error;
-      });
   }
   
   upperCase = (str) => {
