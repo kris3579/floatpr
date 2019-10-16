@@ -65,7 +65,6 @@ export default class RequestPage extends React.Component {
       let submittedRequest = 'Your request to change mains has been submitted.';
 
       mains.forEach((main, i) => {
-        console.log(requestBody);
         const formattedName = this.formatName(main.character);
 
         if (i === 0) {
@@ -75,13 +74,13 @@ export default class RequestPage extends React.Component {
         }
 
         if (i === 1) {
-          submittedRequest += `, Second: ${formattedName}, Color: ${main.color}`;
+          submittedRequest += ` | Second: ${formattedName}, Color: ${main.color}`;
           const despacedName = formattedName.replace(/\s/g, '');
           requestBody.secondMain = `${main.color} ${despacedName}`;
         }
 
         if (i === 2) {
-          submittedRequest += `, Third: ${formattedName}, Color: ${main.color}`;
+          submittedRequest += ` | Third: ${formattedName}, Color: ${main.color}`;
           const despacedName = formattedName.replace(/\s/g, '');
           requestBody.thirdMain = `${main.color} ${despacedName}`;
         }
