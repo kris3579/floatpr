@@ -42,56 +42,67 @@ export default class RequestPage extends React.Component {
       this.setState({
         request: '',
         submittedRequest: `Your request to add the tournament located at ${tournamentUrl} has been submitted.`,
-      })
-        .then(() => {
-          superagent.post('http://localhost:3579/userRequest')
-            .set('Content-Type', 'application/json')
-            .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              throw error;
-            });
+      });
+
+      superagent.post('http://localhost:3579/userRequest')
+        .set('Content-Type', 'application/json')
+        .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
+        .catch((error) => {
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
   };
   
-  handleChangeMains = (user, color, main, requestText) => {
+  handleChangeMains = (user, mains) => {
     const confirmation = this.handleConfirmRequest();
 
     if (confirmation === true) {
-      const formattedName = this.formatName(main);
+      const requestBody = {
+        requestType: 'editMains',
+        user,
+      };
+
+      let submittedRequest = 'Your request to change mains has been submitted.';
+
+      mains.forEach((main, i) => {
+        const formattedName = this.formatName(main.character);
+
+        if (i === 0) {
+          submittedRequest += ` Main: ${formattedName}, Color: ${main.color}`; 
+          const despacedName = formattedName.replace(/\s/g, '');
+          requestBody.firstMain = `${main.color} ${despacedName}`;
+        }
+
+        if (i === 1) {
+          submittedRequest += ` | Second: ${formattedName}, Color: ${main.color}`;
+          const despacedName = formattedName.replace(/\s/g, '');
+          requestBody.secondMain = `${main.color} ${despacedName}`;
+        }
+
+        if (i === 2) {
+          submittedRequest += ` | Third: ${formattedName}, Color: ${main.color}`;
+          const despacedName = formattedName.replace(/\s/g, '');
+          requestBody.thirdMain = `${main.color} ${despacedName}`;
+        }
+      });
 
       this.setState({
         request: '',
-        submittedRequest: `Your request to ${requestText} mains has been submitted. Main: ${formattedName}, Color: ${color}`,
-      })
-        .then(() => {
-          const despacedName = formattedName.replace(/\s/g, '');
-          let newColor = color;
-          const newMain = newColor += despacedName;
-          
-          let doWeDelete = null;
-          
-          if (requestText === 'replace') {
-            doWeDelete = true;
-          } else if (requestText === 'add to') {
-            doWeDelete = false;
-          }
-          
-          superagent.post('http://localhost:3579/userRequest')
-            .set('Content-Type', 'application/json')
-            .send(`{"requestType":"editMains","user":"${user}","newMain":"${newMain}","doWeDelete":"${doWeDelete}"}`)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              throw error;
-            });
+        submittedRequest,
+      });
+
+      superagent.post('http://localhost:3579/userRequest')
+        .set('Content-Type', 'application/json')
+        .send(JSON.stringify(requestBody))
+        .catch((error) => {
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
-  };
+  }
   
   upperCase = (str) => {
     return str.toUpperCase();
@@ -110,17 +121,14 @@ export default class RequestPage extends React.Component {
       this.setState({
         request: '',
         submittedRequest: `Your request to change the home state/region of ${user} to ${state} has been submitted.`,
-      })
-        .then(() => {
-          superagent.post('http://localhost:3579/userRequest')
-            .set('Content-Type', 'application/json')
-            .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              throw error;
-            });
+      });
+      superagent.post('http://localhost:3579/userRequest')
+        .set('Content-Type', 'application/json')
+        .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
+        .catch((error) => {
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
   };
@@ -132,17 +140,15 @@ export default class RequestPage extends React.Component {
       this.setState({
         request: '',
         submittedRequest: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
-      })
-        .then(() => {
-          superagent.post('http://localhost:3579/userRequest')
-            .set('Content-Type', 'application/json')
-            .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              throw error;
-            });
+      });
+
+      superagent.post('http://localhost:3579/userRequest')
+        .set('Content-Type', 'application/json')
+        .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
+        .catch((error) => {
+          this.setState({
+            submittedRequest: `Recieved ${error.status} error code!`,
+          });
         });
     }
   };

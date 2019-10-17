@@ -19,7 +19,6 @@ export default class PersonalHead2Head extends React.Component {
   
     matchups.sort((a, b) => {
       if (a.setsPlayed === b.setsPlayed && a.setAvg[0] === b.setAvg[0]) {
-        console.log('here');
         return b.gamesPlayed - a.gamesPlayed;
       }
   
@@ -72,7 +71,6 @@ export default class PersonalHead2Head extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <>
         <MatchupList

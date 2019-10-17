@@ -13,7 +13,7 @@ const characterColors = {
     'Green',
     'Blue',
   ],
-  docterMario: [
+  doctorMario: [
     'Neutral',
     'Red',
     'Blue',

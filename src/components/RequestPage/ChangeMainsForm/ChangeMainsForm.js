@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import update from 'immutability-helper';
 
-import characterColors from '../../../assets/characterColors';
+import ChangeMainsInput from './ChangeMainsInput/ChangeMainsInput';
 
 export default class ChangeMainsForm extends React.Component {
   constructor(props) {
@@ -9,88 +10,76 @@ export default class ChangeMainsForm extends React.Component {
 
     this.state = {
       user: '',
-      main: '',
-      color: '',
-      doWeDelete: '',
+      currentCharacters: [{ character: '', color: '' }],
     };
+  }
+
+  handleCharacterChange = (event, index, type) => {
+    event.preventDefault();
+    const { value } = event.target;
+
+    this.setState({
+      currentCharacters: update(this.state.currentCharacters, { 
+        [index]:
+          {
+            [type]: {
+              $set: value,
+            },
+          },
+      }),
+    });
+  }
+
+  handleAddMainInput = () => {
+    const newCurrentCharacters = [...this.state.currentCharacters];
+    newCurrentCharacters.push({ character: '', color: '' });
+
+    this.setState({ currentCharacters: newCurrentCharacters });
+  }
+
+  handleDeleteMainInput = (index) => {
+    const newCurrentCharacters = this.state.currentCharacters;
+    newCurrentCharacters.splice(index, 1);
+
+    this.setState({ currentCharacters: newCurrentCharacters });
   }
   
   handleSubmitRequest = (event) => {
     event.preventDefault();
-    console.log(this.state.user, this.state.color, this.state.main, this.state.doWeDelete);
-    this.props.handleChangeMains(this.state.user, this.state.color, this.state.main, this.state.doWeDelete); // eslint-disable-line
-    this.setState({
-      user: '',
-      main: '',
-      color: '',
-      doWeDelete: '',
-    });
-  };
-  
-  createColorForm = (main) => {
-    return <select name='color' value={this.state.color} onChange={(event) => this.props.handleChange(event, this)} className='formSelect' required>
-        <option value='' disabled>Choose Color</option>
-        {
-          characterColors[main].map((color, i) => {
-            return (
-              <option key={i}>{color}</option>
-            );
-          })
-          }
-      </select>;
+    
+    this.props.handleChangeMains(this.state.user, this.state.currentCharacters);
   };
 
   render() {
-    const colorForm = this.state.main === '' ? <div/> : this.createColorForm(this.state.main);
+    const addAnotherMainButton = this.state.currentCharacters > 2 ? null
+      : <button type='button' onClick={this.handleAddMainInput}>Add Another Main</button>;
 
     return (
       <div>
         <h3>Add to or Replace your mains, Enter New Main and Color</h3>
 
         <form onSubmit={this.handleSubmitRequest}>
+          {addAnotherMainButton}
+
           <input type='text' placeholder='Your Tag' name='user' onChange={(event) => this.props.handleChange(event, this)} required/>
           
-          <select name='doWeDelete' value={this.state.doWeDelete} onChange={(event) => this.props.handleChange(event, this)} className='formSelect' required>
-            <option value='' disabled>Add or Replace</option>
-            <option value='add to'>Add To Mains</option>
-            <option value='replace'>Replace Mains</option>
-          </select>
-
-          <select name='main' value={this.state.main} onChange={(event) => this.props.handleChange(event, this)} className='formSelect' required>
-            <option value='' disabled>Choose Main</option>
-            <option value='bowser'>Bowser</option>
-            <option value='captainFalcon'>Captain Falcon</option>
-            <option value='docterMario'>Docter Mario</option>
-            <option value='donkeyKong'>Donkey Kong</option>
-            <option value='falco'>Falco</option>
-            <option value='fox'>Fox</option>
-            <option value='gameAndWatch'>Game & Watch</option>
-            <option value='ganondorf'>Ganondorf</option>
-            <option value='iceClimbers'>Ice Climbers</option>
-            <option value='jigglypuff'>Jigglypuff</option>
-            <option value='kirby'>Kirby</option>
-            <option value='link'>Link</option>
-            <option value='luigi'>Luigi</option>
-            <option value='mario'>Mario</option>
-            <option value='marth'>Marth</option>
-            <option value='mewtwo'>Mewtwo</option>
-            <option value='ness'>Ness</option>
-            <option value='peach'>Peach</option>
-            <option value='pichu'>Pichu</option>
-            <option value='pikachu'>Pikachu</option>
-            <option value='roy'>Roy</option>
-            <option value='samus'>Samus</option>
-            <option value='sheik'>Sheik</option>
-            <option value='yoshi'>Yoshi</option>
-            <option value='youngLink'>Young Link</option>
-            <option value='zelda'>Zelda</option>
-          </select>
-
-          {colorForm}
+          {
+            this.state.currentCharacters.map((character, i) => {
+              return (
+                <div key={i}>
+                  <ChangeMainsInput
+                    currentCharacters={this.state.currentCharacters}
+                    currentCharacterIndex={i}
+                    handleCharacterChange={this.handleCharacterChange}
+                    handleDeleteMainInput={this.handleDeleteMainInput}
+                  />
+                </div>
+              );
+            })
+          }
 
           <button type='submit' className='requestButton'>Submit</button>
         </form>
-
       </div>
     );
   }

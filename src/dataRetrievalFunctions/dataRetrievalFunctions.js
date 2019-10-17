@@ -2,8 +2,15 @@ import superagent from 'superagent';
 
 export const getIndividualHead2HeadData = (props) => {
   return new Promise((resolve, reject) => {
+    if (props.individualHead2HeadObject) {
+      if (props.individualHead2HeadObject[props.player]) {
+        return resolve(props.individualHead2HeadObject[props.player]);
+      }
+    }
+
     return superagent.get(`http://localhost:3579/getIndividualHead2Head/${props.player}`)
       .then((response) => {
+        props.storeDataFunction(response.body, props.player, 'individualHead2Head');
         resolve(response.body);
       })
       .catch((error) => {
@@ -14,8 +21,22 @@ export const getIndividualHead2HeadData = (props) => {
 
 export const getPairHead2HeadData = (props) => {
   return new Promise((resolve, reject) => {
+    const matchup1 = `${props.player1} vs ${props.player2}`;
+    const matchup2 = `${props.player2} vs ${props.player1}`;
+    
+    if (props.pairHead2HeadObject) {
+      if (props.pairHead2HeadObject[matchup1]) {
+        return resolve(props.pairHead2HeadObject[matchup1]);
+      }
+
+      if (props.pairHead2HeadObject[matchup2]) {
+        return resolve(props.pairHead2HeadObject[matchup2]);
+      }
+    }
+
     return superagent.get(`http://localhost:3579/getPairHead2Head/${props.player1}/${props.player2}`)
       .then((response) => {
+        props.storeDataFunction(response.body, matchup1, 'pairHead2Head');
         resolve(response.body);
       })
       .catch((error) => {
@@ -26,7 +47,6 @@ export const getPairHead2HeadData = (props) => {
 
 export const getPlayersData = (props) => {
   return new Promise((resolve, reject) => {
-    console.log(props);
     if (props.playersObject) {
       return resolve(props.playersObject);
     }

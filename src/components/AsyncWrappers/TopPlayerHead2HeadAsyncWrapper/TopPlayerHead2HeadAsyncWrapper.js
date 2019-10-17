@@ -41,7 +41,7 @@ class TopPlayerHead2HeadAsyncWrapper extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    topPlayerHead2HeadObject: state.topPlayerHead2Head,
+    topPlayerHead2HeadObject: state.data.topPlayerHead2Head,
   };
 };
 
