@@ -20,6 +20,7 @@ export default class ChangeMainsInput extends React.Component {
 
     return <select name='color' value={currentColor} onChange={(event) => this.props.handleCharacterChange(event, this.props.currentCharacterIndex, 'color')} className='formSelect' required>
         <option value='' disabled>Choose Color</option>
+        
         {
           characterColors[character].map((color, i) => {
             return (

@@ -13,6 +13,7 @@ export default class PlayerInfo extends React.Component {
     return (
       <>
         <h2>{player.name}</h2>
+
         <div>
           <p>Mains:</p>
           {
@@ -23,11 +24,13 @@ export default class PlayerInfo extends React.Component {
             })
           }
         </div>
+
         <p>
           Rating: {player.rating}<br/>
           Set Win Rate: {setWinRate}%<br/>
           Game Win Rate: {gameWinRate}%<br/>
         </p>
+        
         <p>
           Tournaments Attended: {player.attendance}<br/>
           Active Attendance: {player.active_attendance}<br/>

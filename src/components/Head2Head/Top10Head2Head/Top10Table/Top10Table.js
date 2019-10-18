@@ -58,7 +58,7 @@ export default class Top10Table extends React.Component {
                                 {`${matchup.setScore[0]}-${matchup.setScore[1]}`}
                               </strong><br/>
                               <span className='percentagesComparison'>
-                                {`${matchup.setAvg[0]}-${matchup.setAvg[1]}`}
+                                {`${matchup.setAvg[0]}%-${matchup.setAvg[1]}%`}
                               </span>
                             </td>
                           );
@@ -80,7 +80,7 @@ export default class Top10Table extends React.Component {
                                 {`${matchup.setScore[1]}-${matchup.setScore[0]}`}
                               </strong><br/>
                               <span className='percentagesComparison'>
-                                {`${matchup.setAvg[1]}-${matchup.setAvg[0]}`}
+                                {`${matchup.setAvg[1]}%-${matchup.setAvg[0]}%`}
                               </span>
                             </td>
                           );

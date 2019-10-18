@@ -78,8 +78,8 @@ export default class PlayerGraph extends React.Component {
       <>
         <form>
           <select value={this.state.whichGraph} onChange={this.handleChange} required>
-            <option value='rating'>Rating History Graph</option>
-            <option value='winRate'>Win Rate History Graph</option>
+            <option value='rating'>Rating</option>
+            <option value='winRate'>Win Rate</option>
           </select>
         </form>
         <div className='graphContainer'>

@@ -6,6 +6,7 @@ export default class TournamentInfo extends React.Component {
   render() {
     const tournament = this.props.tournamentsObject[this.props.tournamentId];
     const parsedPlacements = JSON.parse(tournament.placements);
+
     return (
       <>
         <h2>{tournament.name}</h2>
@@ -37,9 +38,11 @@ export default class TournamentInfo extends React.Component {
                   {
                     parsedPlacements[placement].map((player, j) => {
                       let doWeAddSeperation = ' - ';
+
                       if (!parsedPlacements[placement][j + 1]) {
                         doWeAddSeperation = '';
                       }
+                      
                       return (
                         <span key={j}><Link to={{ pathname: `/player/${player}` }}>{player}</Link>{doWeAddSeperation}</span>
                       );

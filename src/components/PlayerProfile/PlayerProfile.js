@@ -73,7 +73,7 @@ export default class PlayerProfile extends React.Component {
           <select value={this.state.dataType} onChange={this.handleChange} required>
             <option value='setsTable'>Sets Table</option>
             <option value='matchupsTable'>Personal Head 2 Head</option>
-            <option value='historyGraph'>Player Graph</option>
+            <option value='historyGraph'>History Graph</option>
           </select>
         </form>
 
