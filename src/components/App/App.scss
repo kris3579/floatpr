@@ -84,6 +84,36 @@ ul {
   text-decoration: none;
 }
 
+// Pagination Styling
+.paginationUl {
+  height: 5vh;
+  background-color: #333333;
+  font-size: 18px;
+  margin: 0 auto;
+}
+
+.paginationUl:last-child > a {
+  border-right: none;
+}
+
+.paginationLi {
+  display: inline;
+  line-height: 5vh;
+}
+
+.currentPagination {
+  border-right: 1px solid white;
+  color: white;
+  padding: 0px 10px;
+  text-decoration: none;
+}
+
+.otherPagination {
+  border-right: 1px solid white;
+  color: rgb(0, 122, 0);
+  padding: 0px 10px;
+}
+
 // Tables Styling
 table {
   border: solid black 1px;

@@ -32,7 +32,6 @@ export default class Rankings extends React.Component {
         </form>
         <PlayersAsyncWrapper>
           <RankingTable
-            playersObject={this.state.playersObject}
             rankingFilter={this.state.rankingFilter}
           />
         </PlayersAsyncWrapper>
