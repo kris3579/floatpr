@@ -90,9 +90,10 @@ ul {
   background-color: #333333;
   font-size: 18px;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 
-.paginationUl:last-child > a {
+.paginationUl:last-child >  {
   border-right: none;
 }
 
@@ -102,23 +103,20 @@ ul {
 }
 
 .currentPagination {
-  border-right: 1px solid white;
-  color: white;
-  padding: 0px 10px;
-  text-decoration: none;
+  color: black;
+  padding: 0px 15px;
 }
 
 .otherPagination {
-  border-right: 1px solid white;
-  color: rgb(0, 122, 0);
-  padding: 0px 10px;
+  color: rgb(0, 125, 0);
+  padding: 0px 15px;
 }
 
 // Tables Styling
 table {
   border: solid black 1px;
   border-spacing: 0px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   width: 100%;
 }
 

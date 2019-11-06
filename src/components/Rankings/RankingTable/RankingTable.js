@@ -10,8 +10,17 @@ export default class RankingTable extends React.Component {
 
     this.state = {
       currentPagination: 1,
+      rankingFilter: 'activeWashingtonPlayers',
     };
   }
+
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+      currentPagination: 1,
+    });
+  };
 
   handleIncreasePagination = (e) => {
     e.preventDefault();
@@ -19,6 +28,7 @@ export default class RankingTable extends React.Component {
     this.setState({
       currentPagination: oldPagination + 1,
     });
+    window.scrollTo(0, 0);
   };
 
   handleDecreasePagination = (e) => {
@@ -27,6 +37,7 @@ export default class RankingTable extends React.Component {
     this.setState({
       currentPagination: oldPagination - 1,
     });
+    window.scrollTo(0, 0);
   };
 
   handleSelectPagination = (e, newPagination) => {
@@ -34,11 +45,12 @@ export default class RankingTable extends React.Component {
     this.setState({
       currentPagination: newPagination,
     });
+    window.scrollTo(0, 0);
   };
 
   render() {
-    const { playersObject, rankingFilter } = this.props;
-    const { currentPagination } = this.state;
+    const { playersObject } = this.props;
+    const { currentPagination, rankingFilter } = this.state;
 
     const firstPlayerIndex = ((currentPagination * 50) - 50);
     const lastPlayerIndex = currentPagination * 50;
@@ -48,6 +60,15 @@ export default class RankingTable extends React.Component {
 
     return (
       <>
+        <form>
+          <label>Ranking:</label>
+          <select name='rankingFilter' value={this.state.rankingFilter} onChange={this.handleChange} required>
+            <option value='activeWashingtonPlayers'>Active Washington Players</option>
+            <option value='washingtonPlayers'>All Washington Players</option>
+            <option value='allPlayers'>All Players</option>
+          </select>
+        </form>
+
         <table>
           <tbody>
             <tr className='headerRow'>
