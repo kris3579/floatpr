@@ -8,7 +8,7 @@ export const getIndividualHead2HeadData = (props) => {
       }
     }
 
-    return superagent.get(`https://floatpr.herokuapp.com/getIndividualHead2Head/${props.player}`)
+    return superagent.get(`https://floatpr-backend.herokuapp.com/getIndividualHead2Head/${props.player}`)
       .then((response) => {
         props.storeDataFunction(response.body, props.player, 'individualHead2Head');
         resolve(response.body);
@@ -34,7 +34,7 @@ export const getPairHead2HeadData = (props) => {
       }
     }
 
-    return superagent.get(`https://floatpr.herokuapp.com/getPairHead2Head/${props.player1}/${props.player2}`)
+    return superagent.get(`https://floatpr-backend.herokuapp.com/getPairHead2Head/${props.player1}/${props.player2}`)
       .then((response) => {
         props.storeDataFunction(response.body, matchup1, 'pairHead2Head');
         resolve(response.body);
@@ -51,7 +51,7 @@ export const getPlayersData = (props) => {
       return resolve(props.playersObject);
     }
 
-    return superagent.get('https://floatpr.herokuapp.com/getPlayers')
+    return superagent.get('https://floatpr-backend.herokuapp.com/getPlayers')
       .then((response) => {
         props.storeDataFunction(response.body, 'players');
         resolve(response.body);
@@ -68,7 +68,7 @@ export const getSetsData = (props) => {
       return resolve(props.setsArray);
     }
 
-    return superagent.get('https://floatpr.herokuapp.com/getSets')
+    return superagent.get('https://floatpr-backend.herokuapp.com/getSets')
       .then((response) => {
         props.storeDataFunction(response.body, 'sets');
         resolve(response.body);
@@ -85,7 +85,7 @@ export const getTournamentsData = (props) => {
       return resolve(props.tournamentsObject);
     }
 
-    return superagent.get('https://floatpr.herokuapp.com/getTournaments')
+    return superagent.get('https://floatpr-backend.herokuapp.com/getTournaments')
       .then((response) => {
         props.storeDataFunction(response.body, 'tournaments');
         resolve(response.body);
@@ -102,7 +102,7 @@ export const getTopPlayerHead2HeadData = (props) => {
       return resolve(props.topPlayerHead2HeadObject);
     }
 
-    return superagent.get('https://floatpr.herokuapp.com/getTopPlayerHead2Head')
+    return superagent.get('https://floatpr-backend.herokuapp.com/getTopPlayerHead2Head')
       .then((response) => {
         props.storeDataFunction(response.body, 'topPlayerHead2Head');
         resolve(response.body);
