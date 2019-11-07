@@ -4,48 +4,48 @@ import PropTypes from 'prop-types';
 export default class PaginationUl extends React.Component {
   render() {
     const prevPagination = this.props.currentPagination > 1
-      ? <li className='paginationLi'>
-          <button onClick={(e) => this.props.handleDecreasePagination(e)} className='otherPagination'>{'<'}</button>
+      ? <li className='pagination'>
+          <button className='paginationButton' onClick={(e) => this.props.handleDecreasePagination(e)}>{'<'}</button>
         </li> : null;
 
     const twoBeforeCurrent = this.props.currentPagination - 2 > 0 
-      ? <li className='paginationLi'>
-          <button onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination - 2)} className='otherPagination'>
+      ? <li className='pagination'>
+          <button className='paginationButton' onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination - 2)}>
             {this.props.currentPagination - 2}
           </button>
         </li> : null;
 
     const oneBeforeCurrent = this.props.currentPagination - 1 > 0 
-      ? <li className='paginationLi'>
-          <button onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination - 1)} className='otherPagination'>
+      ? <li className='pagination'>
+          <button className='paginationButton' onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination - 1)}>
             {this.props.currentPagination - 1}
           </button>
         </li> : null;
 
     const oneAfterCurrent = this.props.currentPagination + 1 <= this.props.maxPaginations 
-      ? <li className='paginationLi'>
-          <button onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination + 1)} className='otherPagination'>
+      ? <li className='pagination'>
+          <button className='paginationButton' onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination + 1)}>
             {this.props.currentPagination + 1}
           </button>
         </li> : null;
 
     const twoAfterCurrent = this.props.currentPagination + 2 <= this.props.maxPaginations 
-      ? <li className='paginationLi'>
-          <button onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination + 2)} className='otherPagination'>
+      ? <li className='pagination'>
+          <button className='paginationButton' onClick={(e) => this.props.handleSelectPagination(e, this.props.currentPagination + 2)}>
             {this.props.currentPagination + 2}
           </button>
         </li> : null;
 
     const nextPagination = this.props.currentPagination < this.props.maxPaginations
-      ? <li className='paginationLi'>
-          <button onClick={(e) => this.props.handleIncreasePagination(e)} className='otherPagination'>{'>'}</button>
+      ? <li className='pagination'>
+          <button className='paginationButton' onClick={(e) => this.props.handleIncreasePagination(e)}>{'>'}</button>
         </li> : null;
 
     let paginationUl = <ul className='paginationUl'>
       {prevPagination}
       {twoBeforeCurrent}
       {oneBeforeCurrent}
-      <li className='paginationLi'><button className='currentPagination'>{this.props.currentPagination}</button></li>
+      <li className='pagination currentPagination'><button className='paginationButton'>{this.props.currentPagination}</button></li>
       {oneAfterCurrent}
       {twoAfterCurrent}
       {nextPagination}

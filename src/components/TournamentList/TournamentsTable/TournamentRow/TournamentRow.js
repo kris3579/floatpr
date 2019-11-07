@@ -22,13 +22,15 @@ export default class TournamentRow extends React.Component {
           </Link>
         </td>
 
+        <td className='dateColumn'>{dateString}</td>
+        <td className='entrantsColumn'>{this.props.tournament.entrants}</td>
+
         <td className='tournamentWinnerColumn'>
           <Link to={{ pathname: `/player/${parsedPlacements[1]}` }}>
             {parsedPlacements[1]}
           </Link>
         </td>
 
-        <td className='dateColumn'>{dateString}</td>
         <td className='tournamentUrlColumn'>{<a href={this.props.tournament.url}>{shortenedURL}</a>}</td>
       </tr>
     );

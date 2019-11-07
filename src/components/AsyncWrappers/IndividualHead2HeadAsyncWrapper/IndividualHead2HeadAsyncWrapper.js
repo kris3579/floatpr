@@ -18,7 +18,7 @@ class IndividualHead2HeadAsyncWrapper extends React.Component {
         promiseFn={getIndividualHead2HeadData}
         storeDataFunction={this.props.storeHead2HeadData}
         individualHead2HeadObject={this.props.individualHead2Head}
-        player={this.props.player}
+        player={this.props.playerName}
       >
         <Async.Loading>Loading...</Async.Loading>
         <Async.Resolved>
@@ -34,7 +34,7 @@ class IndividualHead2HeadAsyncWrapper extends React.Component {
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{(error) => error.message}</Async.Rejected>
+        <Async.Rejected>{() => 'Something went wrong'}</Async.Rejected>
       </Async>
     );
   }
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch) => {
 IndividualHead2HeadAsyncWrapper.propTypes = {
   children: PropTypes.node.isRequired,
   individualHead2Head: PropTypes.object,
-  player: PropTypes.string,
+  playerName: PropTypes.string,
   storeHead2HeadData: PropTypes.func,
 };
 

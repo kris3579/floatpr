@@ -12,39 +12,38 @@ export default class About extends React.Component {
           I find local statistics more interesting than on a national scale. It could also
           function as a relativly accurate resource for players to compare themselves against
           other competitors in the state, as well as a guideline for any TO&apos;s to use
-          for seeding their brackets. Credit to M Hartley for creating HartPR, the spiritual
+          for seeding their brackets. Credit to Micheal Hartley for creating HartPR, the spiritual
           predecesor to FloatPR, and a large inspiration for me getting into code in the first
           place!
         </p>
 
-        <h4>How It Works</h4>
+        <h3 className='aboutH3'>How It Works</h3>
         <p>
           FloatPR uses an <a href='https://github.com/ReedD/glicko-two'>implementation</a> of
-          the Glicko-2 formula created by Mark Glickman to rank players. A Player must be
-          from Washington, have attended at least five brackets total, and have attended at
-          least two brackets in as many months to be considered &apos;active&apos; Any
+          the Glicko-2 formula created by Mark Glickman to rank players. A Player must have
+          attended at least five brackets to appear on the ranking. A player must have attended
+          at least four brackets in the past 2 months to be considered &apos;active&apos; Any
           bracket in Washington with at least 8 attendees may be added. I will update the
           database with relevant tournaments from Challonge and SmashGG on a weekly basis.
         </p>
 
-        <h4>Making Requests</h4>
+        <h3 className='aboutH3'>Making Requests</h3>
         <p>
           On the requests page you may make a number of requests to add to/edit the database
-          including:
-        </p>
-        <p>
+          including:<br/>
+          <br/>
           - Request to add or replace the mains of your player profile 
           (including changing your main&apos;s color)<br/>
           - Request to change the home state/region of your player profile<br/>
+          - Request to add or change a sponser to your player profile<br/>
           - Request to merge the results of one tag into another<br/>
-          - Request to use the results from a recent unaccounted for tournament
-        </p>
-        <p>
+          - Request to use the results from a recent unaccounted for tournament<br/>
+          <br/>
           Requests will be taken care of by my discretion along with adding any new tournaments
           on a weekly basis.
         </p>
 
-        <h4>Actively Added Tournament Series</h4>
+        <h3 className='aboutH3'>Actively Added Tournament Series</h3>
         <p>
           - UW weekly<br/>
           - SU weekly<br/>
@@ -53,15 +52,6 @@ export default class About extends React.Component {
           - EPG<br/>
           - Olympia<br/>
           - Bellingham
-        </p>
-
-        <p>
-          <span>Github Profile</span><br/>
-          <span><a href='https://github.com/kris3579'>Github</a></span><br/>
-          <br/>
-          <span>FloatPR Github Repos</span><br/>
-          <span><a href='https://github.com/kris3579/floatpr'>Front-End</a></span><br/>
-          <span><a href='https://github.com/kris3579/floatpr-backend'>Back-End</a></span>
         </p>
       </div>
 

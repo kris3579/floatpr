@@ -19,7 +19,7 @@ export default class PlayerGraph extends React.Component {
   };
 
   render() {
-    const player = this.props.playersObject[this.props.playerName];
+    const { player } = this.props;
 
     let datasets = [{ 
       data: player.rating_history,
@@ -32,7 +32,7 @@ export default class PlayerGraph extends React.Component {
     let yLabel = 'Rating';
     let stepSize = 75;
     let suggestedMax = 2200;
-    let suggestedMin = 1600;
+    let suggestedMin = 1650;
 
     if (this.state.whichGraph !== 'rating') {
       datasets = [{
@@ -45,9 +45,9 @@ export default class PlayerGraph extends React.Component {
       {
         data: player.game_win_rate_history,
         label: 'Game Win Rate',
-        backgroundColor: 'rgba(0, 75, 0, 0.4)', 
-        borderColor: 'rgba(0, 75, 0, 0.8)',
-        pointHoverBackgroundColor: 'rgba(0, 50, 0, 0.8)',
+        backgroundColor: 'rgba(0, 50, 0, 0.4)', 
+        borderColor: 'rgba(0, 50, 0, 0.8)',
+        pointHoverBackgroundColor: 'rgba(0, 25, 0, 0.8)',
       }];
 
       yLabel = 'Win Rate';
@@ -131,7 +131,7 @@ export default class PlayerGraph extends React.Component {
     return (
       <>
         <form>
-          <select name='whichGraph' value={this.state.whichGraph} onChange={this.handleChange} required>
+          <select name='whichGraph' value={this.state.whichGraph} className='whichGraph' onChange={this.handleChange} required>
             <option value='rating'>Rating</option>
             <option value='winRate'>Win Rate</option>
           </select>
@@ -145,6 +145,5 @@ export default class PlayerGraph extends React.Component {
 }
 
 PlayerGraph.propTypes = {
-  playerName: PropTypes.string,
-  playersObject: PropTypes.object,
+  player: PropTypes.object,
 };

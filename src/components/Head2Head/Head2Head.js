@@ -34,8 +34,8 @@ export default class Head2Head extends React.Component {
           
           <form onSubmit={this.handleSubmit}>
 
-            <input type='text' name='player1' placeholder='player1' onChange={(event) => this.handleChange(event)} required/>
-            <input type='text' name='player2' placeholder='player2' onChange={(event) => this.handleChange(event)} required/>
+            <input type='text' name='player1' className='requestInput' placeholder='player1' onChange={(event) => this.handleChange(event)} required/>
+            <input type='text' name='player2' className='requestInput' placeholder='player2' onChange={(event) => this.handleChange(event)} required/>
           
             <button type='submit' className='requestButton'>Submit</button>
           </form>

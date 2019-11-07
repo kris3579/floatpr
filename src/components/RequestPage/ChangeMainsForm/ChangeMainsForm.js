@@ -51,7 +51,7 @@ export default class ChangeMainsForm extends React.Component {
   };
 
   render() {
-    const addAnotherMainButton = this.state.currentCharacters > 2 ? null
+    const addAnotherMainButton = this.state.currentCharacters.length > 2 ? null
       : <button type='button' onClick={this.handleAddMainInput}>Add Another Main</button>;
 
     return (
@@ -61,7 +61,7 @@ export default class ChangeMainsForm extends React.Component {
         <form onSubmit={this.handleSubmitRequest}>
           {addAnotherMainButton}
 
-          <input type='text' placeholder='Your Tag' name='user' onChange={(event) => this.props.handleChange(event, this)} required/>
+          <input type='text' name='user' className='requestInput' placeholder='Your Tag' onChange={(event) => this.props.handleChange(event, this)} required/>
           
           {
             this.state.currentCharacters.map((character, i) => {

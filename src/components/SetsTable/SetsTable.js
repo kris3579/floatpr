@@ -12,10 +12,10 @@ export default class SetsTable extends React.Component {
     switch (this.props.setsType) {
       case 'tournamentSets':
         headerRow = <tr className='headerRow'>
-          <th className='roundColumn'>Round</th>
-          <th className='playerColumn'>Winner</th>
-          <th className='scoreColumn'>Score</th>
-          <th className='playerColumn'>Loser</th>
+          <th className='tsRoundColumn'>Round</th>
+          <th className='tsPlayerColumn'>Winner</th>
+          <th className='tsScoreColumn'>Score</th>
+          <th className='tsPlayerColumn'>Loser</th>
         </tr>;
 
         sets = this.props.setsArray.filter((set) => {

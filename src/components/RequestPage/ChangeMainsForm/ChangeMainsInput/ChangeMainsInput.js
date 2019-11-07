@@ -18,7 +18,7 @@ export default class ChangeMainsInput extends React.Component {
     const { currentCharacters, currentCharacterIndex } = this.props;
     const currentColor = currentCharacters[currentCharacterIndex].color;
 
-    return <select name='color' value={currentColor} onChange={(event) => this.props.handleCharacterChange(event, this.props.currentCharacterIndex, 'color')} className='formSelect' required>
+    return <select name='color' value={currentColor} className='formSelect' onChange={(event) => this.props.handleCharacterChange(event, this.props.currentCharacterIndex, 'color')} required>
         <option value='' disabled>Choose Color</option>
         
         {
@@ -64,11 +64,11 @@ export default class ChangeMainsInput extends React.Component {
 
     const colorForm = currentCharacter === '' ? null : this.createColorForm(currentCharacter);
     const deleteThisMainFormButton = this.props.currentCharacters.length < 2 ? null
-      : <img className='removeImgRequest' src={require('../../../../assets/delete.png')} onClick={() => this.props.handleDeleteMainInput(this.props.currentCharacterIndex)} alt='Red X'/>;
+      : <img className='removeImg' src={require('../../../../assets/delete.png')} onClick={() => this.props.handleDeleteMainInput(this.props.currentCharacterIndex)} alt='Red X'/>;
     
     return (
       <>
-        <select name='character' value={currentCharacter} onChange={(event) => this.props.handleCharacterChange(event, this.props.currentCharacterIndex, 'character')} className='formSelect' required>
+        <select name='character' value={currentCharacter} className='formSelect' onChange={(event) => this.props.handleCharacterChange(event, this.props.currentCharacterIndex, 'character')} required>
           <option value='' disabled>Choose Main</option>
           {bowserOption}
           {captainFalconOption}

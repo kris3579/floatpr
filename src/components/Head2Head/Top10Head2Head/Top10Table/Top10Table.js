@@ -9,7 +9,7 @@ export default class Top10Table extends React.Component {
 
     return (
       <>
-        <h3>WA Top 10 Head to Head Table</h3>
+        <h3 className='head2HeadTableHeader'>WA Top 10 Head to Head Table</h3>
         <table className='head2HeadTable'>
           <tbody>
             <tr className='headerRow'>

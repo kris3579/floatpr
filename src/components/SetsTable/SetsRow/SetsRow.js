@@ -30,17 +30,17 @@ export default class SetsRow extends React.Component {
 
     if (this.props.setsType === 'tournamentSets') {
       rowToRender = <tr>
-      <td className='roundColumn'>{this.props.set.round}</td>
+      <td className='tsRoundColumn'>{this.props.set.round}</td>
 
-      <td className='playerColumn'>
+      <td className='tsPlayerColumn'>
         <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
           {this.props.set.winner_name}
         </Link>
       </td>
 
-      <td className='scoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
+      <td className='tsScoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
       
-      <td className='playerColumn'>
+      <td className='tsPlayerColumn'>
         <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
           {this.props.set.loser_name}
         </Link>

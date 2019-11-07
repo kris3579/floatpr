@@ -33,7 +33,7 @@ class TournamentsAsyncWrapper extends React.Component {
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{(error) => error.message}</Async.Rejected>
+        <Async.Rejected>{() => 'Something went wrong'}</Async.Rejected>
       </Async>
     );
   }

@@ -42,7 +42,7 @@ export default class Head2HeadTable extends React.Component {
                     <strong className={gameAvgStatus}>{`${matchup.gameScore[0]}-${matchup.gameScore[1]}`}</strong><br/>
                     <span className='percentagesComparison'>{`${matchup.gameAvg[0]}%-${matchup.gameAvg[1]}%`}</span>
                   </td>
-                  <td className='remove'><img className='removeImg' src={require('../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'/></td>
+                  <td className='remove'><img className='removeImg' src={require('../../../../../assets/delete.png')} onClick={(event) => this.props.handleDeselectMatchup(event, matchup)} alt='Red X'/></td>
                 </tr>
               );
             })

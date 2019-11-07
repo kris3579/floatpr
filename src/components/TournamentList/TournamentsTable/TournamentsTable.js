@@ -7,7 +7,6 @@ import PaginationUl from '../../PaginationUl/PaginationUl';
 export default class TournamentsTable extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentPagination: 1,
     };
@@ -39,17 +38,19 @@ export default class TournamentsTable extends React.Component {
   render() {
     const { tournamentsObject } = this.props;
     const { currentPagination } = this.state;
-    const maxPaginations = Math.floor(tournamentsObject.tournamentsArray.length / 50) + 1;
+    const numberOfTournaments = tournamentsObject.tournamentsArray.length;
+    const maxPaginations = Math.floor(numberOfTournaments / 50) + 1;
 
     return (
       <>
-        <h3>List of Tournaments</h3>
+        <h3 className='tournamentsListHeader'>Tournaments in database: {numberOfTournaments}</h3>
         <table>
           <tbody>
             <tr className='headerRow'>
               <th className='tournamentNameColumn'>Name</th>
-              <th className='tournamentWinnerColumn'>Winner</th>
               <th className='dateColumn'>Date</th>
+              <th className='entrantsColumn'>Entrants</th>
+              <th className='tournamentWinnerColumn'>Winner</th>
               <th className='tournamentUrlColumn'>Bracket Link</th>
             </tr>
             {

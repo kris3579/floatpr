@@ -4,6 +4,7 @@ import superagent from 'superagent';
 import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
 import ChangeMainsForm from './ChangeMainsForm/ChangeMainsForm';
 import ChangeHomeStateForm from './ChangeHomeStateForm/ChangeHomeStateForm';
+import ChangeSponserForm from './ChangeSponserForm/ChangeSponserForm';
 import CombineResultsForm from './CombineResultsForm/CombineResultsForm';
 
 export default class RequestPage extends React.Component {
@@ -22,17 +23,23 @@ export default class RequestPage extends React.Component {
     component.setState({
       [name]: value,
     });
-  };
+  }
 
   handleRequestChange = (event) => {
     this.setState({
       request: event.target.value,
       submittedRequest: '',
     });
-  };
+  }
 
   handleConfirmRequest = () => {
     return window.confirm('Are you sure you would like to make this request?'); // eslint-disable-line
+  }
+
+  handleFailedRequest = () => {
+    this.setState({
+      submittedRequest: 'Attempt to send request unsuccessful',
+    });
   }
 
   handleAddTournament = (tournamentUrl) => {
@@ -47,10 +54,8 @@ export default class RequestPage extends React.Component {
       superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
+        .catch(() => {
+          this.handleFailedRequest();
         });
     }
   };
@@ -96,10 +101,8 @@ export default class RequestPage extends React.Component {
       superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(JSON.stringify(requestBody))
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
+        .catch(() => {
+          this.handleFailedRequest();
         });
     }
   }
@@ -122,13 +125,31 @@ export default class RequestPage extends React.Component {
         request: '',
         submittedRequest: `Your request to change the home state/region of ${user} to ${state} has been submitted.`,
       });
+      
       superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
+        .catch(() => {
+          this.handleFailedRequest();
+        });
+    }
+  };
+
+  handleChangeSponser = (user, sponser) => {
+    const confirmation = this.handleConfirmRequest();
+    console.log('here');
+
+    if (confirmation === true) {
+      this.setState({
+        request: '',
+        submittedRequest: `Your request to change the sponser of ${user} to ${sponser} has been submitted.`,
+      });
+
+      superagent.post('http://localhost:3579/userRequest')
+        .set('Content-Type', 'application/json')
+        .send(`{"requestType":"editSponser","user":"${user}","sponser":"${sponser}"}`)
+        .catch(() => {
+          this.handleFailedRequest();
         });
     }
   };
@@ -145,10 +166,8 @@ export default class RequestPage extends React.Component {
       superagent.post('http://localhost:3579/userRequest')
         .set('Content-Type', 'application/json')
         .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
+        .catch(() => {
+          this.handleFailedRequest();
         });
     }
   };
@@ -165,6 +184,10 @@ export default class RequestPage extends React.Component {
     const changeHomeStateForm = <ChangeHomeStateForm 
       handleChangeHomeState={this.handleChangeHomeState}
       handleChange={this.handleChange}  
+    />;
+    const changeSponserForm = <ChangeSponserForm
+      handleChangeSponser={this.handleChangeSponser}
+      handleChange={this.handleChange}
     />;
     const combineResultsForm = <CombineResultsForm 
       handleCombineResults={this.handleCombineResults}
@@ -183,6 +206,9 @@ export default class RequestPage extends React.Component {
       case 'changeHomeState':
         displayedForm = changeHomeStateForm;
         break;
+      case 'changeSponser':
+        displayedForm = changeSponserForm;
+        break;
       case 'combineResults':
         displayedForm = combineResultsForm;
         break;
@@ -193,10 +219,11 @@ export default class RequestPage extends React.Component {
     return (
       <>
         <form>
-          <select value={this.state.request} onChange={this.handleRequestChange} required>
+          <select value={this.state.request} className='requestSelect' onChange={this.handleRequestChange} required>
             <option value='' disabled>Choose Request</option>
             <option value='changeMains'>Add/Change Mains</option>
             <option value='changeHomeState'>Change State/Region</option>
+            <option value='changeSponser'>Add/Change Sponser</option>
             <option value='combineResults'>Combine Results</option>
             <option value='addTournament'>Add Tournament</option>
           </select>

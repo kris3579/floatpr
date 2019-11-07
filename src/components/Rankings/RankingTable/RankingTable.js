@@ -61,8 +61,8 @@ export default class RankingTable extends React.Component {
     return (
       <>
         <form>
-          <label>Ranking:</label>
-          <select name='rankingFilter' value={this.state.rankingFilter} onChange={this.handleChange} required>
+          <label className='rankingSelectLabel'>Ranking:</label>
+          <select name='rankingFilter' value={this.state.rankingFilter} className='rankingSelect' onChange={this.handleChange} required>
             <option value='activeWashingtonPlayers'>Active Washington Players</option>
             <option value='washingtonPlayers'>All Washington Players</option>
             <option value='allPlayers'>All Players</option>
