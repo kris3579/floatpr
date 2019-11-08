@@ -12,28 +12,13 @@ export default class TournamentsTable extends React.Component {
     };
   }
 
-  handleIncreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination + 1,
-    });
-  };
-
-  handleDecreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination - 1,
-    });
-  };
-
-  handleSelectPagination = (e, newPagination) => {
+  handleChangePagination = (e, newPagination) => {
     e.preventDefault();
     this.setState({
       currentPagination: newPagination,
     });
-  };
+    window.scrollTo(0, 0);
+  }
 
   render() {
     const { tournamentsObject } = this.props;
@@ -68,9 +53,7 @@ export default class TournamentsTable extends React.Component {
 
         <PaginationUl
           currentPagination={currentPagination}
-          handleDecreasePagination={this.handleDecreasePagination}
-          handleIncreasePagination={this.handleIncreasePagination}
-          handleSelectPagination={this.handleSelectPagination}
+          handleChangePagination={this.handleChangePagination}
           maxPaginations={maxPaginations}
         />
       </>

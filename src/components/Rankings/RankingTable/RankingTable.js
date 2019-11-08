@@ -22,31 +22,13 @@ export default class RankingTable extends React.Component {
     });
   };
 
-  handleIncreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination + 1,
-    });
-    window.scrollTo(0, 0);
-  };
-
-  handleDecreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination - 1,
-    });
-    window.scrollTo(0, 0);
-  };
-
-  handleSelectPagination = (e, newPagination) => {
+  handleChangePagination = (e, newPagination) => {
     e.preventDefault();
     this.setState({
       currentPagination: newPagination,
     });
     window.scrollTo(0, 0);
-  };
+  }
 
   render() {
     const { playersObject } = this.props;
@@ -97,9 +79,7 @@ export default class RankingTable extends React.Component {
         <div>
           <PaginationUl
             currentPagination={currentPagination}
-            handleDecreasePagination={this.handleDecreasePagination}
-            handleIncreasePagination={this.handleIncreasePagination}
-            handleSelectPagination={this.handleSelectPagination}
+            handleChangePagination={this.handleChangePagination}
             maxPaginations={maxPaginations}
           />
         </div>
