@@ -11,10 +11,10 @@ export default class About extends React.Component {
           full-stack software developer and to keep tabs on the local Melee community because
           I find local statistics more interesting than on a national scale. It could also
           function as a relativly accurate resource for players to compare themselves against
-          other competitors in the state, as well as a guideline for any TO&apos;s to use
-          for seeding their brackets. Credit to Micheal Hartley for creating HartPR, the spiritual
-          predecesor to FloatPR, and a large inspiration for me getting into code in the first
-          place!
+          other competitors in the state, a historical record of performance, as well as a
+          guideline for any TO&apos;s to use for seeding their brackets. Credit to Micheal 
+          Hartley and Mitch Dzugan for creating HartPR, the spiritual predecesor to FloatPR, 
+          and a large inspiration for me getting into code in the first place!
         </p>
 
         <h3 className='aboutH3'>How It Works</h3>
@@ -52,6 +52,15 @@ export default class About extends React.Component {
           - EPG<br/>
           - Olympia<br/>
           - Bellingham
+        </p>
+
+        <p>
+          <span>Github Profile</span><br/>
+          <span><a href='https://github.com/kris3579'>Github</a></span><br/>
+          <br/>
+          <span>FloatPR Github Repos</span><br/>
+          <span><a href='https://github.com/kris3579/floatpr'>Front-End</a></span><br/>
+          <span><a href='https://github.com/kris3579/floatpr-backend'>Back-End</a></span>
         </p>
       </div>
 

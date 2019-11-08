@@ -36,35 +36,48 @@ export default class RequestPage extends React.Component {
     return window.confirm('Are you sure you would like to make this request?'); // eslint-disable-line
   }
 
-  handleFailedRequest = () => {
+  handleSendRequest = (submittedRequest, dataToSend) => {
     this.setState({
-      submittedRequest: 'Attempt to send request unsuccessful',
+      request: '',
+      submittedRequest,
     });
+
+    superagent.post('http://localhost:3579/userRequest')
+      .set('Content-Type', 'application/json')
+      .send(dataToSend)
+      .catch(() => {
+        this.setState({
+          submittedRequest: 'Attempt to send request unsuccessful',
+        });
+      });
   }
 
   handleAddTournament = (tournamentUrl) => {
     const confirmation = this.handleConfirmRequest();
 
     if (confirmation === true) {
-      this.setState({
-        request: '',
-        submittedRequest: `Your request to add the tournament located at ${tournamentUrl} has been submitted.`,
-      });
-
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
-        .catch(() => {
-          this.handleFailedRequest();
-        });
+      const submittedRequest = `Your request to add the tournament located at ${tournamentUrl} has been submitted.`;
+      const dataToSend = `{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`;
+      
+      this.handleSendRequest(submittedRequest, dataToSend);
     }
+  };
+
+  upperCase = (str) => {
+    return str.toUpperCase();
+  };
+
+  formatName = (str) => {
+    const name = str.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+    const firstLetterOnWord = /(^|\s)[a-z]/g;
+    return name.replace(firstLetterOnWord, this.upperCase);
   };
   
   handleChangeMains = (user, mains) => {
     const confirmation = this.handleConfirmRequest();
 
     if (confirmation === true) {
-      const requestBody = {
+      const dataToSend = {
         requestType: 'editMains',
         user,
       };
@@ -77,80 +90,45 @@ export default class RequestPage extends React.Component {
         if (i === 0) {
           submittedRequest += ` Main: ${formattedName}, Color: ${main.color}`; 
           const despacedName = formattedName.replace(/\s/g, '');
-          requestBody.firstMain = `${main.color} ${despacedName}`;
+          dataToSend.firstMain = `${main.color} ${despacedName}`;
         }
 
         if (i === 1) {
           submittedRequest += ` | Second: ${formattedName}, Color: ${main.color}`;
           const despacedName = formattedName.replace(/\s/g, '');
-          requestBody.secondMain = `${main.color} ${despacedName}`;
+          dataToSend.secondMain = `${main.color} ${despacedName}`;
         }
 
         if (i === 2) {
           submittedRequest += ` | Third: ${formattedName}, Color: ${main.color}`;
           const despacedName = formattedName.replace(/\s/g, '');
-          requestBody.thirdMain = `${main.color} ${despacedName}`;
+          dataToSend.thirdMain = `${main.color} ${despacedName}`;
         }
       });
 
-      this.setState({
-        request: '',
-        submittedRequest,
-      });
-
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(JSON.stringify(requestBody))
-        .catch(() => {
-          this.handleFailedRequest();
-        });
+      this.handleSendRequest(submittedRequest, JSON.stringify(dataToSend));
     }
   }
-  
-  upperCase = (str) => {
-    return str.toUpperCase();
-  };
-
-  formatName = (str) => {
-    const name = str.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-    const firstLetterOnWord = /(^|\s)[a-z]/g;
-    return name.replace(firstLetterOnWord, this.upperCase);
-  };
 
   handleChangeHomeState = (user, state) => {
     const confirmation = this.handleConfirmRequest();
 
     if (confirmation === true) {
-      this.setState({
-        request: '',
-        submittedRequest: `Your request to change the home state/region of ${user} to ${state} has been submitted.`,
-      });
-      
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
-        .catch(() => {
-          this.handleFailedRequest();
-        });
+      const submittedRequest = `Your request to change the home state/region of ${user} to ${state} has been submitted.`;
+      const dataToSend = `{"requestType":"editState","user":"${user}","state":"${state}"}`;
+
+      this.handleSendRequest(submittedRequest, dataToSend);
     }
   };
 
   handleChangeSponser = (user, sponser) => {
     const confirmation = this.handleConfirmRequest();
-    console.log('here');
 
     if (confirmation === true) {
-      this.setState({
-        request: '',
-        submittedRequest: `Your request to change the sponser of ${user} to ${sponser} has been submitted.`,
-      });
+      const submittedRequest = `Your request to change the sponser of ${user} to ${sponser} has been submitted.`;
+      const dataToSend = `{"requestType":"editSponser","user":"${user}","sponser":"${sponser}"}`;
 
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(`{"requestType":"editSponser","user":"${user}","sponser":"${sponser}"}`)
-        .catch(() => {
-          this.handleFailedRequest();
-        });
+      this.handleSendRequest(submittedRequest, dataToSend);
     }
   };
 
@@ -158,17 +136,10 @@ export default class RequestPage extends React.Component {
     const confirmation = this.handleConfirmRequest();
 
     if (confirmation === true) {
-      this.setState({
-        request: '',
-        submittedRequest: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
-      });
+      const submittedRequest = `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`;
+      const dataToSend = `{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`;
 
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
-        .catch(() => {
-          this.handleFailedRequest();
-        });
+      this.handleSendRequest(submittedRequest, dataToSend);
     }
   };
 
