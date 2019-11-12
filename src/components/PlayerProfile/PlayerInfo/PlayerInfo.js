@@ -31,6 +31,8 @@ export default class PlayerInfo extends React.Component {
         <p>Player not found.</p>
       );
     }
+
+    const playerName = player.sponser === '' ? player.name : `${player.sponser} | ${player.name}`;
     
     const setWinRate = Number.isInteger(parseFloat(player.set_win_rate, 10))
       ? parseFloat(player.set_win_rate, 10).toFixed(0) : player.set_win_rate;
@@ -71,7 +73,7 @@ export default class PlayerInfo extends React.Component {
     
     return (
       <>
-        <h2 className='playerHeader'>{player.name}</h2>
+        <h2 className='playerHeader'>{playerName}</h2>
 
         <div className='fightersDiv'>
           {
@@ -104,17 +106,17 @@ export default class PlayerInfo extends React.Component {
 
         <form className='playerInfoForm'>
           <label className='playerInfoLabel'>
-            <input type='radio' name='dataType' value='setsTable' onChange={this.handleChange} checked='checked'/>
+            <input type='radio' name='dataType' value='setsTable' onChange={this.handleChange} checked={this.state.dataType === 'setsTable'}/>
             Sets Table
           </label>
 
           <label className='playerInfoLabel'>
-            <input type='radio' name='dataType' value='matchupsTable' onChange={this.handleChange}/>
+            <input type='radio' name='dataType' value='matchupsTable' onChange={this.handleChange} checked={this.state.dataType === 'matchupsTable'}/>
             Head 2 Head
           </label>
 
           <label className='playerInfoLabel'>
-            <input type='radio' name='dataType' value='historyGraph' onChange={this.handleChange}/>
+            <input type='radio' name='dataType' value='historyGraph' onChange={this.handleChange} checked={this.state.dataType === 'historyGraph'}/>
             History Graph
           </label>
         </form>

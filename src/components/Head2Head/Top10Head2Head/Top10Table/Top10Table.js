@@ -16,13 +16,13 @@ export default class Top10Table extends React.Component {
               <th className='head2HeadTh'></th>
               {
                 topPlayerHead2HeadObject.rankingOrder.map((player, i) => {
+                  const playerName = player.sponser === '' ? player.name : `${player.sponser} | ${player.name}`;
+
                   return (
                     <th className='head2HeadTh' key={i}>
-                      {/* <ReactFitText minFontSize={16}> */}
-                        <Link className='head2HeadLink' to={{ pathname: `/player/${player.name}` }}>
-                          {player.name}
-                        </Link>
-                      {/* </ReactFitText> */}
+                      <Link className='head2HeadLink' to={{ pathname: `/player/${player.name}` }}>
+                        {playerName}
+                      </Link>
                     </th>
                   );
                 })
@@ -30,14 +30,14 @@ export default class Top10Table extends React.Component {
             </tr>
             {
               topPlayerHead2HeadObject.rankingOrder.map((leftPlayer, i) => {
+                const leftPlayerName = leftPlayer.sponser === '' ? leftPlayer.name : `${leftPlayer.sponser} | ${leftPlayer.name}`;
+
                 return (
                   <tr key={i}>
                     <td className='head2HeadTd headerRow'>
-                      {/* <ReactFitText minFontSize={16}> */}
-                        <Link className='head2HeadLink' to={{ pathname: `/player/${leftPlayer.name}` }}>
-                          <strong>{leftPlayer.name}</strong>
-                        </Link>
-                      {/* </ReactFitText> */}
+                      <Link className='head2HeadLink' to={{ pathname: `/player/${leftPlayer.name}` }}>
+                        <strong>{leftPlayerName}</strong>
+                      </Link>
                     </td>
 
                     {

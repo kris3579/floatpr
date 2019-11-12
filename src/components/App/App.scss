@@ -99,11 +99,11 @@ td {
 }
 
 tr:nth-child(even) {
-  background-color: #cccccc;
+  background-color: #bbbbbb;
 }
 
 tr:nth-child(odd) {
-  background-color: #999999;
+  background-color: #888888;
 }
 
 .headerRow {
@@ -250,7 +250,7 @@ tr:nth-child(odd) {
 }
 
 .head2HeadTh {
-  padding: 14px 0px;
+  padding: 14px 5px;
   border: solid 0.5px black;
   line-height: 16px;
 }

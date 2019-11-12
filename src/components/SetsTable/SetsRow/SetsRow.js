@@ -4,97 +4,102 @@ import { Link } from 'react-router-dom';
 
 export default class SetsRow extends React.Component {
   render() {
+    const { set, setsType, player } = this.props;
+
+    const winnerName = set.winner_sponser === '' ? set.winner_name : `${set.winner_sponser} | ${set.winner_name}`;
+    const loserName = set.loser_sponser === '' ? set.loser_name : `${set.loser_sponser} | ${set.loser_name}`;
+    console.log(winnerName, loserName);
     let rowToRender = <tr>
-      <td className='roundColumn'>{this.props.set.round}</td>
+      <td className='roundColumn'>{set.round}</td>
 
       <td className='playerColumn'>
-        <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
-          {this.props.set.winner_name}
+        <Link to={{ pathname: `/player/${set.winner_name}` }}>
+          {winnerName}
         </Link>
       </td>
 
-      <td className='scoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
+      <td className='scoreColumn'>{set.winner_score}-{set.loser_score}</td>
       
       <td className='playerColumn'>
-        <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
-          {this.props.set.loser_name}
+        <Link to={{ pathname: `/player/${set.loser_name}` }}>
+          {loserName}
         </Link>
       </td>
 
       <td className='tournamentColumn'>
-        <Link to={{ pathname: `/tournament/${this.props.set.tournament_id}` }}>
-          {this.props.set.tournament_name}
+        <Link to={{ pathname: `/tournament/${set.tournament_id}` }}>
+          {set.tournament_name}
         </Link>
       </td>
     </tr>;
 
-    if (this.props.setsType === 'tournamentSets') {
+    if (setsType === 'tournamentSets') {
       rowToRender = <tr>
-      <td className='tsRoundColumn'>{this.props.set.round}</td>
+      <td className='tsRoundColumn'>{set.round}</td>
 
       <td className='tsPlayerColumn'>
-        <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
-          {this.props.set.winner_name}
+        <Link to={{ pathname: `/player/${set.winner_name}` }}>
+          {winnerName}
         </Link>
       </td>
 
-      <td className='tsScoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
+      <td className='tsScoreColumn'>{set.winner_score}-{set.loser_score}</td>
       
       <td className='tsPlayerColumn'>
-        <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
-          {this.props.set.loser_name}
+        <Link to={{ pathname: `/player/${set.loser_name}` }}>
+          {loserName}
         </Link>
       </td>
     </tr>;
     }
     
-    if (this.props.setsType === 'playerSets' && this.props.player === this.props.set.winner_name) {
+    if (setsType === 'playerSets' && player === set.winner_name) {
       rowToRender = <tr>
-        <td className='roundColumn'><span className='greenText'>{this.props.set.round}</span></td>
+        <td className='roundColumn'><span className='greenText'>{set.round}</span></td>
 
         <td className='playerColumn'>
-          <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
-            {this.props.set.winner_name}
+          <Link to={{ pathname: `/player/${set.winner_name}` }}>
+            {winnerName}
           </Link>
         </td>
 
-        <td className='scoreColumn'>{this.props.set.winner_score}-{this.props.set.loser_score}</td>
+        <td className='scoreColumn'>{set.winner_score}-{set.loser_score}</td>
         
         <td className='playerColumn'>
-          <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
-            {this.props.set.loser_name}
+          <Link to={{ pathname: `/player/${set.loser_name}` }}>
+            {loserName}
           </Link>
         </td>
 
         <td className='tournamentColumn'>
-          <Link to={{ pathname: `/tournament/${this.props.set.tournament_id}` }}>
-            {this.props.set.tournament_name}
+          <Link to={{ pathname: `/tournament/${set.tournament_id}` }}>
+            {set.tournament_name}
           </Link>
         </td>
       </tr>;
     }
 
-    if (this.props.setsType === 'playerSets' && this.props.player === this.props.set.loser_name) {
+    if (setsType === 'playerSets' && player === set.loser_name) {
       rowToRender = <tr>
-        <td className='roundColumn'><span className='redText'>{this.props.set.round}</span></td>
+        <td className='roundColumn'><span className='redText'>{set.round}</span></td>
 
         <td className='playerColumn'>
-          <Link to={{ pathname: `/player/${this.props.set.loser_name}` }}>
-            {this.props.set.loser_name}
+          <Link to={{ pathname: `/player/${set.loser_name}` }}>
+            {loserName}
           </Link>
         </td>
 
-        <td className='scoreColumn'>{this.props.set.loser_score}-{this.props.set.winner_score}</td>
+        <td className='scoreColumn'>{set.loser_score}-{set.winner_score}</td>
         
         <td className='playerColumn'>
-          <Link to={{ pathname: `/player/${this.props.set.winner_name}` }}>
-            {this.props.set.winner_name}
+          <Link to={{ pathname: `/player/${set.winner_name}` }}>
+            {winnerName}
           </Link>
         </td>
 
         <td className='tournamentColumn'>
-          <Link to={{ pathname: `/tournament/${this.props.set.tournament_id}` }}>
-            {this.props.set.tournament_name}
+          <Link to={{ pathname: `/tournament/${set.tournament_id}` }}>
+            {set.tournament_name}
           </Link>
         </td>
       </tr>;
