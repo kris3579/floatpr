@@ -8,7 +8,7 @@ export default class SetsRow extends React.Component {
 
     const winnerName = set.winner_sponser === '' ? set.winner_name : `${set.winner_sponser} | ${set.winner_name}`;
     const loserName = set.loser_sponser === '' ? set.loser_name : `${set.loser_sponser} | ${set.loser_name}`;
-    console.log(winnerName, loserName);
+
     let rowToRender = <tr>
       <td className='roundColumn'>{set.round}</td>
 

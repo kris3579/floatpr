@@ -51,16 +51,14 @@ export default class About extends React.Component {
           - Bangers and Smash<br/>
           - EPG<br/>
           - Olympia<br/>
-          - Bellingham
-        </p>
-
-        <p>
-          <span>Github Profile</span><br/>
-          <span><a href='https://github.com/kris3579'>Github</a></span><br/>
+          - Bellingham<br/>
           <br/>
-          <span>FloatPR Github Repos</span><br/>
-          <span><a href='https://github.com/kris3579/floatpr'>Front-End</a></span><br/>
-          <span><a href='https://github.com/kris3579/floatpr-backend'>Back-End</a></span>
+          <strong>Github Profile</strong><br/>
+          <strong><a href='https://github.com/kris3579'>Github</a></strong><br/>
+          <br/>
+          <strong>FloatPR Github Repos</strong><br/>
+          <strong><a href='https://github.com/kris3579/floatpr'>Front-End</a></strong><br/>
+          <strong><a href='https://github.com/kris3579/floatpr-backend'>Back-End</a></strong>
         </p>
       </div>
 

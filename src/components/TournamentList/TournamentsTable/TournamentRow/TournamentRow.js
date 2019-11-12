@@ -6,7 +6,8 @@ export default class TournamentRow extends React.Component {
   render() {
     const { tournament } = this.props;
 
-    const parsedPlacements = JSON.parse(tournament.placements);
+    const parsedPlacement = JSON.parse(tournament.placements)[1];
+    const winner = parsedPlacement ? parsedPlacement[0].match(/\b[^|]+$/) : null;
 
     let dateString = new Date(tournament.date).toDateString();
     dateString = dateString.replace(/(?<=[a-z]\b)/, ',');
@@ -26,11 +27,12 @@ export default class TournamentRow extends React.Component {
         </td>
 
         <td className='dateColumn'>{dateString}</td>
-        <td className='entrantsColumn'>{tournament.entrants}</td>
+        <td className='entrantsColumn'>{tournament.number_of_entrants}</td>
+        <td className='setsColumn'>{tournament.number_of_sets}</td>
 
         <td className='tournamentWinnerColumn'>
-          <Link to={{ pathname: `/player/${parsedPlacements[1]}` }}>
-            {parsedPlacements[1]}
+          <Link to={{ pathname: `/player/${winner}` }}>
+            {parsedPlacement}
           </Link>
         </td>
 
