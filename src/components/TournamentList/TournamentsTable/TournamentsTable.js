@@ -33,10 +33,10 @@ export default class TournamentsTable extends React.Component {
           <tbody>
             <tr className='headerRow'>
               <th className='tournamentNameColumn'>Name</th>
+              <th className='tournamentWinnerColumn'>Winner</th>
               <th className='dateColumn'>Date</th>
               <th className='entrantsColumn'>Entrants</th>
               <th className='setsColumn'>Sets</th>
-              <th className='tournamentWinnerColumn'>Winner</th>
               <th className='tournamentUrlColumn'>Bracket Link</th>
             </tr>
             {

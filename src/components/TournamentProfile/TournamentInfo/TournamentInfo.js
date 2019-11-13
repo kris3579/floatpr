@@ -13,6 +13,11 @@ export default class TournamentInfo extends React.Component {
       return 'Tournament not found.';
     }
 
+    let dateString = new Date(tournament.date).toDateString();
+    dateString = dateString.replace(/(?<=[a-z]\b)\s/, ', ');    
+    dateString = dateString.replace(/(?<=\d)\s/, '-');
+    dateString = dateString.replace(/(?<=[a-z])\s/, '-');
+
     const parsedPlacements = JSON.parse(tournament.placements);
 
     return (
@@ -23,7 +28,7 @@ export default class TournamentInfo extends React.Component {
           <p>
             <strong>URL:</strong> <a href={tournament.url}>{tournament.url}</a><br/>
             <br/>
-            <strong>Date:</strong> {new Date(tournament.date).toDateString()}<br/>
+            <strong>Date:</strong> {dateString}<br/>
             <br/>
             <strong>Entrants:</strong> {tournament.number_of_entrants}<br/>
             <br/>

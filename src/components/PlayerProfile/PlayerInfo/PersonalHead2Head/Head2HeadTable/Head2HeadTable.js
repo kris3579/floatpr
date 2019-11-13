@@ -14,7 +14,6 @@ export default class Head2HeadTable extends React.Component {
           </tr>
           {
             this.props.selectedMatchups.map((matchup, i) => {
-              console.log(matchup);
               let setAvgStatus = 'yellowText';
               let gameAvgStatus = 'yellowText';
 

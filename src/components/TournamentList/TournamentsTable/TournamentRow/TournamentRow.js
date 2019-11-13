@@ -10,7 +10,7 @@ export default class TournamentRow extends React.Component {
     const winner = parsedPlacement ? parsedPlacement[0].match(/\b[^|]+$/) : null;
 
     let dateString = new Date(tournament.date).toDateString();
-    dateString = dateString.replace(/(?<=[a-z]\b)/, ',');
+    dateString = dateString.replace(/^[^\s]+/, '');
     dateString = dateString.replace(/(?<=\d)\s/, '-');
     dateString = dateString.replace(/(?<=[a-z])\s/, '-');
 
@@ -26,16 +26,16 @@ export default class TournamentRow extends React.Component {
           </Link>
         </td>
 
-        <td className='dateColumn'>{dateString}</td>
-        <td className='entrantsColumn'>{tournament.number_of_entrants}</td>
-        <td className='setsColumn'>{tournament.number_of_sets}</td>
-
         <td className='tournamentWinnerColumn'>
           <Link to={{ pathname: `/player/${winner}` }}>
             {parsedPlacement}
           </Link>
         </td>
 
+        <td className='dateColumn'>{dateString}</td>
+        <td className='entrantsColumn'>{tournament.number_of_entrants}</td>
+        <td className='setsColumn'>{tournament.number_of_sets}</td>
+        
         <td className='tournamentUrlColumn'>{<a href={tournament.url}>{shortenedURL}</a>}</td>
       </tr>
     );

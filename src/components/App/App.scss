@@ -202,16 +202,20 @@ tr:nth-child(odd) {
   width: 30%
 }
 
-.dateColumn {
+.tournamentWinnerColumn {
   width: 15%;
 }
 
-.entrantsColumn {
-  width: 5%;
+.dateColumn {
+  width: 10%;
 }
 
-.tournamentWinnerColumn {
-  width: 20%;
+.entrantsColumn {
+  width: 7.5%;
+}
+
+.setsColumn {
+  width: 7.5%;
 }
 
 .tournamentUrlColumn {
@@ -221,14 +225,15 @@ tr:nth-child(odd) {
 // -----Player Profile Head 2 Head Table Styling-----
 .personalHead2HeadTable {
   float: left;
-  width: 70%;
+  width: 65%;
 }
 
 .matchupList {
+  border: inset 3px black;
   float: right;
   margin: 0px 0px 25px 0px;
-  padding: 0px;
-  width: 30%;
+  padding: 5px;
+  width: 32%;
 }
 
 .matchupButton {
