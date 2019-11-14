@@ -56,7 +56,7 @@ export default class ChangeMainsForm extends React.Component {
 
     return (
       <div>
-        <h3>Add to or Replace your mains, Enter New Main and Color</h3>
+        <h3 className='requestPrompt'>Add to or Replace your mains, Enter New Main and Color</h3>
 
         <form onSubmit={this.handleSubmitRequest}>
           {addAnotherMainButton}

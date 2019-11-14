@@ -10,7 +10,7 @@ export default class PlayerRow extends React.Component {
     return (
       <tr>
         <td className='rankColumn'>{this.props.rank}</td>
-        <td className='regionColumn'>{player.state}</td>
+        <td className='stateColumn'>{player.state}</td>
       
         <td className='nameColumn'>
           <Link to={{ pathname: `/player/${player.name}` }}>

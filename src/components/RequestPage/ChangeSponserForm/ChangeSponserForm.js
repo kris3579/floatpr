@@ -23,7 +23,7 @@ export default class ChangeSponserForm extends React.Component {
   render() {
     return (
       <>
-        <h3>Enter Desired Sponser</h3>
+        <h3 className='requestPrompt'>Enter Desired Sponser</h3>
 
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='user' className='requestInput' placeholder='Your Tag' onChange={(event) => this.props.handleChange(event, this)} required/>

@@ -1,6 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
+import PropTypes from 'prop-types';
+
 
 export default class TournamentRow extends React.Component {
   render() {
@@ -22,7 +24,11 @@ export default class TournamentRow extends React.Component {
       <tr>
         <td className='tournamentNameColumn'>
           <Link to={{ pathname: `/tournament/${tournament.id}` }}>
-            {tournament.name}
+            <MediaQuery maxDeviceWidth={480}>
+              {(matches) => {
+                return matches ? `${tournament.name.slice(0, 15)}...` : tournament.name;
+              }}
+            </MediaQuery>
           </Link>
         </td>
 
@@ -36,7 +42,15 @@ export default class TournamentRow extends React.Component {
         <td className='entrantsColumn'>{tournament.number_of_entrants}</td>
         <td className='setsColumn'>{tournament.number_of_sets}</td>
         
-        <td className='tournamentUrlColumn'>{<a href={tournament.url}>{shortenedURL}</a>}</td>
+        <td className='tournamentUrlColumn'>
+          <a href={tournament.url}>
+            <MediaQuery maxDeviceWidth={480}>
+              {(matches) => {
+                return matches ? `${shortenedURL.slice(0, 12)}...` : shortenedURL;
+              }}
+            </MediaQuery>
+          </a>
+        </td>
       </tr>
     );
   }

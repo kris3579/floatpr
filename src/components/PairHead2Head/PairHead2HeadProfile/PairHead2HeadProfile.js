@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 
 import SetsTable from '../../SetsTable/SetsTable';
@@ -17,9 +18,8 @@ export default class PairHead2HeadProfile extends React.Component {
       );
     }
 
-    return (
-      <>
-        <div className='pairH2HDiv'>
+    const desktopStatistics = <div>
+      <div className='pairH2HDiv'>
           <h3><Link to={{ pathname: `/player/${this.props.player1}` }}>{head2HeadObject.player1}</Link></h3>
 
           <p>
@@ -47,6 +47,32 @@ export default class PairHead2HeadProfile extends React.Component {
             <strong>Games Win Rate:</strong> {head2HeadObject.gameAvg[1]}%
           </p>
         </div>
+    </div>;
+
+    const mobileStatistics = <p className='mobilePairStatistics'>
+      <h3><Link to={{ pathname: `/player/${this.props.player1}` }}>{head2HeadObject.player1}</Link></h3>
+      <strong>Sets Won:</strong> {head2HeadObject.setScore[0]}<br/>
+      <strong>Sets Win Rate:</strong> {head2HeadObject.setAvg[0]}%<br/>
+      <strong>Games Won:</strong> {head2HeadObject.gameScore[0]}<br/>
+      <strong>Games Win Rate:</strong> {head2HeadObject.gameAvg[0]}%<br/>
+      <br/>
+      <h3><Link to={{ pathname: `/player/${this.props.player2}` }}>{head2HeadObject.player2}</Link></h3>
+      <strong>Sets Won:</strong> {head2HeadObject.setScore[1]}<br/>
+      <strong>Sets Win Rate:</strong> {head2HeadObject.setAvg[1]}%<br/>
+      <strong>Games Won:</strong> {head2HeadObject.gameScore[1]}<br/>
+      <strong>Games Win Rate:</strong> {head2HeadObject.gameAvg[1]}%<br/>
+      <br/>
+      <strong>Sets Played:</strong> {head2HeadObject.setsPlayed}<br/>
+      <strong>Games Played:</strong> {head2HeadObject.gamesPlayed}<br/>
+    </p>;
+
+    return (
+      <>
+        <MediaQuery maxDeviceWidth={480}>
+          {(matches) => {
+            return matches ? mobileStatistics : desktopStatistics;
+          }}
+        </MediaQuery>
         
         <SetsTable
           head2HeadObject={head2HeadObject}

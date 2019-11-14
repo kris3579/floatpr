@@ -21,7 +21,7 @@ export default class AddTournamentForm extends React.Component {
   render() {
     return (
       <>
-        <h3>Add Unnacounted For Tournament</h3>
+        <h3 className='requestPrompt'>Add Unnacounted For Tournament</h3>
 
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='tournamentURL' className='requestInput' placeholder='Tournament URL' onChange={(event) => this.props.handleChange(event, this)} required/>

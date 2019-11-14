@@ -25,20 +25,17 @@ export default class TournamentInfo extends React.Component {
         <h2 className='tournamentHeader'>{tournament.name}</h2>
         <div className='tournamentDiv'>
           <h3>Info</h3>
-          <p>
-            <strong>URL:</strong> <a href={tournament.url}>{tournament.url}</a><br/>
-            <br/>
-            <strong>Date:</strong> {dateString}<br/>
-            <br/>
-            <strong>Entrants:</strong> {tournament.number_of_entrants}<br/>
-            <br/>
-            <strong>Sets:</strong> {tournament.number_of_sets}
-          </p>
+          <ul className='tournamentInfo'>
+            <li><strong className=''>URL:</strong> <a href={tournament.url}>{tournament.url}</a></li>
+            <li><strong className=''>Date:</strong> {dateString}</li>
+            <li><strong className=''>Entrants:</strong> {tournament.number_of_entrants}</li>
+            <li><strong className=''>Sets:</strong> {tournament.number_of_sets}</li>
+          </ul>
         </div>
 
         <div className='tournamentDiv'>
           <h3>Results</h3>
-          <ul className='placementsUl'>
+          <ul>
             {
               Object.keys(parsedPlacements).map((placement, i) => {
                 let shownPlacement = '';
@@ -58,7 +55,7 @@ export default class TournamentInfo extends React.Component {
                 }
                         
                 return (
-                          <li key={i}><strong>{`${shownPlacement}: `}</strong>
+                  <li key={i}><strong>{`${shownPlacement}: `}</strong>
                     {
                       parsedPlacements[placement].map((player, j) => {
                         let doWeAddSeperation = ' - ';
@@ -78,8 +75,6 @@ export default class TournamentInfo extends React.Component {
             }
           </ul>
         </div>
-
-        <h3>Tournament Sets</h3>
 
         <SetsAsyncWrapper>
           <SetsTable

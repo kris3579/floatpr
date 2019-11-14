@@ -72,13 +72,13 @@ export default class PersonalHead2Head extends React.Component {
   render() {
     return (
       <>
-        <MatchupList
-          deselectedMatchups={this.state.deselectedMatchups}
-          handleSelectMatchup={this.handleSelectMatchup}
-        />
         <Head2HeadTable
           handleDeselectMatchup={this.handleDeselectMatchup}
           selectedMatchups={this.state.selectedMatchups}
+        />
+        <MatchupList
+          deselectedMatchups={this.state.deselectedMatchups}
+          handleSelectMatchup={this.handleSelectMatchup}
         />
       </>
     );

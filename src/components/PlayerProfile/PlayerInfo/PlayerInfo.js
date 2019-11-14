@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 
 import PlayerGraph from './PlayerGraph/PlayerGraph';
@@ -39,6 +40,42 @@ export default class PlayerInfo extends React.Component {
     const gameWinRate = Number.isInteger(parseFloat(player.game_win_rate, 10))
       ? parseFloat(player.game_win_rate, 10).toFixed(0) : player.game_win_rate;
 
+    const desktopStatistics = <div>
+      <div className='playerDiv'>
+        <strong>Sets Won:</strong> {player.set_wins}<br/>
+        <strong>Sets Lost:</strong> {player.set_losses}<br/>
+        <strong>Sets Played:</strong> {player.set_wins + player.set_losses}<br/>
+        <strong>Set Win Rate:</strong> {setWinRate}%
+      </div>
+      <div className='playerDiv'>
+        <strong>Rating:</strong> {player.rating}<br/>
+        <strong>Tournaments Attended:</strong> {player.attendance}<br/>
+        <strong>Active Attendance:</strong> {player.active_attendance}<br/>
+      </div>
+      <div className='playerDiv'>    
+        <strong>Games Won:</strong> {player.game_wins}<br/>
+        <strong>Games Lost:</strong> {player.game_losses}<br/>
+        <strong>Games Played:</strong> {player.game_wins + player.game_losses}<br/>
+        <strong>Game Win Rate:</strong> {gameWinRate}%<br/>
+      </div>
+    </div>;
+
+    const mobileStatistics = <p className='mobilePlayerStatistics'>
+        <strong>Rating:</strong> {player.rating}<br/>
+        <strong>Tournaments Attended:</strong> {player.attendance}<br/>
+        <strong>Active Attendance:</strong> {player.active_attendance}<br/>
+        <br/>
+        <strong>Sets Won:</strong> {player.set_wins}<br/>
+        <strong>Sets Lost:</strong> {player.set_losses}<br/>
+        <strong>Sets Played:</strong> {player.set_wins + player.set_losses}<br/>
+        <strong>Set Win Rate:</strong> {setWinRate}%<br/>
+        <br/>
+        <strong>Games Won:</strong> {player.game_wins}<br/>
+        <strong>Games Lost:</strong> {player.game_losses}<br/>
+        <strong>Games Played:</strong> {player.game_wins + player.game_losses}<br/>
+        <strong>Game Win Rate:</strong> {gameWinRate}%
+    </p>;
+
     const setsTable = <SetsAsyncWrapper>
       <SetsTable
         player1={this.props.playerName}
@@ -75,7 +112,7 @@ export default class PlayerInfo extends React.Component {
       <>
         <h2 className='playerHeader'>{playerName}</h2>
 
-        <div className='fightersDiv'>
+        <div className='mainsDiv'>
           {
             player.mains.map((main, i) => {
               return (
@@ -86,23 +123,11 @@ export default class PlayerInfo extends React.Component {
         </div>
 
         <h3 className='statisticsHeader'>Statistics</h3>
-        <div className='playerDiv'>
-          <strong>Sets Won:</strong> {player.set_wins}<br/>
-          <strong>Sets Lost:</strong> {player.set_losses}<br/>
-          <strong>Sets Played:</strong> {player.set_wins + player.set_losses}<br/>
-          <strong>Set Win Rate:</strong> {setWinRate}%
-        </div>
-        <div className='playerDiv'>
-          <strong>Rating:</strong> {player.rating}<br/>
-          <strong>Tournaments Attended:</strong> {player.attendance}<br/>
-          <strong>Active Attendance:</strong> {player.active_attendance}<br/>
-        </div>
-        <div className='playerDiv'>    
-          <strong>Games Won:</strong> {player.game_wins}<br/>
-          <strong>Games Lost:</strong> {player.game_losses}<br/>
-          <strong>Games Played:</strong> {player.game_wins + player.game_losses}<br/>
-          <strong>Game Win Rate:</strong> {gameWinRate}%<br/>
-        </div>
+        <MediaQuery maxDeviceWidth={480}>
+          {(matches) => {
+            return matches ? mobileStatistics : desktopStatistics;
+          }}
+        </MediaQuery>
 
         <form className='playerInfoForm'>
           <label className='playerInfoLabel'>

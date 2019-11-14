@@ -23,7 +23,7 @@ export default class CombineResultsForm extends React.Component {
   render() {
     return (
       <div>
-        <h3>Merge a Tag&apos;s Results Into Another</h3>
+        <h3 classNAme='requestPrompt'>Merge a Tag&apos;s Results Into Another</h3>
 
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='userTag' className='requestInput' placeholder='Main Tag' onChange={(event) => this.props.handleChange(event, this)} required/>

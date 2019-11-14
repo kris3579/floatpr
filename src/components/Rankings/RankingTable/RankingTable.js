@@ -54,9 +54,9 @@ export default class RankingTable extends React.Component {
           <tbody>
             <tr className='headerRow'>
               <th className='rankColumn'>Rank</th>
-              <th className='regionColumn'>State/Region</th>
+              <th className='stateColumn'>State</th>
               <th className='tagColumn'>Tag</th>
-              <th className='fightersColumn'>Fighters</th>
+              <th className='mainsColumn'>Mains</th>
               <th className='ratingColumn'>Rating</th>
               <th className='winRateColumn'>Set Win Rate</th>
               <th className='winRateColumn'>Game Win Rate</th>

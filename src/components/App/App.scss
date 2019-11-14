@@ -1,25 +1,24 @@
 body {
   margin: 0 auto !important;
   text-align: center;
-  width: 90vw;
+  width: 95vw;
 }
 
 h1 {
-  font-size: 2.75em;
-  margin: 5px;
+  font-size: 40px;
+  margin: .25vh;
 }
 
 h2 {
-  margin: 15px 0px 7.5px 0px;
+  margin: .75vh 0 .5vh;
 }
 
 h3 {
-  font-size: 18px;
-  margin: 0px 0px 7.5px 0px;
+  margin: 0;
 }
 
 p {
-  margin: 0px;
+  margin: 0;
 }
 
 a {
@@ -29,14 +28,16 @@ a {
 
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 // -----Nav Styling-----
 .navUl {
   background-color: #333333;
   height: 5vh;
-  padding-left: 7.5px;
-  margin: 0px;
+  padding-left: .75vh;
+  margin: 0;
 }
 
 .navLi:last-child > a {
@@ -53,7 +54,7 @@ ul {
   border-right: 1px solid white; 
   color: white;
   font-size: 18px;
-  padding: 0px 10px;
+  padding: 0 .75vw;
   text-decoration: none;
 }
 
@@ -63,19 +64,19 @@ ul {
   background-color: #333333;
   font-size: 18px;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
 }
 
 .pagination {
   display: inline;
   line-height: 5vh;
-  padding: 0px 7.5px;
+  padding: 0 .75vw;
 }
 
 .paginationButton {
   color: rgb(0, 125, 0);
   font-size: 13px;
-  width: 60px;
+  width: 5vw;
 }
 
 .currentPagination > button {
@@ -86,16 +87,16 @@ ul {
 table {
   border: solid black 1px;
   border-spacing: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
   width: 100%;
 }
 
 th {
-  padding: 10px;
+  padding: 10px 2.5px;
 }
 
 td {
-  padding: 7.5px 0px;
+  padding: 7.5px 2.5px;
 }
 
 tr:nth-child(even) {
@@ -113,13 +114,13 @@ tr:nth-child(odd) {
 
 // -----Player Rankings Table Styling-----
 .rankingSelect {
-  margin: 15px 0px 10px 0px;
+  margin: 1.5vh .5vw;
 }
 
 .rankingSelectLabel {
   font-size: 18px;
   font-weight: bold;
-  margin: 15px;
+  margin: 1.5vh .5vw;
 }
 
 .rankColumn {
@@ -134,8 +135,12 @@ tr:nth-child(odd) {
   width: 20%;
 }
 
-.fightersColumn {
+.mainsColumn {
   width: 25%;
+}
+
+.mainsColumn > img {
+  vertical-align: middle;
 }
 
 .ratingColumn {
@@ -148,7 +153,7 @@ tr:nth-child(odd) {
 
 // -----Sets Table Styling-----
 .roundColumn {
-  padding-left: 15px;
+  padding-left: 1vw;
   text-align: left;
   width: 20%; 
 }
@@ -166,7 +171,7 @@ tr:nth-child(odd) {
 }
 
 .tsRoundColumn {
-  padding-left: 15px;
+  padding-left: 1vw;
   text-align: left;
   width: 30%;
 }
@@ -181,23 +186,26 @@ tr:nth-child(odd) {
 
 .greenText {
   color: rgb(0, 160, 0);
+  font-weight: bold;
 }
 
 .redText {
   color: rgb(240, 0, 0);
+  font-weight: bold;
 }
 
 .yellowText {
   color: rgb(255, 239, 95);
+  font-weight: bold;
 }
 
 // -----Tournaments Table Styling-----
 .tournamentsListHeader {
-  margin-top: 15px;
+  margin: 1.5vh;
 }
 
 .tournamentNameColumn {
-  padding-left: 15px;
+  padding-left: 1vw;
   text-align: left;
   width: 30%
 }
@@ -225,20 +233,32 @@ tr:nth-child(odd) {
 // -----Player Profile Head 2 Head Table Styling-----
 .personalHead2HeadTable {
   float: left;
-  width: 65%;
+  width: 67%;
+}
+
+.matchupColumn {
+  width: 45%;
+}
+
+.comparisonColumn {
+  width: 20%;
+}
+
+.removeColumn {
+  width: 15%;
 }
 
 .matchupList {
   border: inset 3px black;
   float: right;
-  margin: 0px 0px 25px 0px;
-  padding: 5px;
-  width: 32%;
+  margin: 0;
+  padding: .5vh .25vw;
+  width: 30%;
 }
 
 .matchupButton {
   display: inline-block;
-  margin: 2.5px 5px;
+  margin: .25vh .25vw;
 }
 
 .removeImg {
@@ -247,7 +267,7 @@ tr:nth-child(odd) {
 
 // -----Top Player Head 2 Head Table Styling-----
 .head2HeadTableHeader {
-  margin-bottom: 7.5px;
+  margin-bottom: 1vh;
 }
 
 .head2HeadTable {
@@ -255,7 +275,7 @@ tr:nth-child(odd) {
 }
 
 .head2HeadTh {
-  padding: 14px 5px;
+  padding: .75vh .5vw;
   border: solid 0.5px black;
   line-height: 16px;
 }
@@ -279,87 +299,204 @@ tr:nth-child(odd) {
 }
 
 // -----Player Profile Styling-----
-.playerDiv {
-  display: inline-block;
-  margin: 0 25px;
-  width: 1/3;
+.playerHeader {
+  margin: 1vh;
 }
 
-.fightersDiv {
-  margin-bottom: 10px;
+.mainsDiv {
+  margin-bottom: .5vh;
+}
+
+.playerDiv {
+  display: inline-block;
+  margin: 0 2.5vw;
+}
+
+.mobilePlayerStatistics {
+  margin-top: .25vh;
 }
 
 .playerInfoForm {
-  margin: 15px;
+  margin: 1vh;
 }
 
 .playerInfoLabel {
-  margin: 0px 10px;
+  margin: 0 1vw;
 }
 
 .whichGraph {
-  margin-bottom: 5px;
+  margin-bottom: .5vh;
 }
 
 .graphContainer {
+  height: 63vh;
   position: relative;
-  height: 600px;
-  width: inherit;
+  overflow: scroll;
 }
 
 // -----Tournament Profile Styling-----
 .tournamentHeader {
-  margin: 15px 0px;
+  margin: 1vh;
 }
 
 .tournamentDiv {
   display: inline-block;
-  margin: 0 25px 7.5px;
+  margin: 0 2vw 1.5vh;
+  max-width: 90%;
   vertical-align: top;
-  width: 1/2;
 }
 
-.placementsUl {
-  margin: 0px;
-  padding: 0px;
+.tournamentInfo {
+  margin-top: 1vh;
+}
+
+.tournamentInfo > li {
+  margin-bottom: 1vh;
 }
 
 // ----Pair Head 2 Head Styling-----
 .pairH2HDiv {
   display: inline-block;
-  margin: 15px 25px 7.5px;
-  width: 1/3;
+  margin: 1vh 2.5vw 1.5vh;
+}
+
+.mobilePairStatistics {
+  margin: 1vh 0;
 }
 
 // -----Request Page Styling-----
 .requestSelect {
-  margin-top: 15px;
+  margin: 1.5vh;
 }
 
 .formDiv {
   border: 1px solid black;
-  background-color: #aaaaaa;
-  padding: 10px 10px 10px 10px;
-  margin: 20px auto 25px;
+  background-color: #bbbbbb;
+  padding: .75vh .75vw;
+  margin: 0 auto 1.5vh;
   width: 90%;
 }
 
+.requestPrompt {
+  margin-bottom: 1.5vh;
+}
+
 .formSelect {
-  margin: 7.5px 10px 0px 10px;
+  margin: 1vh .5vw 0;
 }
 
 .requestInput {
   width: 30vw;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 0 1vw;
 }
 
 .requestButton {
   display: block;
-  margin: 10px auto 0px;
+  margin: 1vh auto 0;
 }
 
 // -----About Styling-----
+.aboutDiv {
+  background-color: #bbbbbb;
+  border: 3px inset black;
+  border-radius: 25px;
+  margin: 1.5vh auto 0;
+  padding: 7.5px;
+  width: fit-content;
+}
+
 .aboutH3 {
-  margin: 15px 0px 0px 0px;
+  margin-bottom: 1vh;
+}
+
+@media (max-width: 979px) {
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 32px;
+  }
+
+  // -----Nav Styling-----
+  .navUl {
+    padding-left: 0;
+  }
+
+  .navLink {
+    font-size: 12px;
+    padding: 0 1vw;
+  }
+
+  .navLi {
+    display: inline-block;
+    float: none;
+  }
+
+  // -----Tables Styling-----
+  table {
+    font-size: 12px;
+  }
+
+  // -----Player Rankings-----  
+  .rankingSelect {
+    margin: 1.5vh .25vw;
+  }
+  
+  .rankingSelectLabel {
+    font-size: 14px;
+    margin: 1.5vh 0;
+  }
+
+  .mainsColumn > img {
+    width: 45%;
+    vertical-align: middle;
+  }
+
+  // -----Sets Styling-----
+  .roundColumn, .tsRoundColumn {
+    padding-left: 2.5px;
+    text-align: center;
+  }
+
+  // -----Tournaments Styling-----
+  .tournamentNameColumn {
+    padding-left: 2.5px;
+    text-align: center;
+  }
+
+  // -----Player Profile Head 2 Head Table Styling-----
+  .personalHead2HeadTable {
+    width: 100%;
+  }
+
+  .matchupList {
+    display: block;
+    float: none;
+    margin-top: 1vh;
+    width: 100%;
+  }
+
+  // -----Tournament Profile Styling-----
+  .tournamentInfo {
+    margin: 0;
+  }
+
+  // -----Request Page Styling-----
+  .formDiv {
+    font-size: 12px;
+  }
+
+  // -----About Styling-----
+  .aboutDiv {
+    width: 90%;
+  }
 }
