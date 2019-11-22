@@ -37,12 +37,13 @@ export default class About extends React.Component {
             On the requests page you may make a number of requests to add to/edit the database
             including:<br/>
             <br/>
-            - Request to add or replace the mains of your player profile 
+            -Request to change your tag<br/>
+            -Request to add or change a sponser on your player profile<br/>
+            -Request to change the mains on your player profile 
             (including changing your main&apos;s color)<br/>
-            - Request to change the home state/region of your player profile<br/>
-            - Request to add or change a sponser to your player profile<br/>
-            - Request to merge the results of one tag into another<br/>
-            - Request to use the results from a recent unaccounted for tournament<br/>
+            -Request to change the home state/region on your player profile<br/>
+            -Request to merge the results of one tag into another<br/>
+            -Request to use the results from a recent unaccounted for tournament<br/>
             <br/>
             Requests will be taken care of by my discretion along with adding any new tournaments
             on a weekly basis.
@@ -52,13 +53,13 @@ export default class About extends React.Component {
         <div className='aboutDiv'>
           <h3 className='aboutH3'>Actively Added Tournament Series</h3>
           <ul>
-            <li>UW weekly</li>
-            <li>SU weekly</li>
-            <li>TNS</li>
-            <li>Bangers and Smash</li>
-            <li>EPG</li>
-            <li>Olympia</li>
-            <li>Bellingham</li>
+            <a href='https://tsns.challonge.com/tournaments'>That&apos;s Not Safe</a><br/>
+            <a href='https://challonge.com/users/uwsmash'>UW Weekly</a><br/>
+            <a href='https://challonge.com/users/seattleusmash/tournaments'>SU Weekly</a><br/>
+            <a href='https://challonge.com/users/eastsidesmash/tournaments'>East Side Smash</a><br/>
+            <a href='https://epeengaming.challonge.com/tournaments'>EPG</a><br/>
+            <a href='https://challonge.com/users/kneeil/tournaments'>Bangers and Smash</a><br/>
+            <a href='https://challonge.com/users/bozionjr/tournaments'>The Smash House</a>
           </ul>
         </div>
         

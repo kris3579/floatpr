@@ -81,10 +81,16 @@ export default class PlayerGraph extends React.Component {
           },
           ticks: {
             callback: (value) => {
-              return value.replace(/ Melee Singles/, '');
+              const noMeleeSingles = value.replace(/ Melee Singles/, '');
+
+              if (noMeleeSingles.length > 20) {
+                return `${noMeleeSingles.slice(0, 20)}...`;
+              }
+              
+              return noMeleeSingles;
             },
-            maxRotation: 35,
-            minRotation: 35,
+            maxRotation: 75,
+            minRotation: 75,
           },
         }],
         yAxes: [{
@@ -136,8 +142,11 @@ export default class PlayerGraph extends React.Component {
             <option value='winRate'>Win Rate</option>
           </select>
         </form>
+
         <div className='graphContainer'>
-          {graph}
+          <div className='graph'>
+            {graph}  
+          </div>
         </div>
       </>
     );

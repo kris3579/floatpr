@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 export default class MatchupList extends React.Component {
   render() {
-    return (
-      <>
-        <ul className='matchupList'>
-          <h3>Unselected Matchups</h3>
+    const matchupList = this.props.deselectedMatchups.length > 0
+      ? <div className='matchupList'>
+        <h3>Unselected Matchups</h3>
+        <ul>
           {
             this.props.deselectedMatchups.map((matchup, i) => {
               return (
@@ -19,6 +19,11 @@ export default class MatchupList extends React.Component {
             })
           }
         </ul>
+      </div> : null;
+
+    return (
+      <>
+        {matchupList}
       </>
     );
   }

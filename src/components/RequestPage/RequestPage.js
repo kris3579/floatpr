@@ -1,11 +1,12 @@
 import React from 'react';
 import superagent from 'superagent';
 
-import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
+import ChangeTagForm from './ChangeTagForm/ChangeTagForm';
 import ChangeMainsForm from './ChangeMainsForm/ChangeMainsForm';
 import ChangeHomeStateForm from './ChangeHomeStateForm/ChangeHomeStateForm';
 import ChangeSponserForm from './ChangeSponserForm/ChangeSponserForm';
 import CombineResultsForm from './CombineResultsForm/CombineResultsForm';
+import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
 
 export default class RequestPage extends React.Component {
   constructor(props) {
@@ -52,16 +53,16 @@ export default class RequestPage extends React.Component {
       });
   }
 
-  handleAddTournament = (tournamentUrl) => {
+  handleChangeTag = (user, newTag) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
-      const submittedRequest = `Your request to add the tournament located at ${tournamentUrl} has been submitted.`;
-      const dataToSend = `{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`;
+    if (confirmation) {
+      const submittedRequest = `Your request to change your tag from ${user} to ${newTag} has been submitted`;
+      const dataToSend = `{"requestType":"editTag","user":"${user}","newTag":"${newTag}"}`;
       
       this.handleSendRequest(submittedRequest, dataToSend);
     }
-  };
+  }
 
   upperCase = (str) => {
     return str.toUpperCase();
@@ -76,7 +77,7 @@ export default class RequestPage extends React.Component {
   handleChangeMains = (user, mains) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
+    if (confirmation) {
       const dataToSend = {
         requestType: 'editMains',
         user,
@@ -113,7 +114,7 @@ export default class RequestPage extends React.Component {
   handleChangeHomeState = (user, state) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
+    if (confirmation) {
       const submittedRequest = `Your request to change the home state/region of ${user} to ${state} has been submitted.`;
       const dataToSend = `{"requestType":"editState","user":"${user}","state":"${state}"}`;
 
@@ -124,7 +125,7 @@ export default class RequestPage extends React.Component {
   handleChangeSponser = (user, sponser) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
+    if (confirmation) {
       const submittedRequest = `Your request to change the sponser of ${user} to ${sponser} has been submitted.`;
       const dataToSend = `{"requestType":"editSponser","user":"${user}","sponser":"${sponser}"}`;
 
@@ -135,7 +136,7 @@ export default class RequestPage extends React.Component {
   handleCombineResults = (userTag, secondTag) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
+    if (confirmation) {
       const submittedRequest = `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`;
       const dataToSend = `{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`;
 
@@ -143,10 +144,21 @@ export default class RequestPage extends React.Component {
     }
   };
 
+  handleAddTournament = (tournamentUrl) => {
+    const confirmation = this.handleConfirmRequest();
+
+    if (confirmation) {
+      const submittedRequest = `Your request to add the tournament located at ${tournamentUrl} has been submitted.`;
+      const dataToSend = `{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`;
+      
+      this.handleSendRequest(submittedRequest, dataToSend);
+    }
+  };
+
   render() {
-    const addTournamentForm = <AddTournamentForm 
-      handleAddTournament={this.handleAddTournament}
-      handleChange={this.handleChange}  
+    const changeTagForm = <ChangeTagForm
+      handleChangeTag={this.handleChangeTag}
+      handleChange={this.handleChange}
     />;
     const changeMainsForm = <ChangeMainsForm 
       handleChangeMains={this.handleChangeMains}
@@ -164,12 +176,16 @@ export default class RequestPage extends React.Component {
       handleCombineResults={this.handleCombineResults}
       handleChange={this.handleChange}
     />;
+    const addTournamentForm = <AddTournamentForm 
+      handleAddTournament={this.handleAddTournament}
+      handleChange={this.handleChange}  
+    />;
 
     let displayedForm;
 
     switch (this.state.request) {
-      case 'addTournament':
-        displayedForm = addTournamentForm;
+      case 'changeTag':
+        displayedForm = changeTagForm;
         break;
       case 'changeMains':
         displayedForm = changeMainsForm;
@@ -183,6 +199,9 @@ export default class RequestPage extends React.Component {
       case 'combineResults':
         displayedForm = combineResultsForm;
         break;
+      case 'addTournament':
+        displayedForm = addTournamentForm;
+        break;
       default:
         displayedForm = <strong>Choose a request!</strong>;
     }
@@ -192,7 +211,8 @@ export default class RequestPage extends React.Component {
         <form>
           <select value={this.state.request} className='requestSelect' onChange={this.handleRequestChange} required>
             <option value='' disabled>Choose Request</option>
-            <option value='changeMains'>Add/Change Mains</option>
+            <option value='changeTag'>Change Tag</option>
+            <option value='changeMains'>Change Mains</option>
             <option value='changeHomeState'>Change State/Region</option>
             <option value='changeSponser'>Add/Change Sponser</option>
             <option value='combineResults'>Combine Results</option>

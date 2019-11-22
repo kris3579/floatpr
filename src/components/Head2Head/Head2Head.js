@@ -29,7 +29,7 @@ export default class Head2Head extends React.Component {
   render() {
     return (
       <>
-        <div className='formDiv'>
+        <div className='pairHead2HeadDiv'>
           <h3>Find Head to Head Data Between Two Players</h3>
           
           <form onSubmit={this.handleSubmit}>
