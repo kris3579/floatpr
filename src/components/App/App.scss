@@ -1,42 +1,30 @@
 body {
+  hyphens: auto;
   margin: 0 auto !important;
+  position: relative;
   text-align: center;
-  width: 90vw;
-}
-
-h1 {
-  font-size: 2.75em;
-  margin: 5px;
-}
-
-h3 {
-  margin-top: 0px;
-}
-
-h4 {
-  margin-bottom: 0px;
-}
-
-p {
-  margin-top: 5px;
+  width: 95vw;
 }
 
 nav {
-  margin-bottom: 15px;
+  background-color: #333333;
 }
 
-span {
-  font-weight: bold;
+h1 {
+  font-size: 40px;
+  margin: .25vh;
 }
 
-input {
-  width: 30vw;
-  margin-left: 10px;
-  margin-right: 10px;
+h2 {
+  margin: .75vh 0 .5vh;
 }
 
-select {
-  margin: 15px;
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
 }
 
 a {
@@ -46,24 +34,30 @@ a {
 
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.graphContainer {
-  position: relative;
-  height: 600px;
-  width: inherit;
+.greenText {
+  color: rgb(0, 160, 0);
+  font-weight: bold;
 }
 
-.removeImg {
-  padding-top: 5px;
+.redText {
+  color: rgb(240, 0, 0);
+  font-weight: bold;
 }
 
-// Nav Styling
+.yellowText {
+  color: rgb(255, 239, 95);
+  font-weight: bold;
+}
+
+// -----Nav Styling-----
 .navUl {
-  background-color: #333333;
   height: 5vh;
-  padding-left: 7.5px;
-  margin: 0px;
+  padding-left: .75vh;
+  margin: 0;
 }
 
 .navLi:last-child > a {
@@ -80,60 +74,96 @@ ul {
   border-right: 1px solid white; 
   color: white;
   font-size: 18px;
-  padding: 0px 10px;
+  padding: 0 .75vw;
   text-decoration: none;
 }
 
-// Pagination Styling
+// -----React-Burger-Menu Styling-----
+.bm-burger-button {
+  position: fixed;
+  width: 28px;
+  height: 22px;
+  right: 5vw;
+  top: 1.5vh;
+}
+ 
+.bm-burger-bars {
+  background-color: #333333;
+}
+ 
+.bm-menu-wrap {
+  width: 70vw !important;
+}
+ 
+.bm-menu {
+  background: #333333;
+  padding: 2vh 5vw;
+}
+
+.bm-item {
+  border-bottom: solid white 1px;
+  color: white;
+  display: inline-block;
+  font-size: 18px;
+  outline: none;
+  padding: .75vh 0;
+}
+
+.bm-item:last-child {
+  border-bottom: none;
+}
+ 
+.bm-overlay {
+  background: rgba(0, 0, 0, 0) !important;
+}
+
+// -----Pagination Styling-----
 .paginationUl {
   height: 5vh;
   background-color: #333333;
   font-size: 18px;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
 }
 
-.paginationUl:last-child >  {
-  border-right: none;
-}
-
-.paginationLi {
+.pagination {
   display: inline;
   line-height: 5vh;
+  padding: 0 .75vw;
 }
 
-.currentPagination {
-  color: black;
-  padding: 0px 15px;
-}
-
-.otherPagination {
+.paginationButton {
   color: rgb(0, 125, 0);
-  padding: 0px 15px;
+  font-size: 13px;
+  width: 5vw;
 }
 
-// Tables Styling
+.currentPagination > button {
+  color: black;
+}
+
+// -----Tables Styling-----
 table {
   border: solid black 1px;
   border-spacing: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
   width: 100%;
 }
 
 th {
-  padding: 10px;
+  padding: 10px 2.5px;
 }
 
 td {
-  padding: 7.5px 0px;
+  padding: 7.5px 2.5px;
 }
 
 tr:nth-child(even) {
-  background-color: #bbbbbb;
+  background-color: #dddddd;
 }
 
 tr:nth-child(odd) {
-  background-color: #888888;
+  background-color: #aaaaaa;
 }
 
 .headerRow {
@@ -141,12 +171,50 @@ tr:nth-child(odd) {
   color: white;
 }
 
-.percentagesComparison {
-  font-size: 12px;
-  font-weight: normal;
+// -----Sets Table Styling-----
+.roundColumn {
+  padding-left: 1vw;
+  text-align: left;
+  width: 20%; 
 }
 
-//Player Rankings Table Styling
+.playerColumn {
+  width: 20%;
+}
+
+.scoreColumn {
+  width: 10%
+}
+
+.tournamentsColumn {
+  width: 30%
+}
+
+.tsRoundColumn {
+  padding-left: 1vw;
+  text-align: left;
+  width: 30%;
+}
+
+.tsPlayerColumn {
+  width: 30%;
+}
+
+.tsScoreColumn {
+  width: 10%;
+}
+
+// -----Player Rankings Styling-----
+.rankingSelect {
+  margin: 1.5vh .5vw;
+}
+
+.rankingSelectLabel {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 1.5vh .5vw;
+}
+
 .rankColumn {
   width: 5%;
 }
@@ -159,8 +227,12 @@ tr:nth-child(odd) {
   width: 20%;
 }
 
-.fightersColumn {
+.mainsColumn {
   width: 25%;
+}
+
+.mainsColumn > img {
+  vertical-align: middle;
 }
 
 .ratingColumn {
@@ -171,78 +243,142 @@ tr:nth-child(odd) {
   width: 15%;
 }
 
-// Sets Table Styling
-.roundColumn {
-  width: 20%; 
+// -----Tournaments Styling-----
+.tournamentsListHeader {
+  margin: 1.5vh;
 }
 
-.playerColumn {
-  width: 20%;
-}
-
-.scoreColumn {
-  width: 5%
-}
-
-.tournamentsColumn {
-  width: 20%
-}
-
-.greenText {
-  color: rgb(20, 130, 20);
-}
-
-.redText {
-  color: rgb(190, 20, 20);
-}
-
-.yellowText {
-  color: rgb(238, 216, 20);
-}
-
-.personalHead2HeadTable {
-  float: left;
-  width: 70%;
-}
-
-.matchupList {
-  float: right;
-  margin: 0px 0px 25px 0px;
-  padding: 0px;
-  width: 30%;
-}
-
-.matchupButton {
-  display: inline-block;
-  margin: 2.5px 5px;
-}
-
-// Tournaments Table Styling
 .tournamentNameColumn {
-  padding-left: 15px;
+  padding-left: 1vw;
   text-align: left;
-  width: 25%
+  width: 30%
 }
 
 .tournamentWinnerColumn {
   width: 15%;
 }
 
+.dateColumn {
+  width: 10%;
+}
+
+.entrantsColumn {
+  width: 7.5%;
+}
+
+.setsColumn {
+  width: 7.5%;
+}
+
 .tournamentUrlColumn {
+  width: 30%;
+}
+
+// -----Tournament Profile Styling-----
+.tournamentHeader {
+  margin: 1vh;
+}
+
+.tournamentDiv {
+  display: block;
+  margin: 0 auto 1.5vh;
+  max-width: 90%;
+}
+
+.tournamentInfo > li {
+  margin-bottom: 1vh;
+}
+
+// -----Player Profile Styling-----
+.playerHeader {
+  margin: 1vh;
+}
+
+.mainsDiv {
+  margin-bottom: .5vh;
+}
+
+.playerDiv {
+  display: inline-block;
+  margin: 0 2.5vw;
+}
+
+.mobilePlayerStatistics {
+  margin-top: .25vh;
+}
+
+.playerInfoForm {
+  margin: 1vh;
+}
+
+.playerInfoLabel {
+  margin: 0 1vw;
+}
+
+.whichGraph {
+  margin-bottom: .5vh;
+}
+
+.graph {
+  height: 62vh;
+}
+
+// -----Player Profile Head 2 Head Styling-----
+.personalHead2HeadTable {
+  float: left;
+  width: 67%;
+}
+
+.matchupColumn {
+  width: 45%;
+}
+
+.comparisonColumn {
   width: 20%;
 }
 
-.dateColumn {
+.removeColumn {
   width: 15%;
 }
 
-// Top Player Head 2 Head Table Styling 
+.matchupList {
+  border: solid black 3px;
+  box-sizing: border-box;
+  float: right;
+  margin: 0;
+  padding: .5vh 0;
+  vertical-align: top;
+  width: 30%;
+}
+
+.matchupButton {
+  display: inline-block;
+  margin: .25vh .25vw;
+}
+
+.removeImg {
+  vertical-align: middle;
+}
+
+// -----Top Player Head 2 Head Styling-----
+.pairHead2HeadDiv {
+  border: 1px solid black;
+  background-color: #bbbbbb;
+  padding: .75vh .75vw;
+  margin: 1.5vh auto;
+  width: 90%;
+}
+
+.head2HeadTableHeader {
+  margin-bottom: 1vh;
+}
+
 .head2HeadTable {
   table-layout: fixed;
 }
 
 .head2HeadTh {
-  padding: 14px 0px;
+  padding: .75vh .5vw;
   border: solid 0.5px black;
   line-height: 16px;
 }
@@ -258,28 +394,208 @@ tr:nth-child(odd) {
 }
 
 .noDataTd {
-  font-size: 14px;
+  font-size: 16px;
 }
 
-// Request Page Styling
+.percentagesComparison {
+  font-size: 12px;
+}
+
+// ----Pair Head 2 Head Styling-----
+.pairH2HDiv {
+  display: inline-block;
+  margin: 1vh 2.5vw 1.5vh;
+}
+
+.mobilePairStatistics {
+  margin: 1vh 0;
+}
+
+// -----Request Page Styling-----
+.requestSelect {
+  margin: 1.5vh;
+}
+
 .formDiv {
   border: 1px solid black;
-  background-color: #aaaaaa;
-  padding: 10px 10px 10px 10px;
-  margin: 20px auto 25px;
+  background-color: #bbbbbb;
+  padding: .75vh .75vw;
+  margin: 0 auto 1.5vh;
   width: 90%;
 }
 
-.formSelect {
-  margin: 0px 10px;
+.requestPrompt {
+  margin-bottom: 1.5vh;
 }
 
-.requestLabel {
-  display: block;
-  text-align: left;
+.formSelect {
+  margin: 1vh .5vw 0;
+}
+
+.requestInput {
+  width: 30vw;
+  margin: 0 1vw;
 }
 
 .requestButton {
   display: block;
-  margin: 10px auto 0px;
+  margin: 1vh auto 0;
+}
+
+// -----About Styling-----
+.aboutDiv {
+  background-color: #bbbbbb;
+  border: 3px inset black;
+  border-radius: 25px;
+  margin: 1.5vh auto 0;
+  padding: 7.5px;
+  width: fit-content;
+}
+
+.aboutDiv:last-child {
+  margin-bottom: 1.5vh;
+}
+
+.aboutH3 {
+  margin-bottom: 1vh;
+}
+
+@media (max-width: 979px) {
+  // ----Top Player Head 2 Head Table Styling-----
+  .head2HeadTableDiv {
+    overflow-x: scroll;
+  }
+
+  .head2HeadTable {
+    width: 1080px;
+  }
+
+  .leftHeader {
+    position: sticky;
+  }
+
+  @media (orientation: landscape) {
+    // -----Nav Styling-----
+    .navUl {
+      height: 7.5vh;
+    }
+
+    .navLink {
+      line-height: 7.5vh;
+    }
+
+    // ----Pagination Styling-----
+    .paginationUl {
+      height: 7.5vh;
+    }
+
+    .pagination {
+      line-height: 7.5vh;
+    }
+
+    // -----Player Profile Styling-----
+    .graph {
+      height: 95vh;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 32px;
+  }
+
+  // -----Nav Styling-----
+  .navLink {
+    border-right: none;
+    font-size: 14px;
+  }
+
+  // -----Tables Styling-----
+  table {
+    font-size: 12px;
+  }
+
+  // -----Player Rankings-----  
+  .rankingSelect {
+    margin: 1.5vh .25vw;
+  }
+  
+  .rankingSelectLabel {
+    font-size: 14px;
+    margin: 1.5vh 0;
+  }
+
+  .mainsColumn > img {
+    width: 35%;
+    vertical-align: middle;
+  }
+
+  // -----Sets Styling-----
+  .roundColumn, .tsRoundColumn {
+    padding-left: 2.5px;
+    text-align: center;
+  }
+
+  // -----Tournaments Styling-----
+  .tournamentNameColumn {
+    padding-left: 2.5px;
+    text-align: center;
+  }
+
+  // -----Player Profile Styling-----
+  .graph {
+    width: 900px;
+  }
+
+  .graphContainer {
+    overflow-x: scroll;
+  }
+
+  // -----Player Profile Head 2 Head Table Styling-----
+  .personalHead2HeadTable {
+    width: 100%;
+  }
+
+  .matchupList {
+    display: block;
+    margin: 0 auto 1vh;
+    width: 100%;
+  }
+
+  .matchupButton {
+    margin: .25vh 1vw;
+  }
+
+  // -----Request Page Styling-----
+  .requestSelect {
+    margin: 5vh 0 2.5vh;
+  }
+  
+  .formDiv {
+    font-size: 12px;
+  }
+  
+  .requestInput {
+    display: block;
+    margin: 1.5vh auto;
+    width: 60%;
+  }
+
+  .formSelect {
+    margin: 1.5vh 2.5vw;
+  }
+
+  // -----About Styling-----
+  .aboutDiv {
+    width: 90%;
+  }
 }

@@ -4,28 +4,31 @@ import { Link } from 'react-router-dom';
 
 export default class PlayerRow extends React.Component {
   render() {
+    const { player } = this.props;
+    const playerName = player.sponser === '' ? player.name : `${player.sponser} | ${player.name}`;
+
     return (
       <tr>
         <td className='rankColumn'>{this.props.rank}</td>
-        <td className='regionColumn'>{this.props.player.state}</td>
+        <td className='stateColumn'>{player.state}</td>
       
         <td className='nameColumn'>
-          <Link to={{ pathname: `/player/${this.props.player.name}` }}>
-            {this.props.player.name}
+          <Link to={{ pathname: `/player/${player.name}` }}>
+            {playerName}
           </Link>
         </td>
 
         <td className='mainsColumn'>{
-          this.props.player.mains.map((main, i) => {
+          player.mains.map((main, i) => {
             return (
               <img src={require(`../../../../assets/stockIcons/${main}.png`)} alt='Fighter Icon' key={i}></img> // eslint-disable-line
             );
           })
         }</td>
 
-        <td className='scoreColumn'>{this.props.player.rating}</td>
-        <td className='winRateColumn'>{`${this.props.player.set_win_rate}%`}</td>
-        <td className='winRateColumn'>{`${this.props.player.game_win_rate}%`}</td>
+        <td className='scoreColumn'>{player.rating}</td>
+        <td className='winRateColumn'>{`${player.set_win_rate}%`}</td>
+        <td className='winRateColumn'>{`${player.game_win_rate}%`}</td>
       </tr>
     );
   }

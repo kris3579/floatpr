@@ -25,7 +25,6 @@ export default class PersonalHead2Head extends React.Component {
       if (a.setsPlayed === b.setsPlayed) {
         return b.setAvg[0] - a.setAvg[0];
       }
-  
 
       return b.setsPlayed - a.setsPlayed;
     })
@@ -72,16 +71,16 @@ export default class PersonalHead2Head extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
         <MatchupList
-          deselectedMatchups={this.state.deselectedMatchups}
-          handleSelectMatchup={this.handleSelectMatchup}
+            deselectedMatchups={this.state.deselectedMatchups}
+            handleSelectMatchup={this.handleSelectMatchup}
         />
         <Head2HeadTable
           handleDeselectMatchup={this.handleDeselectMatchup}
           selectedMatchups={this.state.selectedMatchups}
         />
-      </>
+      </div>
     );
   }
 }

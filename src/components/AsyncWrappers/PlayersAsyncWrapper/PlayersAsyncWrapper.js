@@ -25,15 +25,20 @@ class PlayersAsyncWrapper extends React.Component {
             <>
               {
                 childrenArray.map((child, i) => {
+                  if (i === 0) {
+                    return (
+                      React.cloneElement(child, { playersObject: playersData, key: i })
+                    );
+                  }
                   return (
-                    React.cloneElement(child, { playersObject: playersData, key: i })
+                    React.cloneElement(child, { key: i })
                   );
                 })
               }
             </>
           )}
         </Async.Resolved>
-        <Async.Rejected>{(error) => error.message}</Async.Rejected>
+        <Async.Rejected>{() => 'Something went wrong'}</Async.Rejected>
       </Async>
     );
   }

@@ -22,31 +22,13 @@ export default class RankingTable extends React.Component {
     });
   };
 
-  handleIncreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination + 1,
-    });
-    window.scrollTo(0, 0);
-  };
-
-  handleDecreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination - 1,
-    });
-    window.scrollTo(0, 0);
-  };
-
-  handleSelectPagination = (e, newPagination) => {
+  handleChangePagination = (e, newPagination) => {
     e.preventDefault();
     this.setState({
       currentPagination: newPagination,
     });
     window.scrollTo(0, 0);
-  };
+  }
 
   render() {
     const { playersObject } = this.props;
@@ -61,10 +43,9 @@ export default class RankingTable extends React.Component {
     return (
       <>
         <form>
-          <label>Ranking:</label>
-          <select name='rankingFilter' value={this.state.rankingFilter} onChange={this.handleChange} required>
+          <label className='rankingSelectLabel'>Ranking:</label>
+          <select name='rankingFilter' value={this.state.rankingFilter} className='rankingSelect' onChange={this.handleChange} required>
             <option value='activeWashingtonPlayers'>Active Washington Players</option>
-            <option value='washingtonPlayers'>All Washington Players</option>
             <option value='allPlayers'>All Players</option>
           </select>
         </form>
@@ -73,9 +54,9 @@ export default class RankingTable extends React.Component {
           <tbody>
             <tr className='headerRow'>
               <th className='rankColumn'>Rank</th>
-              <th className='regionColumn'>State/Region</th>
+              <th className='stateColumn'>State</th>
               <th className='tagColumn'>Tag</th>
-              <th className='fightersColumn'>Fighters</th>
+              <th className='mainsColumn'>Mains</th>
               <th className='ratingColumn'>Rating</th>
               <th className='winRateColumn'>Set Win Rate</th>
               <th className='winRateColumn'>Game Win Rate</th>
@@ -97,9 +78,7 @@ export default class RankingTable extends React.Component {
         <div>
           <PaginationUl
             currentPagination={currentPagination}
-            handleDecreasePagination={this.handleDecreasePagination}
-            handleIncreasePagination={this.handleIncreasePagination}
-            handleSelectPagination={this.handleSelectPagination}
+            handleChangePagination={this.handleChangePagination}
             maxPaginations={maxPaginations}
           />
         </div>

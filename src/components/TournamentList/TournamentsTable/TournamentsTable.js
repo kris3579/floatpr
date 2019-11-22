@@ -7,57 +7,44 @@ import PaginationUl from '../../PaginationUl/PaginationUl';
 export default class TournamentsTable extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       currentPagination: 1,
     };
   }
 
-  handleIncreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination + 1,
-    });
-  };
-
-  handleDecreasePagination = (e) => {
-    e.preventDefault();
-    const oldPagination = this.state.currentPagination;
-    this.setState({
-      currentPagination: oldPagination - 1,
-    });
-  };
-
-  handleSelectPagination = (e, newPagination) => {
+  handleChangePagination = (e, newPagination) => {
     e.preventDefault();
     this.setState({
       currentPagination: newPagination,
     });
-  };
+    window.scrollTo(0, 0);
+  }
 
   render() {
     const { tournamentsObject } = this.props;
     const { currentPagination } = this.state;
-    const maxPaginations = Math.floor(tournamentsObject.tournamentsArray.length / 50) + 1;
+    const numberOfTournaments = tournamentsObject.tournamentsArray.length;
+    const maxPaginations = Math.floor(numberOfTournaments / 50) + 1;
 
     return (
       <>
-        <h3>List of Tournaments</h3>
+        <h3 className='tournamentsListHeader'>Tournaments in database: {numberOfTournaments}</h3>
         <table>
           <tbody>
             <tr className='headerRow'>
               <th className='tournamentNameColumn'>Name</th>
               <th className='tournamentWinnerColumn'>Winner</th>
               <th className='dateColumn'>Date</th>
+              <th className='entrantsColumn'>Entrants</th>
+              <th className='setsColumn'>Sets</th>
               <th className='tournamentUrlColumn'>Bracket Link</th>
             </tr>
             {
               tournamentsObject.tournamentsArray.map((tournament, i) => {
                 return (
                   <TournamentRow
-                  tournament={tournament}
-                  key={i}
+                    tournament={tournament}
+                    key={i}
                   />
                 );
               })
@@ -67,9 +54,7 @@ export default class TournamentsTable extends React.Component {
 
         <PaginationUl
           currentPagination={currentPagination}
-          handleDecreasePagination={this.handleDecreasePagination}
-          handleIncreasePagination={this.handleIncreasePagination}
-          handleSelectPagination={this.handleSelectPagination}
+          handleChangePagination={this.handleChangePagination}
           maxPaginations={maxPaginations}
         />
       </>

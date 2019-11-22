@@ -1,10 +1,12 @@
 import React from 'react';
 import superagent from 'superagent';
 
-import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
+import ChangeTagForm from './ChangeTagForm/ChangeTagForm';
 import ChangeMainsForm from './ChangeMainsForm/ChangeMainsForm';
 import ChangeHomeStateForm from './ChangeHomeStateForm/ChangeHomeStateForm';
+import ChangeSponserForm from './ChangeSponserForm/ChangeSponserForm';
 import CombineResultsForm from './CombineResultsForm/CombineResultsForm';
+import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
 
 export default class RequestPage extends React.Component {
   constructor(props) {
@@ -22,44 +24,61 @@ export default class RequestPage extends React.Component {
     component.setState({
       [name]: value,
     });
-  };
+  }
 
   handleRequestChange = (event) => {
     this.setState({
       request: event.target.value,
       submittedRequest: '',
     });
-  };
+  }
 
   handleConfirmRequest = () => {
     return window.confirm('Are you sure you would like to make this request?'); // eslint-disable-line
   }
 
-  handleAddTournament = (tournamentUrl) => {
+  handleSendRequest = (submittedRequest, dataToSend) => {
+    this.setState({
+      request: '',
+      submittedRequest,
+    });
+
+    superagent.post('http://localhost:3579/userRequest')
+      .set('Content-Type', 'application/json')
+      .send(dataToSend)
+      .catch(() => {
+        this.setState({
+          submittedRequest: 'Attempt to send request unsuccessful',
+        });
+      });
+  }
+
+  handleChangeTag = (user, newTag) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
-      this.setState({
-        request: '',
-        submittedRequest: `Your request to add the tournament located at ${tournamentUrl} has been submitted.`,
-      });
-
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(`{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`)
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
-        });
+    if (confirmation) {
+      const submittedRequest = `Your request to change your tag from ${user} to ${newTag} has been submitted`;
+      const dataToSend = `{"requestType":"editTag","user":"${user}","newTag":"${newTag}"}`;
+      
+      this.handleSendRequest(submittedRequest, dataToSend);
     }
+  }
+
+  upperCase = (str) => {
+    return str.toUpperCase();
+  };
+
+  formatName = (str) => {
+    const name = str.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+    const firstLetterOnWord = /(^|\s)[a-z]/g;
+    return name.replace(firstLetterOnWord, this.upperCase);
   };
   
   handleChangeMains = (user, mains) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
-      const requestBody = {
+    if (confirmation) {
+      const dataToSend = {
         requestType: 'editMains',
         user,
       };
@@ -72,91 +91,74 @@ export default class RequestPage extends React.Component {
         if (i === 0) {
           submittedRequest += ` Main: ${formattedName}, Color: ${main.color}`; 
           const despacedName = formattedName.replace(/\s/g, '');
-          requestBody.firstMain = `${main.color} ${despacedName}`;
+          dataToSend.firstMain = `${main.color} ${despacedName}`;
         }
 
         if (i === 1) {
           submittedRequest += ` | Second: ${formattedName}, Color: ${main.color}`;
           const despacedName = formattedName.replace(/\s/g, '');
-          requestBody.secondMain = `${main.color} ${despacedName}`;
+          dataToSend.secondMain = `${main.color} ${despacedName}`;
         }
 
         if (i === 2) {
           submittedRequest += ` | Third: ${formattedName}, Color: ${main.color}`;
           const despacedName = formattedName.replace(/\s/g, '');
-          requestBody.thirdMain = `${main.color} ${despacedName}`;
+          dataToSend.thirdMain = `${main.color} ${despacedName}`;
         }
       });
 
-      this.setState({
-        request: '',
-        submittedRequest,
-      });
-
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(JSON.stringify(requestBody))
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
-        });
+      this.handleSendRequest(submittedRequest, JSON.stringify(dataToSend));
     }
   }
-  
-  upperCase = (str) => {
-    return str.toUpperCase();
-  };
-
-  formatName = (str) => {
-    const name = str.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
-    const firstLetterOnWord = /(^|\s)[a-z]/g;
-    return name.replace(firstLetterOnWord, this.upperCase);
-  };
 
   handleChangeHomeState = (user, state) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
-      this.setState({
-        request: '',
-        submittedRequest: `Your request to change the home state/region of ${user} to ${state} has been submitted.`,
-      });
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(`{"requestType":"editState","user":"${user}","state":"${state}"}`)
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
-        });
+    if (confirmation) {
+      const submittedRequest = `Your request to change the home state/region of ${user} to ${state} has been submitted.`;
+      const dataToSend = `{"requestType":"editState","user":"${user}","state":"${state}"}`;
+
+      this.handleSendRequest(submittedRequest, dataToSend);
+    }
+  };
+
+  handleChangeSponser = (user, sponser) => {
+    const confirmation = this.handleConfirmRequest();
+
+    if (confirmation) {
+      const submittedRequest = `Your request to change the sponser of ${user} to ${sponser} has been submitted.`;
+      const dataToSend = `{"requestType":"editSponser","user":"${user}","sponser":"${sponser}"}`;
+
+      this.handleSendRequest(submittedRequest, dataToSend);
     }
   };
 
   handleCombineResults = (userTag, secondTag) => {
     const confirmation = this.handleConfirmRequest();
 
-    if (confirmation === true) {
-      this.setState({
-        request: '',
-        submittedRequest: `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`,
-      });
+    if (confirmation) {
+      const submittedRequest = `Your request to merge the results of ${secondTag} into your main tag ${userTag} has been submitted.`;
+      const dataToSend = `{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`;
 
-      superagent.post('http://localhost:3579/userRequest')
-        .set('Content-Type', 'application/json')
-        .send(`{"requestType":"combineResults","userTag":"${userTag}","secondTag":"${secondTag}"}`)
-        .catch((error) => {
-          this.setState({
-            submittedRequest: `Recieved ${error.status} error code!`,
-          });
-        });
+      this.handleSendRequest(submittedRequest, dataToSend);
+    }
+  };
+
+  handleAddTournament = (tournamentUrl) => {
+    const confirmation = this.handleConfirmRequest();
+
+    if (confirmation) {
+      const submittedRequest = `Your request to add the tournament located at ${tournamentUrl} has been submitted.`;
+      const dataToSend = `{"requestType":"addTournament","tournamentURL":"${tournamentUrl}"}`;
+      
+      this.handleSendRequest(submittedRequest, dataToSend);
     }
   };
 
   render() {
-    const addTournamentForm = <AddTournamentForm 
-      handleAddTournament={this.handleAddTournament}
-      handleChange={this.handleChange}  
+    const changeTagForm = <ChangeTagForm
+      handleChangeTag={this.handleChangeTag}
+      handleChange={this.handleChange}
     />;
     const changeMainsForm = <ChangeMainsForm 
       handleChangeMains={this.handleChangeMains}
@@ -166,16 +168,24 @@ export default class RequestPage extends React.Component {
       handleChangeHomeState={this.handleChangeHomeState}
       handleChange={this.handleChange}  
     />;
+    const changeSponserForm = <ChangeSponserForm
+      handleChangeSponser={this.handleChangeSponser}
+      handleChange={this.handleChange}
+    />;
     const combineResultsForm = <CombineResultsForm 
       handleCombineResults={this.handleCombineResults}
       handleChange={this.handleChange}
+    />;
+    const addTournamentForm = <AddTournamentForm 
+      handleAddTournament={this.handleAddTournament}
+      handleChange={this.handleChange}  
     />;
 
     let displayedForm;
 
     switch (this.state.request) {
-      case 'addTournament':
-        displayedForm = addTournamentForm;
+      case 'changeTag':
+        displayedForm = changeTagForm;
         break;
       case 'changeMains':
         displayedForm = changeMainsForm;
@@ -183,8 +193,14 @@ export default class RequestPage extends React.Component {
       case 'changeHomeState':
         displayedForm = changeHomeStateForm;
         break;
+      case 'changeSponser':
+        displayedForm = changeSponserForm;
+        break;
       case 'combineResults':
         displayedForm = combineResultsForm;
+        break;
+      case 'addTournament':
+        displayedForm = addTournamentForm;
         break;
       default:
         displayedForm = <strong>Choose a request!</strong>;
@@ -193,10 +209,12 @@ export default class RequestPage extends React.Component {
     return (
       <>
         <form>
-          <select value={this.state.request} onChange={this.handleRequestChange} required>
+          <select value={this.state.request} className='requestSelect' onChange={this.handleRequestChange} required>
             <option value='' disabled>Choose Request</option>
-            <option value='changeMains'>Add/Change Mains</option>
+            <option value='changeTag'>Change Tag</option>
+            <option value='changeMains'>Change Mains</option>
             <option value='changeHomeState'>Change State/Region</option>
+            <option value='changeSponser'>Add/Change Sponser</option>
             <option value='combineResults'>Combine Results</option>
             <option value='addTournament'>Add Tournament</option>
           </select>

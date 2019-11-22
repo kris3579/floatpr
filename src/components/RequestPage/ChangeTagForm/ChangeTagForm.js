@@ -1,34 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class ChangeStateForm extends React.Component {
+export default class ChangeTagForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       user: '',
-      state: '',
+      newTag: '',
     };
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.handleChangeHomeState(this.state.user, this.state.state.toUpperCase());
+    this.props.handleChangeTag(this.state.user, this.state.newTag);
     this.setState({
       user: '',
-      state: '',
+      newTag: '',
     });
   }
 
   render() {
     return (
       <>
-        <h3 className='requestPrompt'>Enter Home State(WA), Territory(BC), or Country(JPN)</h3>
-      
+        <h3 className='requestPrompt'>Enter your currently stored tag and your new tag</h3>
+
         <form onSubmit={this.handleSubmit}>
           <input type='text' name='user' className='requestInput' placeholder='Your Tag' onChange={(event) => this.props.handleChange(event, this)} required/>
-          <input type='text' name='state' className='requestInput' placeholder='Your State/Region (3 letters max)' onChange={(event) => this.props.handleChange(event, this)} pattern='[A-Za-z]{2,3}' required/>
-
+          <input type='text' name='newTag' className='requestInput' placeholder='New Tag' onChange={(event) => this.props.handleChange(event, this)} required/>
+        
           <button type='submit' className='requestButton'>Submit</button>
         </form>
       </>
@@ -36,7 +36,7 @@ export default class ChangeStateForm extends React.Component {
   }
 }
 
-ChangeStateForm.propTypes = {
+ChangeTagForm.propTypes = {
   handleChange: PropTypes.func,
-  handleChangeHomeState: PropTypes.func,
+  handleChangeTag: PropTypes.func,
 };
