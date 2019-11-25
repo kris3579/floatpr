@@ -5,7 +5,7 @@ export default class MatchupList extends React.Component {
   render() {
     const matchupList = this.props.deselectedMatchups.length > 0
       ? <div className='matchupList'>
-        <h3>Unselected Matchups</h3>
+        <h3 className='aboutH3'>Unselected Matchups</h3>
         <ul>
           {
             this.props.deselectedMatchups.map((matchup, i) => {

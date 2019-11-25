@@ -11,6 +11,7 @@ import TournamentProfile from '../TournamentProfile/TournamentProfile';
 import Head2Head from '../Head2Head/Head2Head';
 import PairHead2Head from '../PairHead2Head/PairHead2Head';
 
+import './reset.css';
 import './App.scss';
 
 export default class App extends React.Component {
