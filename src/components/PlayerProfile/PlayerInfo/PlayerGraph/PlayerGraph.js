@@ -31,8 +31,8 @@ export default class PlayerGraph extends React.Component {
     
     let yLabel = 'Rating';
     let stepSize = 75;
-    let suggestedMax = 2200;
-    let suggestedMin = 1650;
+    let suggestedMax = Math.max(...player.rating_history) + 100;
+    let suggestedMin = Math.min(...player.rating_history) - 100;
 
     if (this.state.whichGraph !== 'rating') {
       datasets = [{

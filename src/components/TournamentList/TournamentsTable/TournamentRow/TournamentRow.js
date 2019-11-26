@@ -20,13 +20,16 @@ export default class TournamentRow extends React.Component {
     shortenedURL = shortenedURL.replace(/\/tournament/, '');
     shortenedURL = shortenedURL.replace(/\/event.*/, '');
 
+    const mobileTournamentName = tournament.name.length > 25 ? `${tournament.name.slice(0, 25)}...` : tournament.name;
+    const mobileTournamentURL = shortenedURL.length > 60 ? `${shortenedURL.slice(0, 60)}...` : shortenedURL;
+
     return (
       <tr>
         <td className='tournamentNameColumn'>
           <Link to={{ pathname: `/tournament/${tournament.id}` }}>
             <MediaQuery maxDeviceWidth={480}>
               {(matches) => {
-                return matches ? `${tournament.name.slice(0, 15)}...` : tournament.name;
+                return matches ? mobileTournamentName : tournament.name;
               }}
             </MediaQuery>
           </Link>
@@ -46,7 +49,7 @@ export default class TournamentRow extends React.Component {
           <a href={tournament.url}>
             <MediaQuery maxDeviceWidth={480}>
               {(matches) => {
-                return matches ? `${shortenedURL.slice(0, 12)}...` : shortenedURL;
+                return matches ? mobileTournamentURL : shortenedURL;
               }}
             </MediaQuery>
           </a>

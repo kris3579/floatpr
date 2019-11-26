@@ -122,7 +122,8 @@ export default class PlayerInfo extends React.Component {
           }
         </div>
 
-        <h3 className='statisticsHeader'>Statistics</h3>
+        <h3>Statistics</h3>
+        
         <MediaQuery maxDeviceWidth={480}>
           {(matches) => {
             return matches ? mobileStatistics : desktopStatistics;

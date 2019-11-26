@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
+import PropTypes from 'prop-types';
 
 export default class SetsRow extends React.Component {
   render() {
@@ -8,6 +9,18 @@ export default class SetsRow extends React.Component {
 
     const winnerName = set.winner_sponser === '' ? set.winner_name : `${set.winner_sponser} | ${set.winner_name}`;
     const loserName = set.loser_sponser === '' ? set.loser_name : `${set.loser_sponser} | ${set.loser_name}`;
+    const shortenedName = set.tournament_name.length > 35 ? `${set.tournament_name.slice(0, 35)}...` : set.tournament_name;
+
+    const tournamentColumn = <td className='tournamentColumn'>
+      <Link to={{ pathname: `/tournament/${set.tournament_id}` }}>
+        <MediaQuery maxDeviceWidth={480}>
+          {(matches) => {
+            return matches ? shortenedName : set.tournament_name;
+          }}
+        </MediaQuery>
+      </Link>
+    </td>;
+
 
     let rowToRender = <tr>
       <td className='roundColumn'>{set.round}</td>
@@ -26,11 +39,7 @@ export default class SetsRow extends React.Component {
         </Link>
       </td>
 
-      <td className='tournamentColumn'>
-        <Link to={{ pathname: `/tournament/${set.tournament_id}` }}>
-          {set.tournament_name}
-        </Link>
-      </td>
+      {tournamentColumn}
     </tr>;
 
     if (setsType === 'tournamentSets') {
@@ -71,11 +80,7 @@ export default class SetsRow extends React.Component {
           </Link>
         </td>
 
-        <td className='tournamentColumn'>
-          <Link to={{ pathname: `/tournament/${set.tournament_id}` }}>
-            {set.tournament_name}
-          </Link>
-        </td>
+        {tournamentColumn}
       </tr>;
     }
 
@@ -97,11 +102,7 @@ export default class SetsRow extends React.Component {
           </Link>
         </td>
 
-        <td className='tournamentColumn'>
-          <Link to={{ pathname: `/tournament/${set.tournament_id}` }}>
-            {set.tournament_name}
-          </Link>
-        </td>
+        {tournamentColumn}
       </tr>;
     }
     

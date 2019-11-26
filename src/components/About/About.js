@@ -20,7 +20,7 @@ export default class About extends React.Component {
         </div>
 
         <div className='aboutDiv'>
-          <h3 className='aboutH3'>How It Works</h3>
+          <h3>How It Works</h3>
           <p>
             FloatPR uses an <a href='https://github.com/ReedD/glicko-two'>implementation</a> of
             the Glicko-2 formula created by Mark Glickman to rank players. A Player must have
@@ -32,7 +32,7 @@ export default class About extends React.Component {
         </div>
 
         <div className='aboutDiv'>
-          <h3 className='aboutH3'>Making Requests</h3>
+          <h3>Making Requests</h3>
           <p>
             On the requests page you may make a number of requests to add to/edit the database
             including:<br/>
@@ -51,7 +51,7 @@ export default class About extends React.Component {
         </div>
 
         <div className='aboutDiv'>
-          <h3 className='aboutH3'>Actively Added Tournament Series</h3>
+          <h3>Actively Added Tournament Series</h3>
           <ul>
             <a href='https://tsns.challonge.com/tournaments'>That&apos;s Not Safe</a><br/>
             <a href='https://challonge.com/users/uwsmash'>UW Weekly</a><br/>
