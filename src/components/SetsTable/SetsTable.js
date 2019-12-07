@@ -17,9 +17,34 @@ export default class SetsTable extends React.Component {
     let sets;
     let headerRow;
     let player = '';
+    let player1Match;
+    let player2Match;
+    let player1Name;
+    let player2Name;
 
-    const player1Name = player1 ? player1.match(/\b[^|]+$/) : null;
-    const player2Name = player2 ? player2.match(/\b[^|]+$/) : null;
+    if (player1) {
+      player1Match = player1.split(' | '); 
+       
+      if (player1Match.length === 1) {
+        [player1Name] = player1Match;
+      }
+      if (player1Match.length === 2) {
+        // eslint-disable-next-line prefer-destructuring
+        player1Name = player1Match[1];
+      }
+    }
+
+    if (player2) {
+      player2Match = player2.split(' | ');
+      
+      if (player2Match.length === 1) {
+        [player2Name] = player2Match;
+      }
+      if (player2Match.length === 2) {
+        // eslint-disable-next-line prefer-destructuring
+        player2Name = player2Match[1];
+      }
+    }
 
     switch (setsType) {
       case 'tournamentSets':
@@ -59,8 +84,8 @@ export default class SetsTable extends React.Component {
         </tr>;
 
         sets = head2HeadObject.setsArray.filter((set) => {
-          return (set.winner_name === player1Name[0] && set.loser_name === player2Name[0]) 
-          || (set.winner_name === player2Name[0] && set.loser_name === player1Name[0]);
+          return (set.winner_name === player1Name && set.loser_name === player2Name) 
+          || (set.winner_name === player2Name && set.loser_name === player1Name);
         });
         break;
       default:

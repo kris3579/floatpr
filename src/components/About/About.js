@@ -54,12 +54,13 @@ export default class About extends React.Component {
           <h3>Actively Added Tournament Series</h3>
           <ul>
             <a href='https://tsns.challonge.com/tournaments'>That&apos;s Not Safe</a><br/>
-            <a href='https://challonge.com/users/uwsmash'>UW Weekly</a><br/>
-            <a href='https://challonge.com/users/seattleusmash/tournaments'>SU Weekly</a><br/>
+            <a href='https://challonge.com/users/uwsmash/tournaments'>UW Smash</a><br/>
+            <a href='https://challonge.com/users/seattleusmash/tournaments'>Smash @ SU</a><br/>
             <a href='https://challonge.com/users/eastsidesmash/tournaments'>East Side Smash</a><br/>
             <a href='https://epeengaming.challonge.com/tournaments'>EPG</a><br/>
             <a href='https://challonge.com/users/kneeil/tournaments'>Bangers and Smash</a><br/>
-            <a href='https://challonge.com/users/bozionjr/tournaments'>The Smash House</a>
+            <a href='https://challonge.com/users/bozionjr/tournaments'>The Smash House</a><br/>
+            <a href='https://joy.challonge.com/tournaments'>Randall&apos;s Paradise</a>
           </ul>
         </div>
         

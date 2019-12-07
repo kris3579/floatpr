@@ -21,14 +21,19 @@ export default class TournamentsTable extends React.Component {
   }
 
   render() {
-    const { tournamentsObject } = this.props;
+    const { tournamentsArray } = this.props.tournamentsObject;
     const { currentPagination } = this.state;
-    const numberOfTournaments = tournamentsObject.tournamentsArray.length;
+    const numberOfTournaments = tournamentsArray.length;
+
+    const firstTournamentIndex = ((currentPagination * 50) - 50);
+    const lastTournamentIndex = currentPagination * 50;
+
+    const displayedTournaments = tournamentsArray.slice(firstTournamentIndex, lastTournamentIndex);
     const maxPaginations = Math.floor(numberOfTournaments / 50) + 1;
 
     return (
       <>
-        <h3 className='tournamentsListHeader'>Tournaments in database: {numberOfTournaments}</h3>
+        <h3 className='tournamentsListHeader'>Tournaments In Database: {numberOfTournaments}</h3>
         <table>
           <tbody>
             <tr className='headerRow'>
@@ -40,7 +45,7 @@ export default class TournamentsTable extends React.Component {
               <th className='tournamentUrlColumn'>Bracket Link</th>
             </tr>
             {
-              tournamentsObject.tournamentsArray.map((tournament, i) => {
+              displayedTournaments.map((tournament, i) => {
                 return (
                   <TournamentRow
                     tournament={tournament}

@@ -9,7 +9,16 @@ export default class TournamentRow extends React.Component {
     const { tournament } = this.props;
 
     const parsedPlacement = JSON.parse(tournament.placements)[1];
-    const winner = parsedPlacement ? parsedPlacement[0].match(/\b[^|]+$/) : null;
+    const splitWinner = parsedPlacement ? parsedPlacement[0].split(' | ') : null;
+    
+    let winner = '';
+
+    winner = parsedPlacement;
+
+    if (splitWinner === 2) {
+      // eslint-disable-next-line prefer-destructuring
+      winner = splitWinner[1];
+    }
 
     let dateString = new Date(tournament.date).toDateString();
     dateString = dateString.replace(/^[^\s]+/, '');
@@ -29,7 +38,7 @@ export default class TournamentRow extends React.Component {
           <Link to={{ pathname: `/tournament/${tournament.id}` }}>
             <MediaQuery maxDeviceWidth={480}>
               {(matches) => {
-                return matches ? mobileTournamentName : tournament.name;
+                return matches ? mobileTournamentName : `${tournament.name} ${tournament.id}`;
               }}
             </MediaQuery>
           </Link>

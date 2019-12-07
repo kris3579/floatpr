@@ -20,6 +20,43 @@ export default class TournamentInfo extends React.Component {
 
     const parsedPlacements = JSON.parse(tournament.placements);
 
+    const results = Object.entries(parsedPlacements).length === 0 ? 'Incomplete'
+      : Object.keys(parsedPlacements).map((placement, i) => {
+        let shownPlacement = '';
+        
+        switch (placement) {
+          case '1':
+            shownPlacement = '1st';
+            break;
+          case '2':
+            shownPlacement = '2nd';
+            break;
+          case '3':
+            shownPlacement = '3rd';
+            break;
+          default:
+            shownPlacement = `${placement}th`;
+        }
+                
+        return (
+          <li key={i}><strong>{`${shownPlacement}: `}</strong>
+            {
+              parsedPlacements[placement].map((player, j) => {
+                let doWeAddSeperation = ' - ';
+                
+                if (!parsedPlacements[placement][j + 1]) {
+                  doWeAddSeperation = '';
+                }
+                
+                return (
+                  <strong key={j}><Link to={{ pathname: `/player/${player}` }}>{player}</Link>{doWeAddSeperation}</strong>
+                );
+              })
+              }
+          </li>
+        );
+      });
+
     return (
       <>
         <h2 className='tournamentHeader'>{tournament.name}</h2>
@@ -36,43 +73,7 @@ export default class TournamentInfo extends React.Component {
         <div className='tournamentDiv'>
           <h3>Results</h3>
           <ul>
-            {
-              Object.keys(parsedPlacements).map((placement, i) => {
-                let shownPlacement = '';
-                
-                switch (placement) {
-                  case '1':
-                    shownPlacement = '1st';
-                    break;
-                  case '2':
-                    shownPlacement = '2nd';
-                    break;
-                  case '3':
-                    shownPlacement = '3rd';
-                    break;
-                  default:
-                    shownPlacement = `${placement}th`;
-                }
-                        
-                return (
-                  <li key={i}><strong>{`${shownPlacement}: `}</strong>
-                    {
-                      parsedPlacements[placement].map((player, j) => {
-                        let doWeAddSeperation = ' - ';
-                        
-                        if (!parsedPlacements[placement][j + 1]) {
-                          doWeAddSeperation = '';
-                        }
-                        
-                        return (
-                          <strong key={j}><Link to={{ pathname: `/player/${player}` }}>{player}</Link>{doWeAddSeperation}</strong>
-                        );
-                      })
-                      }
-                  </li>
-                );
-              })
-            }
+            {results}
           </ul>
         </div>
 
