@@ -44,6 +44,8 @@ export default class About extends React.Component {
             -Request to change the home state/region on your player profile<br/>
             -Request to merge the results of one tag into another<br/>
             -Request to use the results from a recent unaccounted for tournament<br/>
+            -Report a problem or bug (For instance,
+            report that unrelated tags were accidentally merged)<br/>
             <br/>
             Requests will be taken care of by my discretion along with adding any new tournaments
             on a weekly basis.

@@ -43,13 +43,21 @@ export default class TournamentInfo extends React.Component {
             {
               parsedPlacements[placement].map((player, j) => {
                 let doWeAddSeperation = ' - ';
+
+                const splitName = player.split(' | ');
+                let [playerName] = splitName;
+
+                if (splitName.length === 2) {
+                  // eslint-disable-next-line prefer-destructuring
+                  playerName = splitName[1];
+                }
                 
                 if (!parsedPlacements[placement][j + 1]) {
                   doWeAddSeperation = '';
                 }
                 
                 return (
-                  <strong key={j}><Link to={{ pathname: `/player/${player}` }}>{player}</Link>{doWeAddSeperation}</strong>
+                  <strong key={j}><Link to={{ pathname: `/player/${playerName}` }}>{player}</Link>{doWeAddSeperation}</strong>
                 );
               })
               }

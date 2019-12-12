@@ -7,6 +7,7 @@ import ChangeHomeStateForm from './ChangeHomeStateForm/ChangeHomeStateForm';
 import ChangeSponserForm from './ChangeSponserForm/ChangeSponserForm';
 import CombineResultsForm from './CombineResultsForm/CombineResultsForm';
 import AddTournamentForm from './AddTournamentForm/AddTournamentForm';
+import ReportProblemForm from './ReportProblemForm/ReportProblemForm';
 
 export default class RequestPage extends React.Component {
   constructor(props) {
@@ -155,6 +156,17 @@ export default class RequestPage extends React.Component {
     }
   };
 
+  handleReportProblem = (user, problem) => {
+    const confirmation = this.handleConfirmRequest();
+
+    if (confirmation) {
+      const submittedRequest = `Your request to checkout the problem: '${problem}' has been submitted.`;
+      const dataToSend = `{"requestType":"reportProblem","user":"${user}","problem":"${problem}"}`;
+      
+      this.handleSendRequest(submittedRequest, dataToSend);
+    }
+  }
+
   render() {
     const changeTagForm = <ChangeTagForm
       handleChangeTag={this.handleChangeTag}
@@ -180,6 +192,10 @@ export default class RequestPage extends React.Component {
       handleAddTournament={this.handleAddTournament}
       handleChange={this.handleChange}  
     />;
+    const reportProblemForm = <ReportProblemForm
+      handleReportProblem={this.handleReportProblem}
+      handleChange={this.handleChange}
+    />;
 
     let displayedForm;
 
@@ -202,6 +218,9 @@ export default class RequestPage extends React.Component {
       case 'addTournament':
         displayedForm = addTournamentForm;
         break;
+      case 'reportProblem':
+        displayedForm = reportProblemForm;
+        break;
       default:
         displayedForm = <strong>Choose a request!</strong>;
     }
@@ -217,6 +236,7 @@ export default class RequestPage extends React.Component {
             <option value='changeSponser'>Add/Change Sponser</option>
             <option value='combineResults'>Combine Results</option>
             <option value='addTournament'>Add Tournament</option>
+            <option value='reportProblem'>Report Problem</option>
           </select>
         </form>
 
